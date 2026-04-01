@@ -1,0 +1,88 @@
+<svg width="480" height="600" viewBox="0 0 480 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="480" y2="600" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c2703a" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#2d2f33" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="shirtGrad" x1="160" y1="380" x2="320" y2="550" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1a1c1f"/>
+      <stop offset="1" stop-color="#2d2f33"/>
+    </linearGradient>
+    <radialGradient id="skinGrad" cx="240" cy="240" r="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f0c8a0"/>
+      <stop offset="0.7" stop-color="#e8b88a"/>
+      <stop offset="1" stop-color="#d4a070"/>
+    </radialGradient>
+    <radialGradient id="hairGrad" cx="240" cy="160" r="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d4844a"/>
+      <stop offset="0.6" stop-color="#c47038"/>
+      <stop offset="1" stop-color="#a85e30"/>
+    </radialGradient>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+      <feOffset dy="4"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.1"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="480" height="600" fill="#e8e4de"/>
+  <rect width="480" height="600" fill="url(#bgGrad)"/>
+
+  <!-- Decorative background elements -->
+  <circle cx="380" cy="120" r="80" fill="#c2703a" opacity="0.04"/>
+  <circle cx="100" cy="480" r="120" fill="#c2703a" opacity="0.03"/>
+
+  <!-- Body / Black T-Shirt -->
+  <ellipse cx="240" cy="620" rx="180" ry="200" fill="url(#shirtGrad)" filter="url(#softShadow)"/>
+
+  <!-- Neck -->
+  <rect x="210" y="330" width="60" height="70" rx="20" fill="url(#skinGrad)"/>
+
+  <!-- T-shirt neckline -->
+  <path d="M190 390 Q240 420 290 390 Q300 410 300 440 L180 440 Q180 410 190 390Z" fill="url(#shirtGrad)"/>
+
+  <!-- Head -->
+  <ellipse cx="240" cy="250" rx="90" ry="105" fill="url(#skinGrad)" filter="url(#softShadow)"/>
+
+  <!-- Hair -->
+  <path d="M155 220 Q155 145 240 140 Q325 145 325 220 Q320 180 280 170 Q240 162 200 170 Q165 180 155 220Z" fill="url(#hairGrad)"/>
+  <path d="M155 220 Q150 200 160 180 Q170 160 200 155 Q230 148 260 152 Q290 155 310 165 Q330 178 330 200 Q325 215 325 220 Q318 195 290 180 Q260 170 235 172 Q200 175 180 190 Q165 205 155 220Z" fill="url(#hairGrad)" opacity="0.8"/>
+
+  <!-- Ears -->
+  <ellipse cx="152" cy="255" rx="14" ry="20" fill="#e0a878"/>
+  <ellipse cx="328" cy="255" rx="14" ry="20" fill="#e0a878"/>
+
+  <!-- Eyes -->
+  <ellipse cx="210" cy="248" rx="14" ry="10" fill="white"/>
+  <ellipse cx="270" cy="248" rx="14" ry="10" fill="white"/>
+  <circle cx="212" cy="248" r="6" fill="#5a8a6a"/>
+  <circle cx="272" cy="248" r="6" fill="#5a8a6a"/>
+  <circle cx="213" cy="247" r="2.5" fill="#1a1c1f"/>
+  <circle cx="273" cy="247" r="2.5" fill="#1a1c1f"/>
+  <circle cx="215" cy="245" r="1.2" fill="white"/>
+  <circle cx="275" cy="245" r="1.2" fill="white"/>
+
+  <!-- Eyebrows -->
+  <path d="M192 232 Q210 226 228 230" stroke="#b86838" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M254 230 Q272 226 290 232" stroke="#b86838" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Nose -->
+  <path d="M238 260 Q235 278 228 288 Q238 292 252 288 Q245 278 242 260" fill="#d4a070" opacity="0.6"/>
+
+  <!-- Smile -->
+  <path d="M205 308 Q225 332 240 332 Q255 332 275 308" stroke="#b07050" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M208 310 Q225 328 240 328 Q255 328 272 310" fill="white" opacity="0.9"/>
+
+  <!-- Light stubble -->
+  <rect x="195" y="315" width="90" height="30" rx="15" fill="#c47038" opacity="0.08"/>
+
+  <!-- Subtle jaw shadow -->
+  <path d="M160 290 Q170 350 240 360 Q310 350 320 290" fill="#c09060" opacity="0.08"/>
+
+  <!-- Text overlay -->
+  <rect x="30" y="520" width="200" height="50" rx="8" fill="white" opacity="0.9"/>
+  <text x="45" y="542" font-family="Inter, sans-serif" font-weight="700" font-size="14" fill="#2d2f33">Ben Young</text>
+  <text x="45" y="560" font-family="Inter, sans-serif" font-weight="400" font-size="11" fill="#6b6d72">Web Developer & Small Business Owner</text>
+</svg>
