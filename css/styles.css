@@ -555,6 +555,21 @@ p {
     width: 100%;
 }
 
+.start-card-form {
+    grid-column: 1 / -1;
+    max-width: 700px;
+}
+
+.jotform-embed {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.jotform-embed iframe {
+    width: 100% !important;
+    border: none !important;
+}
+
 .start-external {
     display: block;
     text-align: center;
