@@ -1,151 +1,4 @@
-// ===========================
-// Custom Cursor
-// ===========================
-const cursor = document.createElement('div');
-cursor.className = 'cursor';
-document.body.appendChild(cursor);
-
-const cursorDot = document.createElement('div');
-cursorDot.className = 'cursor-dot';
-document.body.appendChild(cursorDot);
-
-let cursorX = 0, cursorY = 0;
-let dotX = 0, dotY = 0;
-
-document.addEventListener('mousemove', (e) => {
-    cursorX = e.clientX;
-    cursorY = e.clientY;
-    // Dot follows instantly
-    cursorDot.style.left = cursorX + 'px';
-    cursorDot.style.top = cursorY + 'px';
-});
-
-// Smooth cursor follow with lerp
-function animateCursor() {
-    dotX += (cursorX - dotX) * 0.15;
-    dotY += (cursorY - dotY) * 0.15;
-    cursor.style.left = dotX + 'px';
-    cursor.style.top = dotY + 'px';
-    requestAnimationFrame(animateCursor);
-}
-animateCursor();
-
-// Cursor hover states
-function setupCursorHover() {
-    const hoverTargets = document.querySelectorAll('a, button, .work-card, .btn');
-    hoverTargets.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.classList.add('cursor-hover');
-            cursorDot.classList.add('cursor-hover');
-        });
-        el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('cursor-hover');
-            cursor.classList.remove('cursor-accent');
-            cursorDot.classList.remove('cursor-hover');
-        });
-    });
-
-    // Orange accent cursor on CTA buttons
-    const accentTargets = document.querySelectorAll('.btn-primary, .btn-secondary, .nav-cta, .chat-toggle');
-    accentTargets.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.classList.add('cursor-accent');
-        });
-        el.addEventListener('mouseleave', () => {
-            cursor.classList.remove('cursor-accent');
-        });
-    });
-}
-
-
-// ===========================
-// Perspective-shifting Images
-// ===========================
-function setupPerspectiveImages() {
-    const images = document.querySelectorAll('.hero-photo, .about-image');
-    images.forEach(container => {
-        container.classList.add('perspective-img');
-        const img = container.querySelector('img');
-        if (!img) return;
-
-        container.addEventListener('mousemove', (e) => {
-            const rect = container.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            const rotateY = x * 20;
-            const rotateX = -y * 15;
-            img.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(1.03)`;
-        });
-
-        container.addEventListener('mouseleave', () => {
-            img.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
-        });
-    });
-}
-
-
-// ===========================
-// Parallax Text on Scroll
-// ===========================
-function setupParallax() {
-    const parallaxElements = [];
-
-    // Hero lines get different parallax speeds
-    document.querySelectorAll('.hero-line').forEach((el, i) => {
-        el.classList.add('parallax-text');
-        parallaxElements.push({ el, speed: 0.08 + i * 0.04, offset: 0 });
-    });
-
-    // Section headers parallax
-    document.querySelectorAll('.section-header h2').forEach(el => {
-        el.classList.add('parallax-text');
-        parallaxElements.push({ el, speed: 0.05, offset: 0 });
-    });
-
-    // Process step numbers
-    document.querySelectorAll('.step-number').forEach(el => {
-        el.classList.add('parallax-text');
-        parallaxElements.push({ el, speed: -0.06, offset: 0 });
-    });
-
-    // Work card numbers
-    document.querySelectorAll('.work-number').forEach(el => {
-        el.classList.add('parallax-text');
-        parallaxElements.push({ el, speed: -0.04, offset: 0 });
-    });
-
-    let ticking = false;
-
-    function updateParallax() {
-        const scrollY = window.scrollY;
-        const windowHeight = window.innerHeight;
-
-        parallaxElements.forEach(({ el, speed }) => {
-            const rect = el.getBoundingClientRect();
-            const elementCenter = rect.top + rect.height / 2;
-            const distanceFromCenter = elementCenter - windowHeight / 2;
-            const translateY = distanceFromCenter * speed;
-            el.style.transform = `translateY(${translateY}px)`;
-        });
-
-        ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            requestAnimationFrame(updateParallax);
-            ticking = true;
-        }
-    }, { passive: true });
-
-    // Initial update
-    updateParallax();
-}
-
-
-// ===========================
-// Scroll Animations (Intersection Observer)
-// ===========================
+// Scroll animations
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -155,13 +8,9 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, {
     threshold: 0.1,
-    rootMargin: '0px 0px -60px 0px'
+    rootMargin: '0px 0px -40px 0px'
 });
 
-
-// ===========================
-// Init
-// ===========================
 document.addEventListener('DOMContentLoaded', () => {
     // Hero entrance animation
     const heroText = document.querySelector('.hero-text');
@@ -190,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fadeSelectors.forEach(selector => {
         document.querySelectorAll(selector).forEach((el, i) => {
             el.classList.add('fade-up');
-            el.style.transitionDelay = `${i * 0.1}s`;
+            el.style.transitionDelay = `${i * 0.08}s`;
             observer.observe(el);
         });
     });
@@ -203,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             nav.classList.remove('scrolled');
         }
-    }, { passive: true });
+    });
 
     // Mobile nav toggle
     const navToggle = document.getElementById('navToggle');
@@ -214,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.classList.toggle('open');
     });
 
+    // Close mobile nav on link click
     navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             navToggle.classList.remove('active');
@@ -249,10 +99,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Close on escape
+    // Close chat on escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            if (chatWidget && chatWidget.classList.contains('open')) closeChat();
+            if (chatWidget && chatWidget.classList.contains('open')) {
+                closeChat();
+            }
             if (navLinks && navLinks.classList.contains('open')) {
                 navToggle.classList.remove('active');
                 navLinks.classList.remove('open');
@@ -270,9 +122,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    // Initialize interactive features
-    setupCursorHover();
-    setupPerspectiveImages();
-    setupParallax();
 });
