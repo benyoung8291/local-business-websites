@@ -13,30 +13,29 @@ const observer = new IntersectionObserver((entries) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     // Hero entrance animation
-    const heroContent = document.querySelector('.hero-content');
+    const heroText = document.querySelector('.hero-text');
+    const heroTagline = document.querySelector('.hero-tagline');
     const heroPhoto = document.querySelector('.hero-photo');
 
     requestAnimationFrame(() => {
-        if (heroContent) heroContent.classList.add('loaded');
+        if (heroText) heroText.classList.add('loaded');
+        if (heroTagline) heroTagline.classList.add('loaded');
         if (heroPhoto) heroPhoto.classList.add('loaded');
     });
 
     // Fade-up elements on scroll
     const fadeSelectors = [
         '.section-label',
+        '.section-header',
         '.work-card',
         '.process-step',
         '.pricing-card',
+        '.pricing-footer-note',
+        '.about-image',
         '.about-content',
-        '.start-card',
-        '.section-work h2',
-        '.section-work .section-intro',
-        '.section-process h2',
-        '.section-process .section-intro',
-        '.section-pricing h2',
-        '.section-pricing .section-intro',
-        '.section-start h2',
-        '.section-start .section-intro'
+        '.contact-text',
+        '.contact-form',
+        '.section-intro'
     ];
 
     fadeSelectors.forEach(selector => {
@@ -47,11 +46,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Sticky nav
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('active');
+        navLinks.classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navToggle.classList.remove('active');
+            navLinks.classList.remove('open');
+        });
+    });
+
     // Chat widget
     const chatWidget = document.getElementById('chatWidget');
     const chatToggle = document.getElementById('chatToggle');
     const chatPanelClose = document.getElementById('chatPanelClose');
-    const openQuoteHero = document.getElementById('openQuoteHero');
     const openQuoteCTA = document.getElementById('openQuoteCTA');
 
     function toggleChat() {
@@ -66,15 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
         chatWidget.classList.remove('open');
     }
 
-    chatToggle.addEventListener('click', toggleChat);
-    chatPanelClose.addEventListener('click', closeChat);
-
-    if (openQuoteHero) {
-        openQuoteHero.addEventListener('click', (e) => {
-            e.preventDefault();
-            openChat();
-        });
-    }
+    if (chatToggle) chatToggle.addEventListener('click', toggleChat);
+    if (chatPanelClose) chatPanelClose.addEventListener('click', closeChat);
 
     if (openQuoteCTA) {
         openQuoteCTA.addEventListener('click', (e) => {
@@ -85,8 +103,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close chat on escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && chatWidget.classList.contains('open')) {
-            closeChat();
+        if (e.key === 'Escape') {
+            if (chatWidget && chatWidget.classList.contains('open')) {
+                closeChat();
+            }
+            if (navLinks && navLinks.classList.contains('open')) {
+                navToggle.classList.remove('active');
+                navLinks.classList.remove('open');
+            }
         }
     });
 
