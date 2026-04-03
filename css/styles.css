@@ -116,11 +116,44 @@ p {
     padding: 0 24px;
 }
 
+/* --- Section Labels (inspired by uppercase tracking labels) --- */
+.section-label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--terracotta);
+    margin-bottom: 12px;
+    opacity: 0.85;
+}
+
 .section-intro {
     font-size: 1.1rem;
     color: var(--warm-gray);
     max-width: 540px;
     margin-bottom: 56px;
+}
+
+/* --- Wave Dividers --- */
+.wave-divider {
+    line-height: 0;
+    margin-top: -1px;
+}
+
+.wave-divider svg {
+    display: block;
+    width: 100%;
+    height: 60px;
+}
+
+.wave-cream-to-mid {
+    background: var(--cream);
+}
+
+.wave-mid-to-cream {
+    background: var(--cream-mid);
 }
 
 /* --- Buttons --- */
@@ -144,13 +177,18 @@ p {
 .btn-primary {
     background-color: var(--charcoal);
     color: var(--cream);
+    position: relative;
 }
 
 .btn-primary:hover {
     background-color: var(--charcoal-light);
     color: var(--cream);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(45, 42, 38, 0.2);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
 }
 
 .btn-secondary {
@@ -249,7 +287,7 @@ p {
    WORK / PORTFOLIO
    ======================== */
 .section-work {
-    padding: 120px 0;
+    padding: 100px 0 120px;
     background-color: var(--cream-mid);
 }
 
@@ -270,8 +308,8 @@ p {
 }
 
 .work-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(45, 42, 38, 0.1), 0 0 0 1px var(--border-strong);
     border-color: var(--border-strong);
 }
 
@@ -362,14 +400,21 @@ p {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     background: var(--charcoal);
     color: var(--cream);
     font-family: var(--font-heading);
     font-size: 1.25rem;
     margin-bottom: 24px;
+    transition: all var(--transition);
+}
+
+.process-step:hover .step-number {
+    background: var(--terracotta);
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(192, 82, 48, 0.2);
 }
 
 .process-step h3 {
@@ -407,6 +452,12 @@ p {
     border: 1px solid var(--border);
     overflow: hidden;
     max-width: 700px;
+    transition: all var(--transition);
+}
+
+.pricing-card:hover {
+    box-shadow: 0 20px 50px rgba(45, 42, 38, 0.08);
+    border-color: var(--border-strong);
 }
 
 .pricing-main {
@@ -524,6 +575,13 @@ p {
     border-radius: var(--radius-xl);
     padding: 48px 40px;
     border: 1px solid var(--border);
+    transition: all var(--transition);
+}
+
+.start-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(45, 42, 38, 0.08);
+    border-color: var(--border-strong);
 }
 
 .start-card-icon {
@@ -536,6 +594,12 @@ p {
     border-radius: var(--radius-md);
     color: var(--charcoal);
     margin-bottom: 24px;
+    transition: all var(--transition);
+}
+
+.start-card:hover .start-card-icon {
+    background: var(--terracotta-soft);
+    color: var(--terracotta);
 }
 
 .start-card h3 {
@@ -587,13 +651,29 @@ p {
    FOOTER
    ======================== */
 .footer {
-    padding: 48px 0;
-    border-top: 1px solid var(--border);
+    padding: 56px 0;
+    border-top: none;
+    background: var(--cream);
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--terracotta);
+    border-radius: 2px;
+    opacity: 0.3;
 }
 
 .footer p {
     font-size: 0.85rem;
     color: var(--warm-gray-light);
+    text-align: center;
 }
 
 
@@ -622,11 +702,22 @@ p {
     transition: all var(--transition);
     position: relative;
     z-index: 2;
+    animation: chat-pulse 3s ease-in-out infinite;
 }
 
 .chat-toggle:hover {
-    transform: scale(1.06);
-    box-shadow: var(--shadow-xl);
+    transform: scale(1.08);
+    box-shadow: 0 10px 30px rgba(192, 82, 48, 0.25);
+    animation: none;
+}
+
+.chat-widget.open .chat-toggle {
+    animation: none;
+}
+
+@keyframes chat-pulse {
+    0%, 100% { box-shadow: var(--shadow-lg); }
+    50% { box-shadow: 0 8px 30px rgba(45, 42, 38, 0.2), 0 0 0 6px rgba(192, 82, 48, 0.08); }
 }
 
 .chat-icon-close {
@@ -806,6 +897,10 @@ p {
     .section-start {
         padding: 80px 0;
     }
+
+    .wave-divider svg {
+        height: 40px;
+    }
 }
 
 
@@ -860,6 +955,14 @@ p {
     .section-about,
     .section-start {
         padding: 64px 0;
+    }
+
+    .wave-divider svg {
+        height: 30px;
+    }
+
+    .start-card:hover {
+        transform: none;
     }
 
     /* Chat widget mobile */
