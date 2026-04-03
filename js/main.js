@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fade-up elements on scroll
     const fadeSelectors = [
+        '.section-label',
         '.work-card',
         '.process-step',
         '.pricing-card',
