@@ -34,98 +34,98 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <link rel="canonical" href="https://benyoung.dev">
 </head>
 <body>
 
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">Ben Young</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="#work">Work</a>
+                <a href="#process">Process</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#about">About</a>
+                <a href="#contact" class="nav-cta">Get in touch</a>
+            </div>
+        </div>
+    </nav>
+
     <!-- Hero -->
-    <header class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <h1>I'm Ben. I build websites for small businesses<em> — fast, affordable, and without the runaround.</em></h1>
-                <p class="hero-sub">You know you need a website. I know how to build them. Let's sort it out.</p>
-                <div class="hero-ctas">
-                    <button class="btn btn-primary" id="openQuoteHero">Get an instant quote</button>
-                    <a href="#get-started" class="btn btn-secondary">Let's have a chat</a>
-                </div>
+    <header class="hero" id="hero">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <div class="hero-line hero-line-1">Websites</div>
+                <div class="hero-line hero-line-2">for small</div>
+                <div class="hero-line hero-line-3">businesses<span class="hero-dot">.</span></div>
             </div>
             <div class="hero-photo">
-                <div class="hero-photo-shape"></div>
                 <img src="images/ben-young.webp" alt="Ben Young, small business website designer" width="480" height="720">
             </div>
+            <div class="hero-tagline">
+                <p>I'm Ben. I build websites that are fast, affordable, and without the runaround. Your site, live in about a week.</p>
+                <div class="hero-ctas">
+                    <a href="#contact" class="btn btn-primary">Get in touch</a>
+                    <a href="#work" class="btn btn-ghost">See my work</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-hint">
+            <span>Scroll</span>
+            <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><path d="M8 4v16m0 0l-5-5m5 5l5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
     </header>
 
-    <!-- Wave Divider: Hero → Work -->
-    <div class="wave-divider wave-cream-to-mid">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z" fill="var(--cream-mid)"/>
-        </svg>
-    </div>
-
     <!-- Work -->
-    <section class="section-work" id="work">
+    <section class="section section-work" id="work">
         <div class="container">
-            <span class="section-label">Portfolio</span>
-            <h2>Here's some of my recent work</h2>
-            <p class="section-intro">Every business is different. Here's a few I've built recently.</p>
+            <div class="section-header">
+                <span class="section-label">Portfolio</span>
+                <h2>Recent<br><em>work</em></h2>
+            </div>
             <div class="work-grid">
 
                 <a href="https://premrest.com.au" target="_blank" rel="noopener" class="work-card">
-                    <div class="work-card-browser">
-                        <div class="browser-dots">
-                            <span></span><span></span><span></span>
-                        </div>
-                        <div class="browser-url">premrest.com.au</div>
-                    </div>
-                    <div class="work-card-body">
+                    <div class="work-card-inner">
+                        <span class="work-number">01</span>
                         <h3>Premrest</h3>
-                        <p>Commercial flooring company. I built them a clean, professional site with role-based navigation so facility managers and developers each find what they need.</p>
+                        <p>Commercial flooring company. Clean, professional site with role-based navigation for facility managers and developers.</p>
                         <span class="work-link">Visit site &rarr;</span>
                     </div>
                 </a>
 
                 <a href="https://fromtheoffice.io" target="_blank" rel="noopener" class="work-card">
-                    <div class="work-card-browser">
-                        <div class="browser-dots">
-                            <span></span><span></span><span></span>
-                        </div>
-                        <div class="browser-url">fromtheoffice.io</div>
-                    </div>
-                    <div class="work-card-body">
+                    <div class="work-card-inner">
+                        <span class="work-number">02</span>
                         <h3>From The Office</h3>
-                        <p>An AI quoting tool for tradies. I built a multi-page site with tailored landing pages for each trade — carpet cleaners, lawn care, plumbers, and more.</p>
+                        <p>An AI quoting tool for tradies. Multi-page site with tailored landing pages for each trade.</p>
                         <span class="work-link">Visit site &rarr;</span>
                     </div>
                 </a>
 
                 <a href="https://comcorkflooring.com.au" target="_blank" rel="noopener" class="work-card">
-                    <div class="work-card-browser">
-                        <div class="browser-dots">
-                            <span></span><span></span><span></span>
-                        </div>
-                        <div class="browser-url">comcorkflooring.com.au</div>
-                    </div>
-                    <div class="work-card-body">
+                    <div class="work-card-inner">
+                        <span class="work-number">03</span>
                         <h3>ComCork Flooring</h3>
-                        <p>Sustainable cork and rubber flooring in 31 colours. A modern site that puts the product front and centre so customers can find exactly what they need.</p>
+                        <p>Sustainable cork and rubber flooring in 31 colours. Product-focused modern showcase.</p>
                         <span class="work-link">Visit site &rarr;</span>
                     </div>
                 </a>
 
                 <a href="https://encap.com.au" target="_blank" rel="noopener" class="work-card">
-                    <div class="work-card-browser">
-                        <div class="browser-dots">
-                            <span></span><span></span><span></span>
-                        </div>
-                        <div class="browser-url">encap.com.au</div>
-                    </div>
-                    <div class="work-card-body">
+                    <div class="work-card-inner">
+                        <span class="work-number">04</span>
                         <h3>Encap</h3>
-                        <p>Low-moisture carpet cleaning. I built an interactive sustainability calculator that shows facilities how much water and energy they'd save switching over.</p>
+                        <p>Low-moisture carpet cleaning with an interactive sustainability calculator.</p>
                         <span class="work-link">Visit site &rarr;</span>
                     </div>
                 </a>
@@ -134,155 +134,127 @@
         </div>
     </section>
 
-    <!-- Wave Divider: Work → Process -->
-    <div class="wave-divider wave-mid-to-cream">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,40 C240,0 480,80 720,40 C960,0 1200,60 1440,40 L1440,80 L0,80 Z" fill="var(--cream)"/>
-        </svg>
-    </div>
-
-    <!-- How It Works -->
-    <section class="section-process" id="process">
+    <!-- Process -->
+    <section class="section section-process" id="process">
         <div class="container">
-            <span class="section-label">Process</span>
-            <h2>Here's how it works</h2>
+            <div class="section-header">
+                <span class="section-label">Process</span>
+                <h2>How it<br><em>works</em></h2>
+            </div>
             <p class="section-intro">No complicated process. No 47-page proposals. Just this:</p>
             <div class="process-steps">
                 <div class="process-step">
-                    <div class="step-number">1</div>
-                    <h3>We have a chat</h3>
-                    <p>A quick call to understand your business and what you need. Takes about 15 minutes. No pressure, no jargon.</p>
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>We have a chat</h3>
+                        <p>A quick call to understand your business and what you need. Takes about 15 minutes. No pressure, no jargon.</p>
+                    </div>
                 </div>
-                <div class="process-connector"></div>
                 <div class="process-step">
-                    <div class="step-number">2</div>
-                    <h3>You fill out a short form</h3>
-                    <p>I'll send you a simple form to get the details I need — your content, your vibe, what matters to you. Then I get to work.</p>
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>You fill out a short form</h3>
+                        <p>I'll send you a simple form to get the details I need — your content, your vibe, what matters to you. Then I get to work.</p>
+                    </div>
                 </div>
-                <div class="process-connector"></div>
                 <div class="process-step">
-                    <div class="step-number">3</div>
-                    <h3>Your website goes live</h3>
-                    <p>In about a week, your site is done. You review it, we tweak anything you want, and then it's live. That's it.</p>
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Your website goes live</h3>
+                        <p>In about a week, your site is done. You review it, we tweak anything you want, and then it's live. That's it.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Wave Divider: Process → Pricing -->
-    <div class="wave-divider wave-cream-to-mid">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,20 C180,70 540,0 900,50 C1100,70 1320,20 1440,40 L1440,80 L0,80 Z" fill="var(--cream-mid)"/>
-        </svg>
-    </div>
 
     <!-- Pricing -->
-    <section class="section-pricing" id="pricing">
+    <section class="section section-pricing" id="pricing">
         <div class="container">
-            <span class="section-label">Pricing</span>
-            <h2>Simple, honest pricing</h2>
+            <div class="section-header">
+                <span class="section-label">Pricing</span>
+                <h2>Simple, honest<br><em>pricing</em></h2>
+            </div>
             <p class="section-intro">No hidden fees. No surprises. Here's what it costs.</p>
-            <div class="pricing-card">
-                <div class="pricing-main">
-                    <div class="pricing-item pricing-item-hero">
-                        <span class="pricing-label">Website build</span>
-                        <span class="pricing-value">From $465 <span class="pricing-note">inc GST</span></span>
-                        <p>A complete, professional website designed and built for your business. Price depends on the number of pages and features you need.</p>
-                    </div>
-                    <div class="pricing-divider"></div>
-                    <div class="pricing-item">
-                        <span class="pricing-label">Hosting</span>
-                        <span class="pricing-value">$15/month</span>
-                        <p>Keeps your website live, fast, and secure on the internet.</p>
-                    </div>
-                    <div class="pricing-divider"></div>
-                    <div class="pricing-item">
-                        <span class="pricing-label">Future updates</span>
-                        <span class="pricing-value">$65/hour</span>
-                        <p>Need something changed down the track? Text changes, new sections, whatever you need.</p>
-                    </div>
-                    <div class="pricing-divider"></div>
-                    <div class="pricing-item">
-                        <span class="pricing-label">Domain name</span>
-                        <span class="pricing-value">$0 from me</span>
-                        <p>You buy your own domain so you own it 100%. I'll help you set it up at no charge.</p>
-                    </div>
+            <div class="pricing-grid">
+                <div class="pricing-card pricing-card-main">
+                    <span class="pricing-label">Website build</span>
+                    <span class="pricing-value">From $465 <span class="pricing-note">inc GST</span></span>
+                    <p>A complete, professional website designed and built for your business. Price depends on the number of pages and features you need.</p>
                 </div>
-                <div class="pricing-footer">
-                    <p>You own everything. No lock-in contracts. No sneaky fees.</p>
+                <div class="pricing-card">
+                    <span class="pricing-label">Hosting</span>
+                    <span class="pricing-value">$15<span class="pricing-note">/month</span></span>
+                    <p>Keeps your website live, fast, and secure on the internet.</p>
                 </div>
+                <div class="pricing-card">
+                    <span class="pricing-label">Future updates</span>
+                    <span class="pricing-value">$65<span class="pricing-note">/hour</span></span>
+                    <p>Need something changed down the track? Text changes, new sections, whatever you need.</p>
+                </div>
+                <div class="pricing-card">
+                    <span class="pricing-label">Domain name</span>
+                    <span class="pricing-value">$0 <span class="pricing-note">from me</span></span>
+                    <p>You buy your own domain so you own it 100%. I'll help you set it up at no charge.</p>
+                </div>
+            </div>
+            <div class="pricing-footer-note">
+                <p>You own everything. No lock-in contracts. No sneaky fees.</p>
             </div>
         </div>
     </section>
-
-    <!-- Wave Divider: Pricing → About -->
-    <div class="wave-divider wave-mid-to-cream">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,50 C300,0 600,70 900,30 C1100,10 1300,60 1440,40 L1440,80 L0,80 Z" fill="var(--cream)"/>
-        </svg>
-    </div>
 
     <!-- About -->
-    <section class="section-about" id="about">
-        <div class="container about-grid">
-            <div class="about-content">
-                <span class="section-label">About</span>
-                <h2>I'm not an agency.<br>I'm a small business owner, just like you.</h2>
-                <p>I know what it's like to wear every hat — the marketing, the admin, the late nights figuring stuff out. Getting a website sorted shouldn't be another headache.</p>
-                <p>I've been building websites for over a decade. I've built 50+ of them for businesses just like yours — personal trainers, therapists, tradies, consultants. People who are great at what they do and just need someone to handle the website part.</p>
-                <p>You work directly with me. One person. No runaround. We have enough issues to deal with as small business owners — a website shouldn't be one of them.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wave Divider: About → Get Started -->
-    <div class="wave-divider wave-cream-to-mid">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,30 C360,70 720,10 1080,50 C1260,60 1380,30 1440,40 L1440,80 L0,80 Z" fill="var(--cream-mid)"/>
-        </svg>
-    </div>
-
-    <!-- Get Started -->
-    <section class="section-start" id="get-started">
+    <section class="section section-about" id="about">
         <div class="container">
-            <span class="section-label">Get started</span>
-            <h2>Ready to get your website sorted?</h2>
-            <p class="section-intro">Two ways to get started — pick whatever suits you.</p>
-            <div class="start-grid">
-                <div class="start-card">
-                    <div class="start-card-icon">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M27 5H5a2 2 0 00-2 2v14a2 2 0 002 2h5l6 5 6-5h5a2 2 0 002-2V7a2 2 0 00-2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="14" r="1.5" fill="currentColor"/><circle cx="16" cy="14" r="1.5" fill="currentColor"/><circle cx="22" cy="14" r="1.5" fill="currentColor"/></svg>
-                    </div>
-                    <h3>Get an instant quote</h3>
-                    <p>Chat with my AI quoting assistant. Answer a few quick questions and get a price estimate right now — no waiting.</p>
-                    <button class="btn btn-primary" id="openQuoteCTA">Start a quote</button>
-                    <a href="https://fromtheoffice.io/ben-young-y45e" target="_blank" rel="noopener" class="start-external">Or open in a new tab &rarr;</a>
+            <div class="about-layout">
+                <div class="about-image">
+                    <img src="images/ben-young.webp" alt="Ben Young" width="480" height="720">
                 </div>
-                <div class="start-card start-card-form">
-                    <div class="start-card-icon">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M5 4h22a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 8l13 8 13-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M11 28h10M16 22v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                    </div>
-                    <h3>Let's have a chat</h3>
-                    <p>Prefer to talk to a real person? Fill out the form below and I'll get back to you within 24 hours. No pressure, no obligation.</p>
-                    <div class="jotform-embed">
-                        <script type="text/javascript" src="https://form.jotform.com/jsform/260900945645057"></script>
-                    </div>
+                <div class="about-content">
+                    <span class="section-label">About</span>
+                    <h2>I'm not an agency.<br>I'm a small business owner, <em>just like you.</em></h2>
+                    <p>I know what it's like to wear every hat — the marketing, the admin, the late nights figuring stuff out. Getting a website sorted shouldn't be another headache.</p>
+                    <p>I've been building websites for over a decade. I've built 50+ of them for businesses just like yours — personal trainers, therapists, tradies, consultants.</p>
+                    <p>You work directly with me. One person. No runaround.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Wave Divider: Get Started → Footer -->
-    <div class="wave-divider wave-mid-to-cream">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,60 C240,20 480,70 720,30 C960,0 1200,50 1440,30 L1440,80 L0,80 Z" fill="var(--cream)"/>
-        </svg>
-    </div>
+    <!-- Contact -->
+    <section class="section section-contact" id="contact">
+        <div class="container">
+            <div class="contact-layout">
+                <div class="contact-text">
+                    <span class="section-label">Get in touch</span>
+                    <h2>Ready to get your website <em>sorted?</em></h2>
+                    <p>Fill out the form and I'll get back to you within 24 hours. No pressure, no obligation.</p>
+                    <div class="contact-extras">
+                        <div class="contact-extra">
+                            <button class="btn btn-secondary" id="openQuoteCTA">Get an instant AI quote</button>
+                            <span class="contact-extra-note">Chat with my AI assistant for a price estimate right now</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <iframe data-tally-src="https://tally.so/embed/NpYb0Q?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="200" frameborder="0" marginheight="0" marginwidth="0" title="Contact"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
+        <div class="container footer-inner">
+            <span class="footer-logo">Ben Young</span>
             <p>&copy; 2026 Ben Young. Websites for small businesses in Australia.</p>
+            <div class="footer-links">
+                <a href="#work">Work</a>
+                <a href="#process">Process</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
+            </div>
         </div>
     </footer>
 
@@ -310,6 +282,8 @@
         </div>
     </div>
 
+    <!-- Tally Script -->
+    <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
     <script src="js/main.js"></script>
 </body>
 </html>
