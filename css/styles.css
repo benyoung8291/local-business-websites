@@ -210,7 +210,7 @@ p {
     border: none;
     cursor: pointer;
     padding: 4px;
-    z-index: 101;
+    z-index: 1000;
 }
 
 .nav-toggle span {
@@ -1019,6 +1019,7 @@ p {
         left: 0;
         right: 0;
         bottom: 0;
+        z-index: 999;
         background: var(--cream);
         flex-direction: column;
         justify-content: center;
