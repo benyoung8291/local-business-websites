@@ -1,26 +1,26 @@
 /* ===========================
    Ben Young — Websites for Small Businesses
-   Bold, vibrant, playful — inspired by laurahiggins.com
+   Bold but warm — inspired by Anthropic's colour palette
    =========================== */
 
 /* --- Variables --- */
 :root {
-    --lime: #7ec8e3;
-    --lime-light: #a3daf0;
-    --lime-dark: #5bb3d0;
-    --lavender: #f2cc8f;
-    --lavender-dark: #e5b978;
-    --orange: #e07a5f;
-    --orange-dark: #c9684e;
-    --charcoal: #2e272a;
-    --charcoal-light: #3d353a;
-    --cream: #f9f8f2;
-    --cream-mid: #f3f1ea;
-    --warm-gray: #6b6367;
-    --warm-gray-light: #9a9396;
+    --lime: #D97757;
+    --lime-light: #E8A48C;
+    --lime-dark: #C4654A;
+    --lavender: #C9B99A;
+    --lavender-dark: #B5A485;
+    --orange: #BF5533;
+    --orange-dark: #A34828;
+    --charcoal: #1A1614;
+    --charcoal-light: #2D2622;
+    --cream: #F5F0EB;
+    --cream-mid: #EDE6DE;
+    --warm-gray: #6B5E57;
+    --warm-gray-light: #9C918A;
     --white: #ffffff;
-    --border: rgba(46, 39, 42, 0.1);
-    --border-strong: rgba(46, 39, 42, 0.18);
+    --border: rgba(26, 22, 20, 0.1);
+    --border-strong: rgba(26, 22, 20, 0.18);
 
     --font-heading: 'DM Serif Display', Georgia, serif;
     --font-body: 'Public Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -31,9 +31,9 @@
     --radius-xl: 32px;
     --radius-full: 100px;
 
-    --shadow-sm: 0 2px 8px rgba(46, 39, 42, 0.06);
-    --shadow-md: 0 8px 30px rgba(46, 39, 42, 0.1);
-    --shadow-lg: 0 16px 50px rgba(46, 39, 42, 0.12);
+    --shadow-sm: 0 2px 8px rgba(26, 22, 20, 0.06);
+    --shadow-md: 0 8px 30px rgba(26, 22, 20, 0.1);
+    --shadow-lg: 0 16px 50px rgba(26, 22, 20, 0.12);
 
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
