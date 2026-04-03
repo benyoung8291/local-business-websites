@@ -29,8 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         '.section-header',
         '.work-card',
         '.process-step',
-        '.pricing-card',
-        '.pricing-footer-note',
         '.about-image',
         '.about-content',
         '.contact-text',
