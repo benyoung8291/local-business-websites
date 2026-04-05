@@ -26,17 +26,17 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <link rel="canonical" href="https://benyoung.dev">
-    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav-inner">
-            <a href="#" class="nav-logo">Ben Young<span>.</span></a>
+            <a href="#" class="nav-logo">Ben Young</a>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
@@ -46,7 +46,6 @@
                 <a href="#work">Work</a>
                 <a href="#process">Process</a>
                 <a href="#about">About</a>
-                <a href="#testimonials">Kind words</a>
                 <a href="#contact" class="nav-cta">Get in touch</a>
             </div>
         </div>
@@ -55,34 +54,19 @@
     <!-- Hero -->
     <header class="hero" id="hero">
         <div class="hero-inner">
-            <div class="hero-content">
-                <div class="hero-badge">Websites for small businesses</div>
-                <h1 class="hero-headline">
-                    <span class="hero-line hero-line-1">Ben Young</span>
-                    <span class="hero-line hero-line-2">Websites for</span>
-                    <span class="hero-line hero-line-3">Small Businesses<span class="hero-accent">.</span></span>
-                </h1>
-                <p class="hero-sub">I'm Ben. I build websites that are fast, affordable, and without the runaround. Your site, live in about a week.</p>
-                <div class="hero-ctas">
-                    <a href="#contact" class="btn btn-primary">
-                        Get in touch
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9h10.5m0 0L9.75 4.5M14.25 9l-4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
-                    <a href="#work" class="btn btn-ghost">See my work</a>
-                </div>
+            <div class="hero-text">
+                <div class="hero-line hero-line-1">Websites</div>
+                <div class="hero-line hero-line-2">for small</div>
+                <div class="hero-line hero-line-3">businesses<span class="hero-dot">.</span></div>
             </div>
-            <div class="hero-visual">
-                <div class="hero-photo-wrapper">
-                    <img src="images/ben-young.webp" alt="Ben Young, small business website designer" width="480" height="720">
-                    <div class="hero-photo-accent"></div>
-                </div>
-                <div class="hero-stat hero-stat-1">
-                    <span class="stat-number">50+</span>
-                    <span class="stat-label">Websites built</span>
-                </div>
-                <div class="hero-stat hero-stat-2">
-                    <span class="stat-number">~1 wk</span>
-                    <span class="stat-label">Turnaround</span>
+            <div class="hero-photo">
+                <img src="images/ben-young.webp" alt="Ben Young, small business website designer" width="480" height="720">
+            </div>
+            <div class="hero-tagline">
+                <p>I'm Ben. I build websites that are fast, affordable, and without the runaround. Your site, live in about a week.</p>
+                <div class="hero-ctas">
+                    <a href="#contact" class="btn btn-primary">Get in touch</a>
+                    <a href="#work" class="btn btn-ghost">See my work</a>
                 </div>
             </div>
         </div>
@@ -95,35 +79,33 @@
     <!-- Work -->
     <section class="section section-work" id="work">
         <div class="container">
-            <div class="section-header-flex">
-                <div>
+            <div class="work-header">
+                <div class="work-header-left">
                     <span class="section-label">Portfolio</span>
-                    <h2>Selected <em>projects</em></h2>
+                    <h2>Selected<br><em>projects</em></h2>
                 </div>
-                <p class="section-header-desc">Real results for real businesses. Each project is designed to convert visitors into customers.</p>
+                <p class="work-header-desc">Real results for real businesses. Each project is designed to convert visitors into customers.</p>
             </div>
 
-            <div class="work-grid">
+            <div class="work-showcase">
 
-                <a href="https://premrest.com.au" target="_blank" rel="noopener" class="work-card">
-                    <div class="work-card-browser">
-                        <div class="work-card-bar">
+                <a href="https://premrest.com.au" target="_blank" rel="noopener" class="work-item">
+                    <div class="work-browser">
+                        <div class="work-browser-bar">
                             <span class="browser-dots"><i></i><i></i><i></i></span>
                             <span class="browser-url">premrest.com.au</span>
                         </div>
-                        <div class="work-card-screen">
+                        <div class="work-browser-screen">
                             <img src="images/work/premrest.svg" alt="Premrest website screenshot" loading="lazy"/>
                         </div>
                     </div>
-                    <div class="work-card-info">
-                        <div class="work-card-top">
+                    <div class="work-meta">
+                        <div class="work-meta-top">
                             <h3>Premrest</h3>
-                            <span class="work-card-arrow">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            </span>
+                            <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                         </div>
                         <p>Commercial flooring company with role-based navigation for facility managers and developers.</p>
-                        <div class="work-card-tags">
+                        <div class="work-tags">
                             <span>Website Design</span>
                             <span>Multi-audience</span>
                             <span>SEO</span>
@@ -131,25 +113,23 @@
                     </div>
                 </a>
 
-                <a href="https://fromtheoffice.io" target="_blank" rel="noopener" class="work-card">
-                    <div class="work-card-browser">
-                        <div class="work-card-bar">
+                <a href="https://fromtheoffice.io" target="_blank" rel="noopener" class="work-item">
+                    <div class="work-browser">
+                        <div class="work-browser-bar">
                             <span class="browser-dots"><i></i><i></i><i></i></span>
                             <span class="browser-url">fromtheoffice.io</span>
                         </div>
-                        <div class="work-card-screen">
+                        <div class="work-browser-screen">
                             <img src="images/work/fromtheoffice.svg" alt="From The Office website screenshot" loading="lazy"/>
                         </div>
                     </div>
-                    <div class="work-card-info">
-                        <div class="work-card-top">
+                    <div class="work-meta">
+                        <div class="work-meta-top">
                             <h3>From The Office</h3>
-                            <span class="work-card-arrow">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            </span>
+                            <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                         </div>
                         <p>AI-powered quoting tool for tradies with tailored landing pages for each trade.</p>
-                        <div class="work-card-tags">
+                        <div class="work-tags">
                             <span>Web App</span>
                             <span>AI Integration</span>
                             <span>SaaS</span>
@@ -157,25 +137,23 @@
                     </div>
                 </a>
 
-                <a href="https://comcorkflooring.com.au" target="_blank" rel="noopener" class="work-card">
-                    <div class="work-card-browser">
-                        <div class="work-card-bar">
+                <a href="https://comcorkflooring.com.au" target="_blank" rel="noopener" class="work-item">
+                    <div class="work-browser">
+                        <div class="work-browser-bar">
                             <span class="browser-dots"><i></i><i></i><i></i></span>
                             <span class="browser-url">comcorkflooring.com.au</span>
                         </div>
-                        <div class="work-card-screen">
+                        <div class="work-browser-screen">
                             <img src="images/work/comcork.svg" alt="ComCork Flooring website screenshot" loading="lazy"/>
                         </div>
                     </div>
-                    <div class="work-card-info">
-                        <div class="work-card-top">
+                    <div class="work-meta">
+                        <div class="work-meta-top">
                             <h3>ComCork Flooring</h3>
-                            <span class="work-card-arrow">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            </span>
+                            <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                         </div>
                         <p>Sustainable cork and rubber flooring in 31 colours. Product-focused modern showcase.</p>
-                        <div class="work-card-tags">
+                        <div class="work-tags">
                             <span>E-commerce</span>
                             <span>Product Showcase</span>
                             <span>Sustainability</span>
@@ -183,25 +161,23 @@
                     </div>
                 </a>
 
-                <a href="https://encap.com.au" target="_blank" rel="noopener" class="work-card">
-                    <div class="work-card-browser">
-                        <div class="work-card-bar">
+                <a href="https://encap.com.au" target="_blank" rel="noopener" class="work-item">
+                    <div class="work-browser">
+                        <div class="work-browser-bar">
                             <span class="browser-dots"><i></i><i></i><i></i></span>
                             <span class="browser-url">encap.com.au</span>
                         </div>
-                        <div class="work-card-screen">
+                        <div class="work-browser-screen">
                             <img src="images/work/encap.svg" alt="Encap website screenshot" loading="lazy"/>
                         </div>
                     </div>
-                    <div class="work-card-info">
-                        <div class="work-card-top">
+                    <div class="work-meta">
+                        <div class="work-meta-top">
                             <h3>Encap</h3>
-                            <span class="work-card-arrow">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            </span>
+                            <span class="work-arrow"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                         </div>
                         <p>Low-moisture carpet cleaning with an interactive sustainability calculator.</p>
-                        <div class="work-card-tags">
+                        <div class="work-tags">
                             <span>Website Design</span>
                             <span>Interactive Tool</span>
                             <span>Green Tech</span>
@@ -210,39 +186,38 @@
                 </a>
 
             </div>
-
-            <div class="work-cta-row">
-                <a href="#contact" class="btn btn-primary">Start your project
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9h10.5m0 0L9.75 4.5M14.25 9l-4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
-            </div>
         </div>
     </section>
 
     <!-- Process -->
     <section class="section section-process" id="process">
         <div class="container">
-            <div class="section-header-center">
+            <div class="section-header">
                 <span class="section-label">Process</span>
-                <h2>How it <em>works</em></h2>
-                <p class="section-sub">No complicated process. No 47-page proposals. Just this:</p>
+                <h2>How it<br><em>works</em></h2>
             </div>
-            <div class="process-grid">
-                <div class="process-card">
-                    <div class="process-number">01</div>
-                    <h3>We have a chat</h3>
-                    <p>A quick call to understand your business and what you need. Takes about 15 minutes. No pressure, no jargon.</p>
+            <p class="section-intro">No complicated process. No 47-page proposals. Just this:</p>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>We have a chat</h3>
+                        <p>A quick call to understand your business and what you need. Takes about 15 minutes. No pressure, no jargon.</p>
+                    </div>
                 </div>
-                <div class="process-card">
-                    <div class="process-number">02</div>
-                    <h3>You fill out a short form</h3>
-                    <p>I'll send you a simple form to get the details I need — your content, your vibe, what matters to you. Then I get to work.</p>
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>You fill out a short form</h3>
+                        <p>I'll send you a simple form to get the details I need — your content, your vibe, what matters to you. Then I get to work.</p>
+                    </div>
                 </div>
-                <div class="process-card">
-                    <div class="process-number">03</div>
-                    <h3>Your website goes live</h3>
-                    <p>In about a week, your site is done. You review it, we tweak anything you want, and then it's live. That's it.</p>
-                    <div class="process-badge">Live in ~1 week</div>
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Your website goes live</h3>
+                        <p>In about a week, your site is done. You review it, we tweak anything you want, and then it's live. That's it.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -257,76 +232,10 @@
                 </div>
                 <div class="about-content">
                     <span class="section-label">About</span>
-                    <h2>I'm not an agency. I'm a small business owner, <em>just like you.</em></h2>
+                    <h2>I'm not an agency.<br>I'm a small business owner, <em>just like you.</em></h2>
                     <p>I know what it's like to wear every hat — the marketing, the admin, the late nights figuring stuff out. Getting a website sorted shouldn't be another headache.</p>
                     <p>I've been building websites for over a decade. I've built 50+ of them for businesses just like yours — personal trainers, therapists, tradies, consultants.</p>
-                    <p class="about-highlight">You work directly with me. One person. No runaround.</p>
-                    <a href="#contact" class="btn btn-primary">Let's chat
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.75 9h10.5m0 0L9.75 4.5M14.25 9l-4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="section section-testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-header-center">
-                <span class="section-label">Kind words</span>
-                <h2>What clients <em>say</em></h2>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 1.5l2.47 5.01L17 7.24l-3.76 3.66.89 5.18L9 13.27l-5.13 2.81.89-5.18L1 7.24l5.53-.73L9 1.5z"/></svg>
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 1.5l2.47 5.01L17 7.24l-3.76 3.66.89 5.18L9 13.27l-5.13 2.81.89-5.18L1 7.24l5.53-.73L9 1.5z"/></svg>
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 1.5l2.47 5.01L17 7.24l-3.76 3.66.89 5.18L9 13.27l-5.13 2.81.89-5.18L1 7.24l5.53-.73L9 1.5z"/></svg>
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 1.5l2.47 5.01L17 7.24l-3.76 3.66.89 5.18L9 13.27l-5.13 2.81.89-5.18L1 7.24l5.53-.73L9 1.5z"/></svg>
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 1.5l2.47 5.01L17 7.24l-3.76 3.66.89 5.18L9 13.27l-5.13 2.81.89-5.18L1 7.24l5.53-.73L9 1.5z"/></svg>
-                    </div>
-                    <blockquote>"Ben made the whole thing painless. I told him what I needed, filled out a form, and a week later I had a site I was genuinely proud to share. No fuss, no back-and-forth headaches."</blockquote>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">S</div>
-                        <div>
-                            <strong>Sarah M.</strong>
-                            <span>Personal Trainer, Melbourne</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card testimonial-featured">
-                    <div class="testimonial-stars">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 1.5l2.47 5.01L17 7.24l-3.76 3.66.89 5.18L9 13.27l-5.13 2.81.89-5.18L1 7.24l5.53-.73L9 1.5z"/></svg>
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 1.5l2.47 5.01L17 7.24l-3.76 3.66.89 5.18L9 13.27l-5.13 2.81.89-5.18L1 7.24l5.53-.73L9 1.5z"/></svg>
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 1.5l2.47 5.01L17 7.24l-3.76 3.66.89 5.18L9 13.27l-5.13 2.81.89-5.18L1 7.24l5.53-.73L9 1.5z"/></svg>
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 1.5l2.47 5.01L17 7.24l-3.76 3.66.89 5.18L9 13.27l-5.13 2.81.89-5.18L1 7.24l5.53-.73L9 1.5z"/></svg>
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 1.5l2.47 5.01L17 7.24l-3.76 3.66.89 5.18L9 13.27l-5.13 2.81.89-5.18L1 7.24l5.53-.73L9 1.5z"/></svg>
-                    </div>
-                    <blockquote>"I'd been putting off getting a website for two years because every quote I got was confusing and expensive. Ben kept it simple, fast, and affordable. My enquiries have doubled since launching."</blockquote>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">J</div>
-                        <div>
-                            <strong>James T.</strong>
-                            <span>Electrician, Sydney</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 1.5l2.47 5.01L17 7.24l-3.76 3.66.89 5.18L9 13.27l-5.13 2.81.89-5.18L1 7.24l5.53-.73L9 1.5z"/></svg>
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 1.5l2.47 5.01L17 7.24l-3.76 3.66.89 5.18L9 13.27l-5.13 2.81.89-5.18L1 7.24l5.53-.73L9 1.5z"/></svg>
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 1.5l2.47 5.01L17 7.24l-3.76 3.66.89 5.18L9 13.27l-5.13 2.81.89-5.18L1 7.24l5.53-.73L9 1.5z"/></svg>
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 1.5l2.47 5.01L17 7.24l-3.76 3.66.89 5.18L9 13.27l-5.13 2.81.89-5.18L1 7.24l5.53-.73L9 1.5z"/></svg>
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><path d="M9 1.5l2.47 5.01L17 7.24l-3.76 3.66.89 5.18L9 13.27l-5.13 2.81.89-5.18L1 7.24l5.53-.73L9 1.5z"/></svg>
-                    </div>
-                    <blockquote>"Working with Ben felt like talking to a mate, not a sales rep. He actually listened and built exactly what my business needed. Would recommend to any small biz owner."</blockquote>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">R</div>
-                        <div>
-                            <strong>Rachel K.</strong>
-                            <span>Therapist, Brisbane</span>
-                        </div>
-                    </div>
+                    <p>You work directly with me. One person. No runaround.</p>
                 </div>
             </div>
         </div>
@@ -340,20 +249,14 @@
                     <span class="section-label">Get in touch</span>
                     <h2>Ready to get your website <em>sorted?</em></h2>
                     <p>Fill out the form and I'll get back to you within 24 hours. No pressure, no obligation.</p>
-                    <div class="contact-ai-quote">
-                        <div class="ai-quote-inner">
-                            <div class="ai-quote-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="currentColor"/></svg>
-                            </div>
-                            <div class="ai-quote-content">
-                                <strong>Want a price estimate right now?</strong>
-                                <span>Chat with my AI assistant — no waiting required.</span>
-                            </div>
-                            <button class="btn btn-accent" id="openQuoteCTA">Get instant AI quote</button>
+                    <div class="contact-extras">
+                        <div class="contact-extra">
+                            <button class="btn btn-secondary" id="openQuoteCTA">Get an instant AI quote</button>
+                            <span class="contact-extra-note">Chat with my AI assistant for a price estimate right now</span>
                         </div>
                     </div>
                 </div>
-                <div class="contact-form-wrap">
+                <div class="contact-form">
                     <iframe data-tally-src="https://tally.so/embed/NpYb0Q?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="200" frameborder="0" marginheight="0" marginwidth="0" title="Contact"></iframe>
                 </div>
             </div>
@@ -362,21 +265,13 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-inner">
-                <div class="footer-brand">
-                    <span class="footer-logo">Ben Young<span>.</span></span>
-                    <p>Websites for small businesses in Australia.</p>
-                </div>
-                <div class="footer-nav">
-                    <a href="#work">Work</a>
-                    <a href="#process">Process</a>
-                    <a href="#about">About</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <div class="footer-copy">
-                    <p>&copy; 2026 Ben Young. All rights reserved.</p>
-                </div>
+        <div class="container footer-inner">
+            <span class="footer-logo">Ben Young</span>
+            <p>&copy; 2026 Ben Young. Websites for small businesses in Australia.</p>
+            <div class="footer-links">
+                <a href="#work">Work</a>
+                <a href="#process">Process</a>
+                <a href="#contact">Contact</a>
             </div>
         </div>
     </footer>
@@ -393,7 +288,6 @@
             <svg class="chat-icon-close" width="28" height="28" viewBox="0 0 28 28" fill="none">
                 <path d="M8 8l12 12M20 8L8 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
-            <span class="chat-label">AI Quote</span>
         </button>
         <div class="chat-panel" id="chatPanel">
             <div class="chat-panel-header">
