@@ -1,4 +1,9 @@
-// Scroll animations
+// ========================
+// Ben Young — Main JS
+// Scroll animations, nav, chat widget
+// ========================
+
+// Scroll-triggered fade-up animations
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -7,52 +12,57 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -40px 0px'
+    threshold: 0.08,
+    rootMargin: '0px 0px -30px 0px'
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+
     // Hero entrance animation
-    const heroText = document.querySelector('.hero-text');
-    const heroTagline = document.querySelector('.hero-tagline');
-    const heroPhoto = document.querySelector('.hero-photo');
+    const heroContent = document.querySelector('.hero-content');
+    const heroVisual = document.querySelector('.hero-visual');
 
     requestAnimationFrame(() => {
-        if (heroText) heroText.classList.add('loaded');
-        if (heroTagline) heroTagline.classList.add('loaded');
-        if (heroPhoto) heroPhoto.classList.add('loaded');
+        if (heroContent) heroContent.classList.add('loaded');
+        if (heroVisual) heroVisual.classList.add('loaded');
     });
 
     // Fade-up elements on scroll
     const fadeSelectors = [
         '.section-label',
-        '.section-header',
+        '.section-header-flex',
+        '.section-header-center',
         '.work-card',
-        '.process-step',
+        '.process-card',
+        '.testimonial-card',
         '.about-image',
         '.about-content',
         '.contact-text',
-        '.contact-form',
-        '.section-intro'
+        '.contact-form-wrap',
+        '.work-cta-row'
     ];
 
     fadeSelectors.forEach(selector => {
         document.querySelectorAll(selector).forEach((el, i) => {
             el.classList.add('fade-up');
-            el.style.transitionDelay = `${i * 0.08}s`;
+            el.style.transitionDelay = `${i * 0.06}s`;
             observer.observe(el);
         });
     });
 
     // Sticky nav
     const nav = document.getElementById('nav');
+    let lastScroll = 0;
+
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 60) {
+        const scrollY = window.scrollY;
+        if (scrollY > 60) {
             nav.classList.add('scrolled');
         } else {
             nav.classList.remove('scrolled');
         }
-    });
+        lastScroll = scrollY;
+    }, { passive: true });
 
     // Mobile nav toggle
     const navToggle = document.getElementById('navToggle');
@@ -61,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navToggle.addEventListener('click', () => {
         navToggle.classList.toggle('active');
         navLinks.classList.toggle('open');
+        document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
     });
 
     // Close mobile nav on link click
@@ -68,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', () => {
             navToggle.classList.remove('active');
             navLinks.classList.remove('open');
+            document.body.style.overflow = '';
         });
     });
 
@@ -99,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Close chat on escape key
+    // Close on escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             if (chatWidget && chatWidget.classList.contains('open')) {
@@ -108,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (navLinks && navLinks.classList.contains('open')) {
                 navToggle.classList.remove('active');
                 navLinks.classList.remove('open');
+                document.body.style.overflow = '';
             }
         }
     });
