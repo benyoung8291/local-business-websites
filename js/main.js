@@ -28,29 +28,36 @@ document.addEventListener('DOMContentLoaded', () => {
         '.section-label',
         '.section-header',
         '.work-card',
-        '.process-step',
+        '.process-card',
         '.about-image',
         '.about-content',
         '.contact-text',
         '.contact-form',
-        '.section-intro'
+        '.section-header-aside'
     ];
 
     fadeSelectors.forEach(selector => {
         document.querySelectorAll(selector).forEach((el, i) => {
             el.classList.add('fade-up');
-            el.style.transitionDelay = `${i * 0.08}s`;
+            el.style.transitionDelay = `${i * 0.06}s`;
             observer.observe(el);
         });
     });
 
     // Sticky nav
     const nav = document.getElementById('nav');
+    let ticking = false;
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 60) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                if (window.scrollY > 60) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+                ticking = false;
+            });
+            ticking = true;
         }
     });
 
@@ -99,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Close chat on escape key
+    // Close chat/nav on escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             if (chatWidget && chatWidget.classList.contains('open')) {
