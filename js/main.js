@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '.section-label',
         '.section-header',
         '.work-card',
+        '.case-card',
         '.process-card',
         '.about-image',
         '.about-content',
@@ -78,44 +79,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Chat widget
-    const chatWidget = document.getElementById('chatWidget');
-    const chatToggle = document.getElementById('chatToggle');
-    const chatPanelClose = document.getElementById('chatPanelClose');
-    const openQuoteCTA = document.getElementById('openQuoteCTA');
-
-    function toggleChat() {
-        chatWidget.classList.toggle('open');
-    }
-
-    function openChat() {
-        chatWidget.classList.add('open');
-    }
-
-    function closeChat() {
-        chatWidget.classList.remove('open');
-    }
-
-    if (chatToggle) chatToggle.addEventListener('click', toggleChat);
-    if (chatPanelClose) chatPanelClose.addEventListener('click', closeChat);
-
-    if (openQuoteCTA) {
-        openQuoteCTA.addEventListener('click', (e) => {
-            e.preventDefault();
-            openChat();
-        });
-    }
-
-    // Close chat/nav on escape key
+    // Close mobile nav on escape
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            if (chatWidget && chatWidget.classList.contains('open')) {
-                closeChat();
-            }
-            if (navLinks && navLinks.classList.contains('open')) {
-                navToggle.classList.remove('active');
-                navLinks.classList.remove('open');
-            }
+        if (e.key === 'Escape' && navLinks && navLinks.classList.contains('open')) {
+            navToggle.classList.remove('active');
+            navLinks.classList.remove('open');
         }
     });
 
