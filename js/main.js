@@ -54,23 +54,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.getElementById('navLinks');
 
     if (navToggle && navLinks) {
+        const setMenuOpen = (open) => {
+            navToggle.classList.toggle('active', open);
+            navLinks.classList.toggle('open', open);
+            nav?.classList.toggle('menu-open', open);
+            document.body.classList.toggle('nav-open', open);
+            navToggle.setAttribute('aria-expanded', String(open));
+        };
+
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-controls', 'navLinks');
+
         navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
-            navLinks.classList.toggle('open');
+            setMenuOpen(!navLinks.classList.contains('open'));
         });
 
         navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navToggle.classList.remove('active');
-                navLinks.classList.remove('open');
-            });
+            link.addEventListener('click', () => setMenuOpen(false));
         });
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && navLinks.classList.contains('open')) {
-                navToggle.classList.remove('active');
-                navLinks.classList.remove('open');
+                setMenuOpen(false);
             }
+        });
+
+        // Reset state if the viewport grows past the mobile breakpoint
+        window.matchMedia('(min-width: 881px)').addEventListener('change', (e) => {
+            if (e.matches) setMenuOpen(false);
         });
     }
 

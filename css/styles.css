@@ -198,6 +198,15 @@ ul, ol { list-style: none; }
 
 .nav.scrolled { padding: 12px 0; background: rgba(236, 232, 220, 0.94); }
 
+/* When the mobile menu is open, drop backdrop-filter so the fixed
+   .nav-links overlay can escape .nav's containing block and cover the viewport. */
+.nav.menu-open {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: transparent;
+    border-bottom-color: transparent;
+}
+
 .nav-inner {
     max-width: var(--maxw);
     margin: 0 auto;
@@ -1336,11 +1345,17 @@ ul, ol { list-style: none; }
         opacity: 0;
         visibility: hidden;
         transition: opacity var(--dur) var(--ease), visibility var(--dur) var(--ease);
+        z-index: 100;
+        overflow-y: auto;
+        padding: 80px 24px 40px;
     }
 
     .nav-links.open { opacity: 1; visibility: visible; }
     .nav-links a { font-size: 1.4rem; }
     .nav-cta { font-size: 1rem !important; padding: 14px 28px; }
+
+    /* Lock body scroll while the overlay is showing */
+    body.nav-open { overflow: hidden; }
 
     .nav-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .nav-toggle.active span:nth-child(2) { opacity: 0; }
