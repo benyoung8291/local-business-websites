@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-label="Schematic showing scattered tools being routed through a single integration hub">
+  <defs>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#0d0c08" stroke-opacity="0.06" stroke-width="0.6"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0d0c08"/>
+    </marker>
+  </defs>
+
+  <!-- Frame + grid -->
+  <rect x="0" y="0" width="640" height="420" fill="#ece8dc"/>
+  <rect x="0" y="0" width="640" height="420" fill="url(#grid)"/>
+  <rect x="0.5" y="0.5" width="639" height="419" fill="none" stroke="#0d0c08" stroke-width="1"/>
+
+  <!-- Corner registration marks -->
+  <g stroke="#0d0c08" stroke-width="1" fill="none">
+    <path d="M8 22 L8 8 L22 8"/>
+    <path d="M632 22 L632 8 L618 8"/>
+    <path d="M8 398 L8 412 L22 412"/>
+    <path d="M632 398 L632 412 L618 412"/>
+  </g>
+
+  <!-- Caption strip -->
+  <g font-family="JetBrains Mono, ui-monospace, monospace" font-size="9" fill="#5c594f" letter-spacing="1.2">
+    <text x="20" y="24">FIG. 01 — INTEGRATION REWIRE</text>
+    <text x="540" y="24">SCALE 1:1</text>
+    <text x="20" y="404">REV.07 / 2026-Q2</text>
+    <text x="500" y="404">B.YOUNG · BENYOUNG.DEV</text>
+  </g>
+
+  <!-- BEFORE: scattered nodes on left -->
+  <g font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#0d0c08">
+
+    <!-- node 1: spreadsheet -->
+    <g transform="translate(60 80)">
+      <rect width="76" height="52" rx="3" fill="#ece8dc" stroke="#0d0c08" stroke-width="1.4"/>
+      <line x1="0" y1="14" x2="76" y2="14" stroke="#0d0c08" stroke-width="1"/>
+      <line x1="20" y1="14" x2="20" y2="52" stroke="#0d0c08" stroke-width="0.8" stroke-dasharray="2 2"/>
+      <line x1="48" y1="14" x2="48" y2="52" stroke="#0d0c08" stroke-width="0.8" stroke-dasharray="2 2"/>
+      <text x="6" y="11" letter-spacing="0.6">XLS</text>
+    </g>
+
+    <!-- node 2: SaaS box -->
+    <g transform="translate(40 170)">
+      <rect width="80" height="46" rx="3" fill="#ece8dc" stroke="#0d0c08" stroke-width="1.4"/>
+      <circle cx="14" cy="24" r="6" fill="#e63d1f"/>
+      <text x="28" y="20">SaaS-A</text>
+      <text x="28" y="32" font-weight="400" fill="#5c594f">retired</text>
+    </g>
+
+    <!-- node 3: SaaS box -->
+    <g transform="translate(70 250)">
+      <rect width="80" height="46" rx="3" fill="#ece8dc" stroke="#0d0c08" stroke-width="1.4"/>
+      <rect x="8" y="14" width="18" height="18" fill="#1f4946"/>
+      <text x="32" y="20">SaaS-B</text>
+      <text x="32" y="32" font-weight="400" fill="#5c594f">orphaned</text>
+    </g>
+
+    <!-- node 4: legacy db -->
+    <g transform="translate(46 326)">
+      <ellipse cx="22" cy="6" rx="22" ry="5" fill="#ece8dc" stroke="#0d0c08" stroke-width="1.4"/>
+      <path d="M0 6 L0 30 A22 5 0 0 0 44 30 L44 6" fill="#ece8dc" stroke="#0d0c08" stroke-width="1.4"/>
+      <ellipse cx="22" cy="18" rx="22" ry="5" fill="none" stroke="#0d0c08" stroke-width="0.8"/>
+      <text x="56" y="20">legacy DB</text>
+    </g>
+
+    <!-- node 5: AI -->
+    <g transform="translate(160 50)">
+      <polygon points="22,2 42,14 42,32 22,44 2,32 2,14" fill="#ece8dc" stroke="#0d0c08" stroke-width="1.4"/>
+      <text x="50" y="22">AI / LLM</text>
+    </g>
+
+    <!-- node 6: emails -->
+    <g transform="translate(150 320)">
+      <rect width="46" height="32" rx="2" fill="#ece8dc" stroke="#0d0c08" stroke-width="1.4"/>
+      <path d="M0 0 L23 18 L46 0" fill="none" stroke="#0d0c08" stroke-width="1"/>
+      <text x="54" y="22">inbox</text>
+    </g>
+  </g>
+
+  <!-- HUB: integration core (center-right) -->
+  <g transform="translate(360 145)">
+    <!-- outer ring -->
+    <circle cx="64" cy="64" r="78" fill="none" stroke="#0d0c08" stroke-width="1" stroke-dasharray="3 3"/>
+    <!-- ticks -->
+    <g stroke="#0d0c08" stroke-width="1">
+      <line x1="64" y1="-18" x2="64" y2="-10"/>
+      <line x1="64" y1="138" x2="64" y2="146"/>
+      <line x1="-18" y1="64" x2="-10" y2="64"/>
+      <line x1="138" y1="64" x2="146" y2="64"/>
+    </g>
+    <!-- core -->
+    <rect x="14" y="14" width="100" height="100" rx="6" fill="#0d0c08"/>
+    <rect x="14" y="14" width="100" height="22" fill="#e63d1f"/>
+    <text x="64" y="30" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10" font-weight="700" fill="#ece8dc" letter-spacing="1.4">CORE</text>
+    <!-- core internals -->
+    <g stroke="#ece8dc" stroke-width="1" fill="none">
+      <rect x="26" y="48" width="22" height="14" rx="1.5"/>
+      <rect x="54" y="48" width="22" height="14" rx="1.5"/>
+      <rect x="82" y="48" width="22" height="14" rx="1.5"/>
+      <rect x="40" y="70" width="22" height="14" rx="1.5"/>
+      <rect x="68" y="70" width="22" height="14" rx="1.5"/>
+      <rect x="54" y="92" width="22" height="14" rx="1.5"/>
+    </g>
+    <!-- core label -->
+    <text x="64" y="160" text-anchor="middle" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9" fill="#0d0c08" letter-spacing="1.4">INTEGRATION LAYER</text>
+  </g>
+
+  <!-- AFTER: clean output rail on far right -->
+  <g font-family="Inter, sans-serif" font-size="9" font-weight="600" fill="#0d0c08">
+    <g transform="translate(560 90)">
+      <rect width="62" height="32" rx="3" fill="#0d0c08"/>
+      <text x="31" y="20" text-anchor="middle" fill="#ece8dc">Reports</text>
+    </g>
+    <g transform="translate(560 158)">
+      <rect width="62" height="32" rx="3" fill="#0d0c08"/>
+      <text x="31" y="20" text-anchor="middle" fill="#ece8dc">Approvals</text>
+    </g>
+    <g transform="translate(560 226)">
+      <rect width="62" height="32" rx="3" fill="#0d0c08"/>
+      <text x="31" y="20" text-anchor="middle" fill="#ece8dc">Jobs</text>
+    </g>
+    <g transform="translate(560 294)">
+      <rect width="62" height="32" rx="3" fill="#0d0c08"/>
+      <text x="31" y="20" text-anchor="middle" fill="#ece8dc">Insights</text>
+    </g>
+  </g>
+
+  <!-- WIRING: scattered → core (orange wash) -->
+  <g fill="none" stroke="#e63d1f" stroke-width="1.6" stroke-linecap="round" opacity="0.92">
+    <path d="M136 106 C 220 106, 280 160, 360 200" />
+    <path d="M120 193 C 220 193, 280 200, 360 209"/>
+    <path d="M150 273 C 230 273, 290 240, 360 222"/>
+    <path d="M90 350 C 200 350, 290 270, 360 240"/>
+    <path d="M204 72 C 270 72, 320 150, 360 188"/>
+    <path d="M196 336 C 280 336, 330 270, 360 244"/>
+  </g>
+
+  <!-- WIRING: core → outputs (clean black) -->
+  <g fill="none" stroke="#0d0c08" stroke-width="1.6" stroke-linecap="round" marker-end="url(#arrow)">
+    <path d="M488 200 L 558 106"/>
+    <path d="M488 209 L 558 174"/>
+    <path d="M488 222 L 558 242"/>
+    <path d="M488 240 L 558 310"/>
+  </g>
+
+  <!-- BEFORE / AFTER labels -->
+  <g font-family="JetBrains Mono, ui-monospace, monospace" font-size="10" letter-spacing="1.6" font-weight="600">
+    <text x="100" y="42" fill="#5c594f">BEFORE</text>
+    <line x1="100" y1="48" x2="180" y2="48" stroke="#5c594f" stroke-width="0.8"/>
+    <text x="544" y="62" fill="#5c594f">AFTER</text>
+    <line x1="544" y1="68" x2="624" y2="68" stroke="#5c594f" stroke-width="0.8"/>
+  </g>
+
+  <!-- Annotation marks -->
+  <g font-family="JetBrains Mono, ui-monospace, monospace" font-size="8" fill="#e63d1f" letter-spacing="1">
+    <text x="220" y="120">⤳ rewire</text>
+    <text x="500" y="100">→ shipped</text>
+  </g>
+</svg>
