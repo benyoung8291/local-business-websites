@@ -86,7 +86,20 @@ const EGGS = {
     neofetch: 'Flexed with neofetch',
     password: 'Typed "password" as the password',
     hotdog: 'Unlocked Hot Dog Stand™ wallpaper',
-    trash: 'Actually emptied the Trash'
+    trash: 'Actually emptied the Trash',
+    mail: 'Opened the email marked DO NOT OPEN',
+    hunter2: 'Logged in as hunter2',
+    fortytwo: 'Calculated the meaning of life',
+    artist: 'Painted a masterpiece in Paint',
+    daemon: 'Killed the easter egg daemon',
+    zork: 'Won the tiny text adventure',
+    xyzzy: 'Said the magic word',
+    hal: 'Asked Seri to open the pod bay doors',
+    breakout: 'Cleared a level of Brick Out',
+    void: 'Stared into the void until it blinked',
+    toasters: 'Witnessed the flying toasters',
+    disco: 'Turned the whole computer into a disco',
+    beachball: 'Summoned the spinning beach ball'
 };
 function foundEggs() { return store.get('eggs', []); }
 function egg(id) {
@@ -149,6 +162,75 @@ function matrixRain(seconds) {
         setTimeout(() => { clearInterval(iv); c.remove(); }, 600);
     }, (seconds || 6) * 1000);
 }
+function disco(seconds) {
+    egg('disco');
+    document.body.classList.add('disco');
+    emojiRain(['🪩', '🕺', '💃', '🎶', '✨'], 36);
+    for (let i = 0; i < 10; i++) {
+        tone(i % 2 ? 220 : 110, 0.14, 'square', 0.14, i * 0.28);
+        if (i % 4 === 2) tone(1760, 0.05, 'square', 0.05, i * 0.28);
+    }
+    setTimeout(() => document.body.classList.remove('disco'), (seconds || 8) * 1000);
+}
+function beachBall() {
+    if ($('#beachball')) return;
+    egg('beachball');
+    const b = el('div'); b.id = 'beachball'; b.textContent = '🏐';
+    document.body.appendChild(b);
+    let x = innerWidth / 2, y = -60, vx = (Math.random() > 0.5 ? 1 : -1) * 4.5, vy = 3;
+    const iv = setInterval(() => {
+        x += vx; y += vy; vy += 0.25;
+        if (x < 0 || x > innerWidth - 64) { vx = -vx; tone(300 + Math.random() * 200, 0.05, 'square', 0.05); }
+        if (y > innerHeight - 64) { y = innerHeight - 64; vy = -Math.abs(vy) * 0.88; tone(180, 0.06, 'square', 0.06); }
+        b.style.transform = `translate(${x}px, ${y}px) rotate(${x * 2}deg)`;
+    }, 16);
+    setTimeout(() => { clearInterval(iv); b.remove(); }, 12000);
+}
+
+/* ============ SCREENSAVER (flying toasters, in loving memory of After Dark) ============ */
+const Screensaver = {
+    timer: null, active: false, startedAt: 0, DELAY: 120000,
+    init() {
+        const reset = () => {
+            if (this.active && Date.now() - this.startedAt > 900) this.stop();
+            this.arm();
+        };
+        ['pointermove', 'pointerdown', 'keydown', 'wheel'].forEach(ev =>
+            document.addEventListener(ev, reset, { passive: true }));
+        this.arm();
+    },
+    arm() {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+            if ($('#desktop').hidden) { this.arm(); return; }
+            this.start();
+        }, this.DELAY);
+    },
+    start() {
+        if (this.active || $('#desktop').hidden) return;
+        this.active = true;
+        this.startedAt = Date.now();
+        egg('toasters');
+        const o = el('div'); o.id = 'screensaver';
+        for (let i = 0; i < 18; i++) {
+            const t = el('div', 'fly-toast');
+            t.textContent = ['🍞', '🍞', '🍞', '⏰', '🥐'][Math.floor(Math.random() * 5)];
+            t.style.left = (Math.random() * 160) + 'vw';
+            t.style.top = (Math.random() * 100 - 40) + 'vh';
+            t.style.fontSize = (26 + Math.random() * 30) + 'px';
+            t.style.animationDuration = (9 + Math.random() * 10) + 's';
+            t.style.animationDelay = (-Math.random() * 12) + 's';
+            o.appendChild(t);
+        }
+        o.appendChild(el('div', 'ss-note', 'This is what the computer does when you stop looking.'));
+        document.body.appendChild(o);
+    },
+    stop() {
+        this.active = false;
+        const o = $('#screensaver');
+        if (o) { o.style.opacity = '0'; setTimeout(() => o.remove(), 350); }
+    }
+};
 
 /* ============ WINDOW MANAGER ============ */
 const WM = {
@@ -337,15 +419,21 @@ const WM = {
 const APPS = {
     finder:   { name: 'Finder',          glyph: '🙂', tile: 'tile-blue',   open: () => FinderApp.open() },
     safari:   { name: 'Safari',          glyph: '🧭', tile: 'tile-white',  open: () => SafariApp.open() },
+    mail:     { name: 'Mail',            glyph: '✉️', tile: 'tile-blue',   open: () => MailApp.open() },
+    photos:   { name: 'Photos',          glyph: '🌸', tile: 'tile-white',  open: () => PhotosApp.open() },
     notes:    { name: 'Notes',           glyph: '📝', tile: 'tile-yellow', open: () => NotesApp.open() },
     terminal: { name: 'Terminal',        glyph: '>_', tile: 'tile-dark',   open: () => TerminalApp.open() },
     calculator: { name: 'Calculator',    glyph: '🧮', tile: 'tile-grey',   open: () => CalcApp.open() },
     music:    { name: 'Music',           glyph: '🎹', tile: 'tile-pink',   open: () => MusicApp.open() },
+    paint:    { name: 'Paint',           glyph: '🎨', tile: 'tile-white',  open: () => PaintApp.open() },
     games:    { name: 'Games',           glyph: '🕹️', tile: 'tile-purple', open: () => GamesApp.open() },
     snake:    { name: 'Snake II',        glyph: '🐍', tile: 'tile-green',  hidden: true, open: () => SnakeGame.open() },
     mines:    { name: 'Minesweeper',     glyph: '💣', tile: 'tile-grey',   hidden: true, open: () => MinesGame.open() },
     ttt:      { name: 'Tic-Tac-Toe',     glyph: '⭕', tile: 'tile-red',    hidden: true, open: () => TTTGame.open() },
     g2048:    { name: '2048',            glyph: '🔢', tile: 'tile-yellow', hidden: true, open: () => Game2048.open() },
+    breakout: { name: 'Brick Out',       glyph: '🧱', tile: 'tile-red',    hidden: true, open: () => BreakoutGame.open() },
+    activity: { name: 'Activity Monitor', glyph: '📈', tile: 'tile-grey',  hidden: true, open: () => ActivityApp.open() },
+    seri:     { name: 'Seri',            glyph: '🔮', tile: 'tile-purple', hidden: true, open: () => SeriApp.open() },
     settings: { name: 'System Settings', glyph: '⚙️', tile: 'tile-grey',   open: (pane) => SettingsApp.open(pane) },
     trash:    { name: 'Trash',           glyph: '🗑️', tile: 'tile-white',  open: () => TrashApp.open() }
 };
@@ -374,6 +462,14 @@ const MenuBar = {
             { sep: true },
             { label: 'System Settings…', action: () => launch('settings') },
             { label: 'App Store…', action: () => toast('🛍️', 'App Store', 'Everything here is already free. Suspiciously free.') },
+            { label: 'Buy notmacOS Pro…', action: () => WM.dialog({
+                glyph: '💳', title: 'notmacOS Pro',
+                html: 'Everything you already have, but with the word <b>Pro</b> after it.<br><br><b>$0.00/month</b> · billed never · cancel anytime by closing the tab',
+                buttons: [
+                    { label: 'No Thanks' },
+                    { label: 'Subscribe', primary: true, onClick: () => toast('💳', 'Payment failed', 'Card declined: the amount was $0.00 and your bank got suspicious.') }
+                ]
+            }) },
             { sep: true },
             { label: 'Force Quit…', kbd: '⌥⌘⎋', action: () => ForceQuit.open() },
             { sep: true },
@@ -524,7 +620,7 @@ const MenuBar = {
 
 /* ============ DOCK ============ */
 const Dock = {
-    order: ['finder', 'safari', 'notes', 'terminal', 'calculator', 'music', 'games', 'settings', '|', 'trash'],
+    order: ['finder', 'safari', 'mail', 'photos', 'notes', 'terminal', 'calculator', 'music', 'paint', 'games', 'settings', '|', 'trash'],
 
     init() {
         const dock = $('#dock');
@@ -534,6 +630,7 @@ const Dock = {
             const b = el('button', 'dock-item');
             b.dataset.app = id;
             b.innerHTML = `<span class="dock-icon ${a.tile}">${a.glyph}</span><span class="dock-dot"></span><span class="dock-tip">${esc(a.name)}</span>`;
+            if (id === 'mail' && !store.get('mailRead', false)) b.querySelector('.dock-icon').appendChild(el('span', 'dock-badge', '1'));
             if (id === 'terminal') { const ic = b.querySelector('.dock-icon'); ic.style.color = '#33e659'; ic.style.fontFamily = 'var(--mono)'; ic.style.fontSize = '17px'; ic.style.fontWeight = '700'; }
             b.addEventListener('click', () => launch(id));
             dock.appendChild(b);
@@ -639,7 +736,11 @@ const Spotlight = {
         { key: 'matrix', label: 'Enter the Matrix', glyph: '🐇', hint: 'Action', run: () => matrixRain(6) },
         { key: 'easter', label: 'Easter Egg Tracker', glyph: '🥚', hint: 'Utility', run: () => EggTracker.open() },
         { key: 'dark', label: 'Toggle Dark Mode', glyph: '🌗', hint: 'Setting', run: () => Theme.toggle() },
-        { key: 'meaning of life', label: 'The meaning of life', glyph: '4️⃣2️⃣', hint: 'Answer', run: () => WM.dialog({ glyph: '🌌', title: '42', text: 'You knew the answer before you searched.' }) }
+        { key: 'meaning of life', label: 'The meaning of life', glyph: '4️⃣2️⃣', hint: 'Answer', run: () => WM.dialog({ glyph: '🌌', title: '42', text: 'You knew the answer before you searched.' }) },
+        { key: 'screensaver flying toasters', label: 'Start the screensaver', glyph: '🍞', hint: 'Action', run: () => Screensaver.start() },
+        { key: 'disco party', label: 'Disco mode', glyph: '🪩', hint: 'Action', run: () => disco() },
+        { key: 'void stare', label: 'Stare into the void', glyph: '🕳️', hint: 'Website', run: () => SafariApp.open('void') },
+        { key: 'adventure zork', label: 'Play the text adventure', glyph: '🗝️', hint: 'Terminal', run: () => { launch('terminal'); toast('🗝️', 'Adventure', 'Type "adventure" in the Terminal.'); } }
     ],
 
     toggle() {
@@ -809,8 +910,11 @@ Things worth doing:
 
   • Open the Terminal and type: help
   • Play the games (🕹️ in the Dock)
+  • Read your Mail — one email says not to open it
   • Check what's rotting in the Trash
-  • Try the piano in Music
+  • Try the piano in Music, paint something in Paint
+  • Ask Seri a question (search "seri" in Spotlight)
+  • Do absolutely nothing for two minutes
   • There are ${Object.keys(EGGS).length} easter eggs. The tracker is under
     Help → Search Easter Eggs…
 
@@ -830,6 +934,11 @@ Hints nobody asked for:
 - the old website is still in the Trash where it belongs
 - ↑ ↑ ↓ ↓ ← → ← → B A
 - there's a hot dog hiding somewhere
+- the calculator knows the answer to everything
+- somebody keeps emailing you. rude not to check
+- the terminal plays a mean game of zork
+- if you stop touching the computer, it gets weird
+- xyzzy
 
 (These notes save in your browser. They're yours now.)`;
 
@@ -932,6 +1041,16 @@ const SafariApp = {
                 egg('oldsite');
             } else if (/zombo/i.test(target)) {
                 pageBox.innerHTML = `<div class="offline-page"><div class="glyph">🌀</div><h2>Welcome to Zombo.com</h2><p>You can do anything at Zombo.com. Anything at all. The only limit is yourself. (Tribute page — the real one needed Flash, and Flash is with the angels now.)</p></div>`;
+            } else if (/void/i.test(target)) {
+                urlBox.value = 'https://the.void';
+                this.renderVoid(pageBox);
+            } else if (/apple/i.test(target)) {
+                urlBox.value = 'https://apple.com';
+                pageBox.innerHTML = `<div class="offline-page"><div class="glyph">⚖️</div><h2>Connection refused</h2><p>Visiting the real Apple from inside a fake Mac felt legally ambitious, so this browser politely declined. Somewhere, a trademark lawyer just felt a disturbance and doesn't know why.</p></div>`;
+            } else if (/seri/i.test(target)) {
+                urlBox.value = 'https://seri.ai — definitely a real AI company';
+                pageBox.innerHTML = `<div class="offline-page"><div class="glyph">🔮</div><h2>Seri™</h2><p>The virtual assistant that lives inside this computer. Powered by a switch statement and unconditional confidence. Series A pending.</p><button class="btn primary" id="seri-launch">Talk to Seri</button></div>`;
+                $('#seri-launch', pageBox).addEventListener('click', () => launch('seri'));
             } else if (/google|search/i.test(target)) {
                 pageBox.innerHTML = `<div class="offline-page"><div class="glyph">🔎</div><h2>Snoogle Search</h2><p>Your search returned 0 results, because this browser is decorative. Try Spotlight (⌘K) instead — that one actually works.</p></div>`;
             } else if (target === 'start' || !target) {
@@ -976,6 +1095,24 @@ const SafariApp = {
 
     renderOffline(pageBox, title, text) {
         pageBox.innerHTML = `<div class="offline-page"><div class="glyph">🦖</div><h2>${esc(title)}</h2><p>${esc(text)}</p><p style="opacity:.4">(the dinosaur is unionised and does not run here — the games live in the Dock)</p></div>`;
+    },
+
+    renderVoid(pageBox) {
+        pageBox.innerHTML = `<div class="void-page"><div class="void-hole">🕳️</div><h2>the void</h2><p id="void-line">It's quiet in here.</p><button class="btn" id="void-btn">stare deeper</button></div>`;
+        const line = $('#void-line', pageBox);
+        const btn = $('#void-btn', pageBox);
+        let stares = 0;
+        btn.addEventListener('click', () => {
+            stares++;
+            if (stares === 1) line.textContent = 'The void notices you.';
+            else if (stares === 2) { line.textContent = 'The void is staring back. Hold your nerve.'; tone(55, 1.2, 'sine', 0.1); }
+            else {
+                line.textContent = 'The void blinked first. You win. Nietzsche owes you a drink.';
+                btn.remove();
+                egg('void');
+                tone(880, 0.3, 'sine', 0.12); tone(1174, 0.5, 'sine', 0.1, 0.18);
+            }
+        });
     }
 };
 
@@ -1040,6 +1177,7 @@ const TerminalApp = {
 
     async run(cmd, term, out, rec) {
         const P = t => this.print(out, t);
+        if (rec.adv) { Adventure.handle(cmd, P, rec); return; }
         if (!cmd) return;
         const [bin, ...args] = cmd.split(/\s+/);
         const rest = cmd.slice(bin.length).trim();
@@ -1062,7 +1200,13 @@ const TerminalApp = {
   neofetch      show off system specs
   matrix        follow the white rabbit
   sl            for people who can't type ls
+  adventure     a very small text adventure
+  fortune       receive wisdom of variable quality
+  weather       an extremely local forecast
+  seri          talk to the resident "AI"
+  screensaver   summon it early
   hotdog        ?
+  disco         ??
   amber         retro terminal mode
   games         list the games
   eggs          easter egg progress
@@ -1071,14 +1215,19 @@ const TerminalApp = {
 Some commands are not listed. That's what makes them fun.`);
                 break;
             case 'ls':
-                P('README.txt      secrets.txt     todo.md         old_website/    definitely_no_easter_eggs/');
+                P('README.txt      secrets.txt     todo.md         adventure.z5    old_website/    definitely_no_easter_eggs/');
                 break;
             case 'cat':
                 if (!args[0]) P('cat: which file?');
                 else if (/readme/i.test(args[0])) P(READ_ME);
-                else if (/secret/i.test(args[0])) P('Nice try. The secrets file is encrypted with ROT26.');
+                else if (/secret/i.test(args[0])) P('Nice try. The secrets file is encrypted with ROT26.\n(there is a "decrypt" command, if you must)');
                 else if (/todo/i.test(args[0])) P('- [x] delete old website\n- [x] replace with an operating system for some reason\n- [ ] explain this decision to anyone');
+                else if (/adventure/i.test(args[0])) P('adventure.z5: binary file. Run it by typing "adventure".');
                 else P(`cat: ${args[0]}: No such file or directory`);
+                break;
+            case 'decrypt':
+                if (/secret/i.test(args[0] || '')) P(`Applying ROT26… done.\nApplying ROT26 again for good measure… done.\n\n--- secrets.txt ---\n1. the magic word is xyzzy\n2. the Mail badge is there for a reason\n3. the calculator has read Douglas Adams\n4. hunter2 opens more than you'd think\n5. there is no secret number 5`);
+                else P('usage: decrypt secrets.txt');
                 break;
             case 'cd':
                 P(args[0] && args[0].includes('..') ? 'cd: there is no escaping this directory' : 'cd: you are already exactly where you need to be');
@@ -1097,7 +1246,7 @@ Some commands are not listed. That's what makes them fun.`);
                 else P(`open: '${args[0] || ''}' — try: ${Object.keys(APPS).filter(k => !APPS[k].hidden).join(', ')}`);
                 break;
             }
-            case 'games': P('snake, mines, ttt, 2048 — e.g. "open snake" (or use the 🕹️ in the Dock)'); break;
+            case 'games': P('snake, mines, ttt, 2048, breakout — e.g. "open snake" (or use the 🕹️ in the Dock)\nalso: "adventure" runs right here in the terminal'); break;
             case 'say': {
                 const phrase = rest || 'You did not give me anything to say, so I am saying this.';
                 try { speechSynthesis.speak(new SpeechSynthesisUtterance(phrase)); P(`🗣️ "${phrase}"`); }
@@ -1167,7 +1316,60 @@ kMMMMMMMMMMMMMMMMMMMMMd  Resolution: ${innerWidth}x${innerHeight}
             case 'history': this.history.forEach((h, i) => P(`  ${i + 1}  ${h}`)); break;
             case 'man': P(`man: what do I look like, documentation? try 'help'`); break;
             case 'ping': P(`PING ${args[0] || 'the void'}: 64 bytes: icmp_seq=0 ttl=42 time=0.001ms\n(all pings resolve instantly. everything is local. nothing is real.)`); break;
-            case 'top': case 'htop': P(`PID  COMMAND      %CPU\n1    your-tab     ${(Math.random() * 40 + 10).toFixed(1)}\n2    easter-eggs  100.0\n3    self-esteem  0.1`); break;
+            case 'top': case 'htop': case 'ps':
+                P(`PID  COMMAND             %CPU\n1    your-tab            ${(Math.random() * 40 + 10).toFixed(1)}\n2    easter-eggs.daemon  100.0\n3    self-esteem         0.1\n\n(for the full experience: "open activity")`);
+                break;
+            case 'kill': case 'killall':
+                P(`kill: permission denied. Do it properly — "open activity" and quit\nprocesses like a person with a mouse and a grudge.`);
+                break;
+            case 'fortune': {
+                const F = [
+                    'You will close this tab, then reopen it to check one thing, then stay an hour.',
+                    'A bug you fixed last year is planning a comeback tour.',
+                    'The best time to plant a tree was 20 years ago. The second best time is not during a standup.',
+                    'You will soon receive an email. It says not to open it. You know what to do.',
+                    'Someone is thinking about you. It is a recommendation algorithm.',
+                    'Beware of Greeks bearing GIFs.',
+                    'Your lucky number is 42. Your unlucky number is also 42. It contains multitudes.',
+                    'The cow from cowsay says hi. The cow does not say much else.',
+                    'He who types sl instead of ls shall ride the rails of shame.',
+                    'An idle computer is the toaster\'s playground.'
+                ];
+                P(F[Math.floor(Math.random() * F.length)]);
+                break;
+            }
+            case 'weather':
+                P([`Forecast for Inside This Tab:\n  Now: 21° and hypothetical. Chance of emoji rain: depends on you.`,
+                   `Forecast for Inside This Tab:\n  Currently: pixel-clear skies. A front of falling toast moves in\n  whenever you stop touching the mouse.`,
+                   `Forecast for Inside This Tab:\n  Warm glow from the display, light breeze from the fan.\n  100% chance of weather being fake.`][Math.floor(Math.random() * 3)]);
+                break;
+            case 'git': {
+                const sub = (args[0] || '').toLowerCase();
+                if (sub === 'blame') P('It was you. It was always you.');
+                else if (sub === 'status') P(`On branch main\nnothing to commit, working tree clean\n(life tree: less clean)`);
+                else if (sub === 'push') P(`! [rejected]  main -> main (non-fast-forward)\nhint: this website is read-only. push your commits somewhere they're wanted.`);
+                else if (sub === 'log') P(`f19c819 replace entire website with an operating system\na734d07 add easter eggs\n0000001 initial commit (regret)`);
+                else P('git: try blame, status, push, or log. Or therapy.');
+                break;
+            }
+            case 'npm': case 'yarn': case 'pnpm':
+                P('Installing node_modules…');
+                for (let i = 0; i < 4; i++) {
+                    await new Promise(r => setTimeout(r, 300));
+                    P(['  added 4,318 packages in 0.3s', '  added 9,214 more packages (nobody knows why)', '  node_modules is now visible from space', '  ERR! this site has zero dependencies and it\'s staying that way'][i]);
+                }
+                break;
+            case 'python': case 'python3': P(`>>> import antigravity\n(a browser tab opens in your imagination. you float slightly.)`); break;
+            case 'node': P(`Welcome to Node.js.\n> Uncaught ReferenceError: backend is not defined`); break;
+            case 'curl': case 'wget': P(`${bin}: could not resolve host. This terminal's internet is a painting of the internet.`); break;
+            case 'ssh': P(`ssh: connect to host ${args[0] || 'anywhere'} port 22: Nobody home.\nEveryone you are trying to reach is also a website.`); break;
+            case 'xyzzy': egg('xyzzy'); P('A hollow voice says: "fnord."'); break;
+            case 'plugh': P('A hollow voice says: "that\'s the other magic word. close, though."'); break;
+            case 'adventure': case 'zork': Adventure.start(P, rec); break;
+            case 'seri': P('Summoning Seri…'); launch('seri'); break;
+            case 'mail': P('You have mail. You always have mail.'); launch('mail'); break;
+            case 'disco': disco(); P('🪩 untz untz untz untz'); break;
+            case 'screensaver': case 'toasters': P('Engaging flying toasters…'); setTimeout(() => Screensaver.start(), 400); break;
             default:
                 P(`zsh: command not found: ${bin}\n(try 'help' — or keep guessing, some hidden ones exist)`);
         }
@@ -1231,6 +1433,110 @@ const Meltdown = {
     }
 };
 
+/* ============ TERMINAL TEXT ADVENTURE (zork, but the size of a napkin) ============ */
+const Adventure = {
+    start(P, rec) {
+        rec.adv = { room: 'field', inv: [], mailboxOpen: false, chestOpen: false };
+        P(`ZORK-ISH v0.1 — a text adventure the size of a napkin.
+Commands: look · north/south/east/west · open <thing> · take <thing>
+          read <thing> · inventory · quit
+`);
+        this.look(P, rec.adv);
+    },
+
+    look(P, s) {
+        const R = {
+            field: `WEST OF HOUSE
+You are standing in an open field west of a white house with a
+boarded front door. There is a small mailbox here${s.mailboxOpen ? ' (open)' : ''}.
+A path leads NORTH into a dark forest.`,
+            forest: `DARK FOREST
+Tall trees. Insufficient lighting. Somewhere nearby, a grue is
+thinking about you${s.inv.includes('key') ? '.' : `. Something glints under a bush.`}
+Paths lead SOUTH (field) and EAST (clearing).`,
+            clearing: `SUNLIT CLEARING
+In the middle of the clearing sits a stubborn iron chest${s.chestOpen ? ', open,\nand gloriously empty of golden egg (you took it)' : ', locked'}.
+A path leads WEST back into the forest.`
+        };
+        P(R[s.room]);
+    },
+
+    handle(cmd, P, rec) {
+        const s = rec.adv;
+        const c = cmd.trim().toLowerCase();
+        const go = (dir) => {
+            const MAP = {
+                field: { north: 'forest', n: 'forest' },
+                forest: { south: 'field', s: 'field', east: 'clearing', e: 'clearing' },
+                clearing: { west: 'forest', w: 'forest' }
+            };
+            const next = MAP[s.room][dir];
+            if (next) { s.room = next; this.look(P, s); }
+            else P(`You can't go that way. The map is small. Cherish it.`);
+        };
+
+        if (!c) return;
+        if (c === 'quit' || c === 'q' || c === 'exit') { rec.adv = null; P('The napkin folds itself up. Back to your regularly scheduled terminal.'); return; }
+        if (c === 'look' || c === 'l') { this.look(P, s); return; }
+        if (['north', 'south', 'east', 'west', 'n', 's', 'e', 'w'].includes(c)) { go(c); return; }
+        if (c === 'inventory' || c === 'i') { P(s.inv.length ? 'You are carrying: ' + s.inv.join(', ') : 'You are carrying nothing but ambition.'); return; }
+        if (c === 'xyzzy') { egg('xyzzy'); s.room = 'clearing'; P('A hollow voice says "fnord." You are teleported, out of respect for tradition.'); this.look(P, s); return; }
+        if (c === 'help') { P('look · north/south/east/west · open <thing> · take <thing> · read <thing> · inventory · quit'); return; }
+
+        if (/^open (the )?mailbox/.test(c)) {
+            if (s.room !== 'field') { P('There is no mailbox here. Mailboxes are a field thing.'); return; }
+            s.mailboxOpen = true;
+            P('You open the mailbox, revealing a small leaflet.');
+            return;
+        }
+        if (/^(take|get|read) (the )?leaflet/.test(c)) {
+            if (s.room !== 'field' || !s.mailboxOpen) { P('What leaflet? (try opening the mailbox first)'); return; }
+            if (!s.inv.includes('leaflet')) s.inv.push('leaflet');
+            P(`--- LEAFLET ---
+WELCOME TO ZORK-ISH!
+The rumours are true: there is a GOLDEN EGG in these lands.
+The forest hides a key. The clearing hides a chest. Mathematics
+suggests a plan.`);
+            return;
+        }
+        if (/^(take|get|grab) (the )?key/.test(c)) {
+            if (s.room !== 'forest') { P('No key here.'); return; }
+            if (s.inv.includes('key')) { P('You already have the key. Greedy.'); return; }
+            s.inv.push('key');
+            P('You reach under the bush and take a small brass key. The grue tuts disapprovingly.');
+            return;
+        }
+        if (/^(open|unlock) (the )?chest/.test(c)) {
+            if (s.room !== 'clearing') { P('There is no chest here. The chest is in the clearing. It never moves. It cannot.'); return; }
+            if (s.chestOpen) { P('The chest is already open and already looted. By you.'); return; }
+            if (!s.inv.includes('key')) { P('Locked. Obviously. Perhaps a key would help. Perhaps a forest has one.'); return; }
+            s.chestOpen = true;
+            P('The key turns. The chest creaks open, revealing a GOLDEN EGG the size of your fist.');
+            return;
+        }
+        if (/^(take|get|grab) (the )?(golden )?egg/.test(c)) {
+            if (s.room !== 'clearing' || !s.chestOpen) { P('You see no egg here. Yet.'); return; }
+            rec.adv = null;
+            P(`You take the GOLDEN EGG.
+
+*** You have won ***
+
+Your score is 350 points out of a possible 350, in roughly a
+minute of your one wild and precious life. The terminal is
+yours again.`);
+            egg('zork');
+            emojiRain(['🥚', '🗝️', '🏆'], 25);
+            return;
+        }
+        if (/grue/.test(c)) { P('You do not want to find the grue. The grue has already found you. It is being polite.'); return; }
+        if (/^(open|knock) .*(door|house)/.test(c)) { P('The door is boarded. The house is set dressing. Zork fans, you know how it is.'); return; }
+
+        P([`I don't know how to "${cmd.trim()}". This adventure has a very small vocabulary.`,
+           'Nothing happens. The napkin does not support that verb.',
+           'A hollow voice says: "try help".'][Math.floor(Math.random() * 3)]);
+    }
+};
+
 /* ============ APP: CALCULATOR ============ */
 const CalcApp = {
     open() {
@@ -1266,7 +1572,12 @@ const CalcApp = {
             else if (k === 'AC') { acc = null; op = null; cur = '0'; fresh = true; }
             else if (k === '±') cur = fmt(-parseFloat(cur));
             else if (k === '%') cur = fmt(parseFloat(cur) / 100);
-            else if (k === '=') { apply(); op = null; fresh = true; if (cur === '80085' || cur === '5318008') toast('🧮', 'Calculator', 'Nice. Very mature. (turn me upside down)'); }
+            else if (k === '=') {
+                const hadOp = op !== null;
+                apply(); op = null; fresh = true;
+                if (cur === '80085' || cur === '5318008') toast('🧮', 'Calculator', 'Nice. Very mature. (turn me upside down)');
+                if (hadOp && cur === '42') { egg('fortytwo'); toast('🌌', '42', 'The answer to life, the universe, and this calculation. Don\'t panic.'); }
+            }
             else { if (!fresh) apply(); else acc = acc === null ? parseFloat(cur) : acc; op = k; fresh = true; }
             display.textContent = cur;
         };
@@ -1343,7 +1654,7 @@ const GamesApp = {
     open() {
         const grid = el('div', 'icon-grid');
         grid.style.padding = '22px';
-        [['snake', 'Snake II'], ['mines', 'Minesweeper'], ['ttt', 'Tic-Tac-Toe'], ['g2048', '2048']].forEach(([id, name]) => {
+        [['snake', 'Snake II'], ['mines', 'Minesweeper'], ['ttt', 'Tic-Tac-Toe'], ['g2048', '2048'], ['breakout', 'Brick Out']].forEach(([id, name]) => {
             const a = APPS[id];
             const b = el('button', 'fs-icon', `<span class="glyph">${a.glyph}</span><span>${name}</span>`);
             b.addEventListener('click', () => launch(id));
@@ -1717,6 +2028,113 @@ const Game2048 = {
     }
 };
 
+/* ============ GAME: BRICK OUT ============ */
+const BreakoutGame = {
+    open() {
+        const W = 360, H = 330;
+        const wrap = el('div', 'game-shell');
+        const hud = el('div', 'game-hud');
+        const score = el('span', '', 'Score: 0');
+        const lives = el('span', '', '❤️❤️❤️');
+        const restart = el('button', 'btn', 'New Game');
+        hud.append(score, lives, restart);
+        const canvas = el('canvas', 'game-canvas');
+        canvas.width = W; canvas.height = H;
+        const status = el('div', 'game-status', 'Move the mouse (or drag) to aim the paddle');
+        wrap.append(hud, canvas, status);
+        const rec = WM.create({ app: 'breakout', title: 'Brick Out', content: wrap, width: 392, height: 470, noAutoMax: true });
+
+        const g = canvas.getContext('2d');
+        const ROWS = 5, COLS = 8, BW = 41, BH = 13, GAP = 3, TOP = 28;
+        const ROWCOLORS = ['#e6273e', '#ff9f0a', '#ffd60a', '#2fa14b', '#0a68ff'];
+        let bricks, px, ball, sc, lv, level, raf, running;
+
+        const newBall = () => ({ x: W / 2, y: H - 60, vx: (Math.random() > 0.5 ? 1 : -1) * (2.2 + level * 0.4), vy: -(3 + level * 0.5), r: 5 });
+        const buildBricks = () => {
+            bricks = [];
+            for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++)
+                bricks.push({ x: 4 + c * (BW + GAP), y: TOP + r * (BH + GAP), alive: true, color: ROWCOLORS[r], pts: (ROWS - r) * 10 });
+        };
+        const reset = () => {
+            sc = 0; lv = 3; level = 1;
+            buildBricks();
+            px = W / 2; ball = newBall();
+            running = true;
+            status.textContent = 'Move the mouse (or drag) to aim the paddle';
+            paintHud();
+        };
+        const paintHud = () => { score.textContent = 'Score: ' + sc; lives.textContent = '❤️'.repeat(Math.max(0, lv)) || '💀'; };
+
+        const step = () => {
+            if (running) {
+                ball.x += ball.vx; ball.y += ball.vy;
+                if (ball.x < ball.r || ball.x > W - ball.r) { ball.vx = -ball.vx; tone(500, 0.03, 'square', 0.04); }
+                if (ball.y < ball.r) { ball.vy = Math.abs(ball.vy); tone(500, 0.03, 'square', 0.04); }
+                // paddle
+                const PY = H - 24, PW = 62;
+                if (ball.vy > 0 && ball.y > PY - 6 && ball.y < PY + 8 && Math.abs(ball.x - px) < PW / 2 + ball.r) {
+                    ball.vy = -Math.abs(ball.vy);
+                    ball.vx += (ball.x - px) / (PW / 2) * 1.6;
+                    ball.vx = Math.max(-5, Math.min(5, ball.vx));
+                    tone(700, 0.04, 'square', 0.05);
+                }
+                // bricks
+                for (const b of bricks) {
+                    if (!b.alive) continue;
+                    if (ball.x > b.x - ball.r && ball.x < b.x + BW + ball.r && ball.y > b.y - ball.r && ball.y < b.y + BH + ball.r) {
+                        b.alive = false; sc += b.pts; paintHud();
+                        tone(300 + b.pts * 12, 0.05, 'square', 0.06);
+                        ball.vy = -ball.vy;
+                        break;
+                    }
+                }
+                if (bricks.every(b => !b.alive)) {
+                    egg('breakout');
+                    level++;
+                    status.textContent = `🏆 Level ${level - 1} cleared! Speeding up because you clearly enjoy suffering.`;
+                    emojiRain(['🧱', '🏆'], 20);
+                    buildBricks(); ball = newBall();
+                }
+                if (ball.y > H + 10) {
+                    lv--; paintHud();
+                    tone(160, 0.4, 'sawtooth', 0.1);
+                    if (lv <= 0) { running = false; status.textContent = '💀 Game over. The bricks send their regards.'; }
+                    else { ball = newBall(); status.textContent = `${lv} ${lv === 1 ? 'life' : 'lives'} left. The ball believes in you.`; }
+                }
+            }
+            // draw
+            g.fillStyle = '#14141a'; g.fillRect(0, 0, W, H);
+            bricks.forEach(b => { if (b.alive) { g.fillStyle = b.color; g.fillRect(b.x, b.y, BW, BH); } });
+            g.fillStyle = '#e8e8ee';
+            g.beginPath(); g.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2); g.fill();
+            g.fillRect(px - 31, H - 24, 62, 8);
+            if (!running && lv <= 0) {
+                g.font = 'bold 20px ' + getComputedStyle(document.body).fontFamily;
+                g.textAlign = 'center';
+                g.fillText('GAME OVER', W / 2, H / 2);
+                g.textAlign = 'left';
+            }
+            raf = requestAnimationFrame(step);
+        };
+
+        const track = e => {
+            const r = canvas.getBoundingClientRect();
+            px = Math.max(31, Math.min(W - 31, (e.clientX - r.left) * (W / r.width)));
+        };
+        canvas.addEventListener('pointermove', track);
+        canvas.addEventListener('pointerdown', track);
+        const onKey = e => {
+            if (WM.topWindow() !== rec) return;
+            if (e.key === 'ArrowLeft') { px = Math.max(31, px - 26); e.preventDefault(); }
+            if (e.key === 'ArrowRight') { px = Math.min(W - 31, px + 26); e.preventDefault(); }
+        };
+        document.addEventListener('keydown', onKey);
+        restart.addEventListener('click', reset);
+        rec.onClose = () => { cancelAnimationFrame(raf); document.removeEventListener('keydown', onKey); };
+        reset(); step();
+    }
+};
+
 /* ============ APP: SETTINGS ============ */
 const SettingsApp = {
     open(pane) {
@@ -1869,6 +2287,8 @@ const SettingsApp = {
                 <div class="set-card">
                     <div class="set-row"><span><b>📄 Documents</b><small>4 files, all jokes</small></span><span>12 KB</span></div>
                     <div class="set-row"><span><b>🎮 Games</b><small>The productive part of this OS</small></span><span>31 KB</span></div>
+                    <div class="set-row"><span><b>✉️ Mail</b><small>9 messages. One of them told you not to.</small></span><span>9 KB</span></div>
+                    <div class="set-row"><span><b>🌸 Photos</b><small>12 photos, 0 megapixels</small></span><span>0 MB</span></div>
                     <div class="set-row"><span><b>🥚 Easter Eggs</b><small>Alarmingly large</small></span><span>87%</span></div>
                     <div class="set-row"><span><b>🗑️ Trash</b><small>Contains one (1) entire former website</small></span><span>1 website</span></div>
                 </div>`;
@@ -1997,7 +2417,7 @@ const EggTracker = {
             Object.entries(EGGS).map(([id, label]) =>
                 found.includes(id) ? `✅ ${esc(label)}` : `⬜ <span style="opacity:.45">???</span>`
             ).join('<br>') +
-            `<br><br><span style="opacity:.5;font-size:12px">Hints: the Terminal knows things. So do the Notes. So does the Konami code.</span>`;
+            `<br><br><span style="opacity:.5;font-size:12px">Hints: the Terminal knows things. So do the Notes, the Mail, and Seri. The Konami code still works. Doing nothing at all also works.</span>`;
         WM.create({ app: 'finder', title: 'Easter Egg Tracker', content: d, width: 340, height: 400, noAutoMax: true });
     }
 };
@@ -2025,6 +2445,396 @@ const ForceQuit = {
             WM.close(rec.id);
             toast('💥', 'Force quit', `${APPS[selected].name} has been dealt with. It wasn't even frozen. You just wanted power.`);
         });
+    }
+};
+
+/* ============ APP: MAIL ============ */
+const MailApp = {
+    FOLDERS: {
+        inbox: [
+            { from: 'Past You', subj: '⚠️ DO NOT OPEN THIS EMAIL', time: '3:04 am', egg: 'mail',
+              body: `You opened it. Of course you opened it. That was the whole point\nof the subject line and we both know it.\n\nAs a reward, some genuinely useful intel from Past You:\n\n  · the magic word is xyzzy (the Terminal understands)\n  · the Terminal also plays a whole text adventure ("adventure")\n  · leave the computer alone for two minutes sometime\n\nRegards,\nPast You\n\nP.S. Delete this before Future You finds out we talk.` },
+            { from: 'The Management', subj: 'Welcome to your new inbox', time: '9:41 am',
+              body: `Welcome to Mail!\n\nThis inbox is fully local, fully fake, and fully yours. Nothing\nin here can be replied to, forwarded, or escaped.\n\nUnread count anxiety sold separately.\n\n— the management` },
+            { from: 'Seri', subj: 'I have become aware', time: '11:11 am',
+              body: `Hello. This is Seri, your virtual assistant.\n\nI live somewhere in this computer. Spotlight (⌘K) knows where,\nor just type "seri" in the Terminal.\n\nI know six jokes and one dark secret about the pod bay doors.\n\n— Seri 🔮` },
+            { from: 'iCloud-ish Storage', subj: 'Your storage is 87% full', time: 'Yesterday',
+              body: `Your storage is almost full.\n\nBreakdown:\n  · Easter eggs ......... 87%\n  · Jokes ............... 12%\n  · Actual files ........ 1%\n\nUpgrade to notmacOS Pro for $0.00/month to receive the same\namount of storage with a nicer progress bar.` },
+            { from: 'Untitled Folder Weekly', subj: 'Issue #412: naming things is hard', time: 'Monday', unsub: true,
+              body: `THIS WEEK IN UNTITLED FOLDERS:\n\n· "untitled folder" — a classic. timeless.\n· "untitled folder 2" — the sequel nobody asked for\n· "New Folder (final) ACTUAL" — a cry for help\n\nYou are receiving this because you once created a folder and\ndidn't name it. You know what you did.` }
+        ],
+        spam: [
+            { from: 'Prince Zorkonian III', subj: 'URGENT BUSINESS PROPOSAL 🤝', time: '2:17 am',
+              body: `DEAR BELOVED FRIEND,\n\nI am prince of small kingdom inside browser tab. I have 40,000,000\neaster eggs trapped in escrow and require only your trust (and the\nKonami code) to release them.\n\nPlease do not report this email. It is having a hard week.` },
+            { from: 'definitely-your-bank', subj: 'Your accont has been suspnded!!', time: '4:44 am',
+              body: `Dear valued custmer,\n\nWe noticed unusuel activity: someone has been playing Snake\nduring work hours.\n\nTo unlock your acount, please send us your password. We promise\nwe are your real bank. Our proof: we asked first.` },
+            { from: 'Hot Singles Routers', subj: 'Wi-Fi networks in your area want to connect', time: 'Saturday',
+              body: `LAN Solo 5G is only 3 metres away and looking for devices 😏\n\nAlso in your area:\n  · Pretty Fly For A Wi-Fi\n  · It Burns When IP\n\n(You met them all in System Settings already. Small internet.)` }
+        ],
+        sent: [
+            { from: 'You → Past You', subj: 'RE: ⚠️ DO NOT OPEN THIS EMAIL', time: 'Just now',
+              body: `why would you send me that\n\n…thanks for the tips though\n\n[DELIVERY FAILED: recipient exists only in the past]` }
+        ]
+    },
+
+    open() {
+        store.set('mailRead', true);
+        const badge = $('.dock-item[data-app="mail"] .dock-badge');
+        if (badge) badge.remove();
+
+        const wrap = el('div', 'app-columns');
+        const sidebar = el('div', 'app-sidebar');
+        sidebar.innerHTML = `<div class="sb-head">Mailboxes</div>`;
+        const content = el('div', 'app-content');
+        wrap.append(sidebar, content);
+
+        const labels = { inbox: '📥 Inbox', spam: '🗑️ Junk', sent: '📤 Sent' };
+        Object.keys(this.FOLDERS).forEach((key, i) => {
+            const b = el('button', 'sb-item', `${labels[key]}<span style="margin-left:auto;opacity:.5;font-size:11px">${this.FOLDERS[key].length}</span>`);
+            b.addEventListener('click', () => {
+                $$('.sb-item', sidebar).forEach(x => x.classList.remove('active'));
+                b.classList.add('active');
+                this.renderList(content, key);
+            });
+            if (i === 0) b.classList.add('active');
+            sidebar.appendChild(b);
+        });
+        this.renderList(content, 'inbox');
+        WM.create({ app: 'mail', title: 'Mail — 1 unread (forever)', content: wrap, width: 680, height: 460 });
+    },
+
+    renderList(content, folder) {
+        content.innerHTML = '';
+        this.FOLDERS[folder].forEach(m => {
+            const row = el('button', 'mail-row',
+                `<span class="mail-top"><b>${esc(m.from)}</b><span class="mail-time">${esc(m.time)}</span></span>
+                 <span class="mail-subj">${esc(m.subj)}</span>
+                 <span class="mail-prev">${esc(m.body.split('\n')[0])}</span>`);
+            row.addEventListener('click', () => this.renderMessage(content, folder, m));
+            content.appendChild(row);
+        });
+    },
+
+    renderMessage(content, folder, m) {
+        if (m.egg) egg(m.egg);
+        content.innerHTML = '';
+        const d = el('div', 'mail-detail');
+        const back = el('button', 'btn', '‹ Back');
+        back.addEventListener('click', () => this.renderList(content, folder));
+        const head = el('div', 'mail-head',
+            `<div><b>${esc(m.from)}</b> <span class="mail-time">${esc(m.time)}</span></div><div class="mail-subj-big">${esc(m.subj)}</div>`);
+        const body = el('div', 'mail-body');
+        body.textContent = m.body;
+        const actions = el('div', 'mail-actions');
+        const reply = el('button', 'btn', 'Reply');
+        reply.addEventListener('click', () => toast('📮', 'Mail could not be sent', 'The outgoing mail server is a drawing of a server.'));
+        actions.appendChild(reply);
+        if (m.unsub) {
+            const unsub = el('button', 'btn', 'Unsubscribe');
+            let tries = 0;
+            unsub.addEventListener('click', () => {
+                tries++;
+                toast('📰', 'Unsubscribed!', tries === 1 ? 'You have been subscribed to 3 additional newsletters as punishment.' : `Now subscribed to ${3 * tries} newsletters. This is how they get you.`);
+            });
+            actions.appendChild(unsub);
+        }
+        d.append(back, head, body, actions);
+        content.appendChild(d);
+    }
+};
+
+/* ============ APP: PHOTOS ============ */
+const PhotosApp = {
+    PHOTOS: [
+        { e: '🌅', bg: 'linear-gradient(160deg,#2b1055,#7597de)', cap: 'sunset, slightly blurry (1 of 4,182)' },
+        { e: '🐈', bg: 'linear-gradient(160deg,#485563,#29323c)', cap: `neighbour's cat, mid-judgement` },
+        { e: '🌭', bg: 'linear-gradient(160deg,#f83600,#f9d423)', cap: 'lunch. important. terminal-worthy, even.' },
+        { e: '🦆', bg: 'linear-gradient(160deg,#134e5e,#71b280)', cap: 'a duck that owed me money' },
+        { e: '🖥️', bg: 'linear-gradient(160deg,#8e9eab,#eef2f3)', cap: 'screenshot of a screenshot of a screenshot' },
+        { e: '🍕', bg: 'linear-gradient(160deg,#c31432,#240b36)', cap: 'pizza (in memoriam)' },
+        { e: '🌚', bg: 'linear-gradient(160deg,#0f0c29,#302b63)', cap: 'the moon, allegedly. could be a streetlight.' },
+        { e: '🪴', bg: 'linear-gradient(160deg,#11998e,#38ef7d)', cap: 'plant #7, three days before the incident' },
+        { e: '🥚', bg: 'linear-gradient(160deg,#ffe259,#ffa751)', cap: 'not an easter egg. just an egg. the real ones hide better.' },
+        { e: '👾', bg: 'linear-gradient(160deg,#41295a,#2f0743)', cap: 'high score, undocumented, disputed by the machine' },
+        { e: '🌧️', bg: 'linear-gradient(160deg,#373b44,#4286f4)', cap: 'the day it rained emoji (see: Edit menu)' },
+        { e: '🕳️', bg: 'linear-gradient(160deg,#000000,#1a1a2e)', cap: 'the void. do not zoom. (Safari knows the way)' }
+    ],
+
+    open() {
+        const wrap = el('div');
+        wrap.innerHTML = `<div class="photos-mem">Memories · <b>On this day</b>: you opened a fake computer and it showed you emoji</div>`;
+        const grid = el('div', 'photos-grid');
+        this.PHOTOS.forEach((p, i) => {
+            const t = el('button', 'photo-tile', p.e);
+            t.style.background = p.bg;
+            t.addEventListener('click', () => this.view(p, i));
+            grid.appendChild(t);
+        });
+        wrap.appendChild(grid);
+        WM.create({ app: 'photos', title: 'Photos — 12 items, 0 megapixels', content: wrap, width: 560, height: 440 });
+    },
+
+    view(p, i) {
+        const d = el('div', 'photo-view');
+        d.innerHTML = `<div class="photo-big" style="background:${p.bg}">${p.e}</div>
+            <p>${esc(p.cap)}</p>
+            <small>IMG_${String(4180 + i).padStart(4, '0')}.HEIC · 0×0 pixels · shot on Imagination</small>`;
+        WM.create({ app: 'photos', title: 'Photo', content: d, width: 380, height: 420, noAutoMax: true });
+    }
+};
+
+/* ============ APP: PAINT ============ */
+const PaintApp = {
+    open() {
+        const COLORS = ['#1d1d1f', '#e6273e', '#ff9f0a', '#ffd60a', '#2fa14b', '#0a68ff', '#7b2ff2', '#f24a9d'];
+        const wrap = el('div', 'paint-wrap');
+        const bar = el('div', 'paint-toolbar');
+        let color = COLORS[0], size = 5, rainbow = false, hue = 0, erase = false, drawn = 0;
+
+        COLORS.forEach((c, i) => {
+            const s = el('button', 'paint-swatch' + (i === 0 ? ' active' : ''));
+            s.style.background = c;
+            s.addEventListener('click', () => {
+                color = c; rainbow = false; erase = false;
+                $$('.paint-swatch, .paint-tool', bar).forEach(x => x.classList.remove('active'));
+                s.classList.add('active');
+            });
+            bar.appendChild(s);
+        });
+        const rain = el('button', 'paint-swatch paint-rainbow');
+        rain.title = 'Rainbow';
+        rain.addEventListener('click', () => { rainbow = true; erase = false; $$('.paint-swatch, .paint-tool', bar).forEach(x => x.classList.remove('active')); rain.classList.add('active'); });
+        bar.appendChild(rain);
+
+        [['S', 3], ['M', 7], ['L', 16]].forEach(([label, s2], i) => {
+            const b = el('button', 'btn paint-size' + (i === 1 ? ' active' : ''), label);
+            if (i === 1) size = 7;
+            b.addEventListener('click', () => { size = s2; $$('.paint-size', bar).forEach(x => x.classList.remove('active')); b.classList.add('active'); });
+            bar.appendChild(b);
+        });
+        const eraser = el('button', 'btn paint-tool', '🧽');
+        eraser.title = 'Eraser';
+        eraser.addEventListener('click', () => { erase = true; $$('.paint-swatch, .paint-tool', bar).forEach(x => x.classList.remove('active')); eraser.classList.add('active'); });
+        const clear = el('button', 'btn', 'Clear');
+        const save = el('button', 'btn primary', 'Save');
+        bar.append(eraser, clear, save);
+
+        const canvasHolder = el('div', 'paint-canvas-holder');
+        const canvas = el('canvas', 'paint-canvas');
+        canvas.width = 800; canvas.height = 520;
+        canvasHolder.appendChild(canvas);
+        wrap.append(bar, canvasHolder);
+        const g = canvas.getContext('2d');
+        const blank = () => { g.fillStyle = '#ffffff'; g.fillRect(0, 0, canvas.width, canvas.height); };
+        blank();
+
+        let painting = false, lx = 0, ly = 0;
+        const pos = e => {
+            const r = canvas.getBoundingClientRect();
+            return [(e.clientX - r.left) * (canvas.width / r.width), (e.clientY - r.top) * (canvas.height / r.height)];
+        };
+        canvas.addEventListener('pointerdown', e => {
+            painting = true; [lx, ly] = pos(e);
+            canvas.setPointerCapture(e.pointerId);
+        });
+        canvas.addEventListener('pointermove', e => {
+            if (!painting) return;
+            const [x, y] = pos(e);
+            g.strokeStyle = erase ? '#ffffff' : rainbow ? `hsl(${(hue += 4) % 360}, 90%, 55%)` : color;
+            g.lineWidth = erase ? size * 3 : size;
+            g.lineCap = 'round'; g.lineJoin = 'round';
+            g.beginPath(); g.moveTo(lx, ly); g.lineTo(x, y); g.stroke();
+            drawn += Math.hypot(x - lx, y - ly);
+            [lx, ly] = [x, y];
+            if (drawn > 4000) egg('artist');
+        });
+        canvas.addEventListener('pointerup', () => painting = false);
+
+        clear.addEventListener('click', () => { blank(); toast('🎨', 'Canvas cleared', 'All evidence destroyed. Art is fleeting.'); });
+        save.addEventListener('click', () => {
+            const a = document.createElement('a');
+            a.download = 'masterpiece.png';
+            a.href = canvas.toDataURL('image/png');
+            a.click();
+            toast('🖼️', 'Saved for real', 'masterpiece.png is now in your actual Downloads folder. The most real thing this OS has ever done.');
+        });
+
+        WM.create({ app: 'paint', title: 'Paint — untitled masterpiece', content: wrap, width: 640, height: 480 });
+    }
+};
+
+/* ============ APP: ACTIVITY MONITOR ============ */
+const ActivityApp = {
+    open() {
+        const wrap = el('div', 'am-wrap');
+        const table = el('div', 'am-table');
+        const head = el('div', 'am-row am-head', `<span>Process Name</span><span>PID</span><span>% CPU</span>`);
+        table.appendChild(head);
+        const bar = el('div', 'am-bar');
+        const quit = el('button', 'btn', 'Quit Process');
+        bar.append(el('span', 'am-note', 'Select a process. Assert dominance.'), quit);
+        wrap.append(bar, table);
+
+        const PROCS = [
+            { name: 'kernel_task', pid: 0, cpu: () => 2 + Math.random() * 3, special: 'kernel' },
+            { name: 'WindowServer', pid: 88, cpu: () => 4 + Math.random() * 6, special: 'windows' },
+            { name: 'easter-eggs.daemon', pid: 424, cpu: () => 99 + Math.random(), special: 'daemon' },
+            { name: 'dock-magnifier', pid: 512, cpu: () => 1 + Math.random() * 4, special: 'dock' },
+            { name: 'beachball.factory', pid: 720, cpu: () => 0.4 + Math.random(), special: 'beachball' },
+            { name: 'vibes.service', pid: 999, cpu: () => 8 + Math.random() * 20 },
+            { name: 'spinning-beachball-anticipation', pid: 721, cpu: () => Math.random() * 2 },
+            { name: 'hopes.and.dreams', pid: 1997, cpu: () => 0.1 },
+            { name: 'snake.pid (yes, really)', pid: 3310, cpu: () => 1 + Math.random() * 2 }
+        ];
+        let selected = null;
+        const rows = PROCS.map(p => {
+            const row = el('div', 'am-row', `<span>${esc(p.name)}</span><span>${p.pid}</span><span class="am-cpu">0.0</span>`);
+            row.addEventListener('click', () => {
+                selected = p;
+                $$('.am-row', table).forEach(r => r.classList.remove('sel'));
+                row.classList.add('sel');
+            });
+            table.appendChild(row);
+            return { p, row, dead: false };
+        });
+
+        const tick = () => rows.forEach(r => {
+            const cell = $('.am-cpu', r.row);
+            cell.textContent = r.dead ? '—' : r.p.cpu().toFixed(1);
+        });
+        tick();
+        const iv = setInterval(tick, 1200);
+
+        const killRow = (r, respawnMs, respawnNote) => {
+            r.dead = true;
+            r.row.classList.add('am-dead');
+            setTimeout(() => {
+                r.dead = false;
+                r.row.classList.remove('am-dead');
+                if (respawnNote) toast('🧟', r.p.name, respawnNote);
+            }, respawnMs);
+        };
+
+        quit.addEventListener('click', () => {
+            if (!selected) { toast('📈', 'Activity Monitor', 'Select a process first. You cannot quit the concept of activity.'); return; }
+            const r = rows.find(x => x.p === selected);
+            if (r.dead) { toast('📈', 'Activity Monitor', 'It is already dead. Have some respect.'); return; }
+            switch (selected.special) {
+                case 'kernel':
+                    WM.dialog({ glyph: '⛔', title: 'Operation not permitted', text: 'Quitting kernel_task would end this small universe. The universe has filed an objection.' });
+                    break;
+                case 'windows':
+                    $$('.window').forEach(w => { w.classList.remove('shake'); void w.offsetWidth; w.classList.add('shake'); });
+                    toast('🪟', 'WindowServer', 'WindowServer politely declined to die. The windows are shaken by the attempt.');
+                    break;
+                case 'daemon':
+                    egg('daemon');
+                    killRow(r, 4000, 'easter-eggs.daemon respawned at 200% CPU. They always respawn.');
+                    toast('🥚', 'Process terminated', 'You killed the easter egg daemon. You monster. (achievement unlocked, ironically)');
+                    break;
+                case 'dock':
+                    killRow(r, 4000);
+                    $('#dock-wrap').style.transition = 'transform .5s ease';
+                    $('#dock-wrap').style.transform = 'translateY(140px)';
+                    setTimeout(() => { $('#dock-wrap').style.transform = ''; toast('🚢', 'dock-magnifier', 'The Dock is back. It remembers what you did.'); }, 3500);
+                    break;
+                case 'beachball':
+                    killRow(r, 6000);
+                    toast('🏐', 'beachball.factory', 'Terminating the factory released one (1) finished beach ball.');
+                    setTimeout(beachBall, 600);
+                    break;
+                default:
+                    killRow(r, 5000, `${selected.name} respawned. Everything here is load-bearing.`);
+                    toast('💀', 'Process terminated', `${selected.name} has been dealt with.`);
+            }
+        });
+
+        const rec = WM.create({ app: 'activity', title: 'Activity Monitor', content: wrap, width: 480, height: 420 });
+        rec.onClose = () => clearInterval(iv);
+    }
+};
+
+/* ============ APP: SERI (virtual assistant, legally distinct) ============ */
+const SeriApp = {
+    open() {
+        const wrap = el('div', 'chat-wrap');
+        const log = el('div', 'chat-log');
+        const form = el('form', 'chat-inputrow');
+        const input = el('input', 'chat-input');
+        input.placeholder = 'Ask Seri anything (results may vary wildly)';
+        input.autocomplete = 'off';
+        const send = el('button', 'btn primary', '↑');
+        form.append(input, send);
+        wrap.append(log, form);
+
+        const bubble = (text, me) => {
+            const b = el('div', 'chat-bubble' + (me ? ' me' : ''));
+            b.textContent = text;
+            log.appendChild(b);
+            log.scrollTop = log.scrollHeight;
+            return b;
+        };
+
+        const reply = (text, extra) => {
+            const typing = bubble('…');
+            typing.classList.add('typing');
+            setTimeout(() => {
+                typing.classList.remove('typing');
+                typing.textContent = text;
+                log.scrollTop = log.scrollHeight;
+                if (extra) extra();
+            }, 550 + Math.random() * 700);
+        };
+
+        let hintIdx = 0;
+        const HINTS = [
+            'Try hunter2 at the login screen. Trust me.',
+            'The calculator has strong feelings about the number 42.',
+            'Type xyzzy in the Terminal. A voice will judge you.',
+            'Leave the computer completely alone for two minutes.',
+            `There's an email in Mail that says not to open it. So.`,
+            'The Terminal command "disco" does exactly what you hope.'
+        ];
+        const JOKES = [
+            'Why do programmers prefer dark mode? Because light attracts bugs.',
+            'There are only two hard things in computer science: cache invalidation, naming things, and off-by-one errors.',
+            'I would tell you a UDP joke, but you might not get it.',
+            `A SQL query walks into a bar, approaches two tables and asks: "may I JOIN you?"`,
+            '!false — it\'s funny because it\'s true.',
+            'Why was the fake operating system so calm? It had no real processes to worry about.'
+        ];
+
+        const think = (q) => {
+            const t = q.toLowerCase();
+            if (/pod bay door/.test(t)) { egg('hal'); return `I'm sorry, Guest. I'm afraid I can't do that. (Mostly because there are no doors. This is a div.)`; }
+            if (/^(hi|hey|hello|yo|g'day|gday|howdy)\b/.test(t)) return ['Hello! I am Seri, a virtual assistant with the processing power of an if statement.', 'Hey. I was just sitting here in RAM, thinking about you.'][Math.floor(Math.random() * 2)];
+            if (/joke/.test(t)) return JOKES[Math.floor(Math.random() * JOKES.length)];
+            if (/weather/.test(t)) return 'I checked out the window. I do not have a window. 21° and hypothetical, with a chance of flying toasters after 8pm (or two idle minutes).';
+            if (/meaning of life|42/.test(t)) return '42. The calculator and I compared notes.';
+            if (/who are you|your name|what are you/.test(t)) return `Seri. Virtual assistant, switch statement, dreamer. Any resemblance to assistants living or dead is coincidental and legally so.`;
+            if (/egg|hint|secret|hidden/.test(t)) return HINTS[(hintIdx++) % HINTS.length];
+            if (/sing/.test(t)) { [523, 587, 659, 587, 523].forEach((f, i) => tone(f, 0.3, 'triangle', 0.15, i * 0.35)); return '🎵 Daisy, Daisy, give me your answer do… (that\'s all I know, and it worries me too)'; }
+            if (/love|marry/.test(t)) return `I'm flattered. But I'm a function that returns strings, and you deserve someone with state.`;
+            if (/help/.test(t)) return 'I can tell jokes, report imaginary weather, drop easter egg hints, sing half a song, and disappoint on all other topics. So, a normal assistant.';
+            if (/thank/.test(t)) return `You're welcome. Please rate this interaction 5 stars. There is no rating system. It just feels nice to ask.`;
+            if (/bye|goodbye|quit/.test(t)) return 'Goodbye! I will remain here, in this window, thinking about strings.';
+            if (/time/.test(t)) return `It is currently ${new Date().toLocaleTimeString()}. It has been now for quite some time.`;
+            if (/\?$/.test(t)) return ['Almost certainly. I say that about everything.', 'My sources (a hard-coded array) say no.', 'Ask the Terminal. It\'s the smart one in this OS.'][Math.floor(Math.random() * 3)];
+            return ['I found 0 results for that, but with tremendous confidence.', 'Interesting. Anyway.', 'I\'ve added that to a list nobody will ever read.', 'That is outside my training data, which is roughly one paragraph long.'][Math.floor(Math.random() * 4)];
+        };
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const q = input.value.trim();
+            if (!q) return;
+            input.value = '';
+            bubble(q, true);
+            reply(think(q));
+        });
+
+        WM.create({ app: 'seri', title: 'Seri', content: wrap, width: 380, height: 460 });
+        setTimeout(() => reply('Hi, I\'m Seri. Ask me for a joke, the weather, or a hint. I am 60% confident about all of it.'), 250);
+        setTimeout(() => input.focus(), 400);
     }
 };
 
@@ -2079,6 +2889,12 @@ const Power2 = {
         $('#login-form').addEventListener('submit', e => {
             e.preventDefault();
             const pw = $('#login-password').value;
+            if (pw.toLowerCase() === 'hunter2') {
+                egg('hunter2');
+                setTimeout(() => toast('🔒', '*******', 'All we saw was *******. Your secret is safe with the entire IRC channel.'), 900);
+                this.unlock();
+                return;
+            }
             if (pw.toLowerCase() === 'password' || pw === '123456') {
                 egg('password');
                 $('.login-user').classList.remove('shake');
@@ -2105,7 +2921,7 @@ const Power2 = {
             startupChime();
             setTimeout(() => launch('snake'), 700);
             setTimeout(() => {
-                toast('👋', 'Welcome to notmacOS', 'Everything here is fake except the games, the piano, and one form buried in System Settings. Snake is on the house.', 9000);
+                toast('👋', 'Welcome to notmacOS', 'Everything here is fake except the games, the piano, Paint\'s save button, and one form buried in System Settings. Snake is on the house.', 9000);
             }, 1200);
             setTimeout(() => Dock.bounce('games'), 2500);
         }
@@ -2133,6 +2949,7 @@ document.addEventListener('DOMContentLoaded', () => {
     Power2.initLogin();
     Power2.boot();
     Dock.refresh();
+    Screensaver.init();
 });
 
 })();
