@@ -1,11 +1,11 @@
 /* ============================================================
-   benyoungOS — the entire operating system, one file, no build step.
+   notmacOS — the entire operating system, one file, no build step.
    ============================================================ */
 (function () {
 'use strict';
 
 /* ============ STATE ============ */
-const LS_KEY = 'benyoungos';
+const LS_KEY = 'notmacos';
 const store = (() => {
     let data = {};
     try { data = JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch (e) { /* incognito etc. */ }
@@ -342,7 +342,7 @@ const APPS = {
     calculator: { name: 'Calculator',    glyph: '🧮', tile: 'tile-grey',   open: () => CalcApp.open() },
     music:    { name: 'Music',           glyph: '🎹', tile: 'tile-pink',   open: () => MusicApp.open() },
     games:    { name: 'Games',           glyph: '🕹️', tile: 'tile-purple', open: () => GamesApp.open() },
-    snake:    { name: 'Snake',           glyph: '🐍', tile: 'tile-green',  hidden: true, open: () => SnakeGame.open() },
+    snake:    { name: 'Snake II',        glyph: '🐍', tile: 'tile-green',  hidden: true, open: () => SnakeGame.open() },
     mines:    { name: 'Minesweeper',     glyph: '💣', tile: 'tile-grey',   hidden: true, open: () => MinesGame.open() },
     ttt:      { name: 'Tic-Tac-Toe',     glyph: '⭕', tile: 'tile-red',    hidden: true, open: () => TTTGame.open() },
     g2048:    { name: '2048',            glyph: '🔢', tile: 'tile-yellow', hidden: true, open: () => Game2048.open() },
@@ -382,7 +382,7 @@ const MenuBar = {
             { label: 'Shut Down…', action: () => Power.shutdown() },
             { sep: true },
             { label: 'Lock Screen', kbd: '⌃⌘Q', action: () => Power.lock() },
-            { label: 'Log Out Ben…', kbd: '⇧⌘Q', action: () => Power.lock() }
+            { label: 'Log Out Guest…', kbd: '⇧⌘Q', action: () => Power.lock() }
         ];
     },
 
@@ -430,7 +430,7 @@ const MenuBar = {
                 { label: 'Bring All to Front', action: () => toast('🪟', 'Windows', 'They were already in front. You can see them. This is a website.') }
             ],
             'Help': [
-                { label: 'benyoungOS Help', action: () => WM.dialog({ glyph: '🆘', title: 'Help', html: 'There is no help. There is only the Terminal.<br><br>Try typing <b>help</b> in there.' }) },
+                { label: 'notmacOS Help', action: () => WM.dialog({ glyph: '🆘', title: 'Help', html: 'There is no help. There is only the Terminal.<br><br>Try typing <b>help</b> in there.' }) },
                 { label: 'Search Easter Eggs…', action: () => EggTracker.open() }
             ]
         };
@@ -660,7 +660,7 @@ const Spotlight = {
             if (a.name.toLowerCase().includes(q)) out.push({ label: a.name, glyph: a.glyph, hint: 'Application', run: () => launch(id) });
         });
         this.specials.forEach(s => { if (s.key.includes(q) || s.label.toLowerCase().includes(q)) out.push(s); });
-        if ('contact ben email hire form message'.includes(q) && q.length > 2) {
+        if ('contact email hire form message human'.includes(q) && q.length > 2) {
             out.push({ label: 'Contact', glyph: '✉️', hint: 'System Settings', run: () => launch('settings', 'contact') });
         }
         return out.slice(0, 8);
@@ -709,9 +709,9 @@ const ControlCenter = {
         $('#cc-wifi').addEventListener('click', () => {
             state.wifi = !state.wifi;
             $('#cc-wifi').classList.toggle('off', !state.wifi);
-            $('#cc-wifi-label').textContent = state.wifi ? 'BenNet 5G' : 'Off';
+            $('#cc-wifi-label').textContent = state.wifi ? 'LAN Solo 5G' : 'Off';
             toast(state.wifi ? '📶' : '📵', state.wifi ? 'Wi-Fi On' : 'Wi-Fi Off',
-                state.wifi ? 'Reconnected to BenNet 5G.' : 'Safari will now be extremely useless.');
+                state.wifi ? 'Reconnected to LAN Solo 5G.' : 'Safari will now be extremely useless.');
         });
         $('#cc-bt').addEventListener('click', () => {
             const b = $('#cc-bt');
@@ -770,7 +770,7 @@ const Desktop = {
                 { label: 'Toggle Dark Mode', action: () => Theme.toggle() },
                 { sep: true },
                 { label: 'Clean Up Desktop', action: () => toast('🧹', 'Desktop cleaned', 'All three icons are now perfectly aligned. Riveting.') },
-                { label: 'About benyoungOS…', action: () => AboutApp.open() }
+                { label: 'About notmacOS…', action: () => AboutApp.open() }
             ]);
         });
         document.addEventListener('contextmenu', e => {
@@ -799,7 +799,7 @@ const ContextMenu = {
 };
 
 /* ============ CONTENT ============ */
-const READ_ME = `Welcome to benyoungOS.
+const READ_ME = `Welcome to notmacOS.
 
 This entire "computer" is a website. There is no product here,
 nothing to buy, nobody asking you to book a call. Just a little
@@ -814,10 +814,10 @@ Things worth doing:
   • There are ${Object.keys(EGGS).length} easter eggs. The tracker is under
     Help → Search Easter Eggs…
 
-If you somehow need to reach the human who built this,
+If you somehow need to reach the human behind this,
 that's buried in System Settings. Like all good things.
 
-— Ben`;
+— the management`;
 
 const DEFAULT_NOTE = `🗒️ Scribbles
 
@@ -927,13 +927,13 @@ const SafariApp = {
         const go = (target) => {
             if (!state.wifi) return this.renderOffline(pageBox, 'Wi-Fi is turned off', 'You turned it off yourself. In Control Centre. We both saw you do it.');
             if (/old/i.test(target) || target === 'oldsite') {
-                urlBox.value = 'https://benyoung.dev/old-site — the before times';
+                urlBox.value = 'https://old-site.local — the before times';
                 pageBox.innerHTML = '<iframe src="old-site/index.html" title="The old website"></iframe>';
                 egg('oldsite');
             } else if (/zombo/i.test(target)) {
                 pageBox.innerHTML = `<div class="offline-page"><div class="glyph">🌀</div><h2>Welcome to Zombo.com</h2><p>You can do anything at Zombo.com. Anything at all. The only limit is yourself. (Tribute page — the real one needed Flash, and Flash is with the angels now.)</p></div>`;
             } else if (/google|search/i.test(target)) {
-                pageBox.innerHTML = `<div class="offline-page"><div class="glyph">🔎</div><h2>Bengle Search</h2><p>Your search returned 0 results, because this browser is decorative. Try Spotlight (⌘K) instead — that one actually works.</p></div>`;
+                pageBox.innerHTML = `<div class="offline-page"><div class="glyph">🔎</div><h2>Snoogle Search</h2><p>Your search returned 0 results, because this browser is decorative. Try Spotlight (⌘K) instead — that one actually works.</p></div>`;
             } else if (target === 'start' || !target) {
                 this.renderStart(pageBox, urlBox);
             } else {
@@ -961,7 +961,7 @@ const SafariApp = {
                 <div class="fav-grid">
                     <button class="fav-tile" data-go="oldsite"><span class="glyph">💾</span>My Old Website</button>
                     <button class="fav-tile" data-go="zombo"><span class="glyph">🌀</span>Zombo.com</button>
-                    <button class="fav-tile" data-go="search"><span class="glyph">🔎</span>Bengle</button>
+                    <button class="fav-tile" data-go="search"><span class="glyph">🔎</span>Snoogle</button>
                     <button class="fav-tile" data-go="https://void"><span class="glyph">🕳️</span>The Rest of the Internet</button>
                 </div>
                 <p style="margin-top:22px;font-size:12px;opacity:.5">Privacy report: 0 trackers blocked, because there are 0 trackers. This browser can't even reach the internet.</p>
@@ -999,9 +999,9 @@ const TerminalApp = {
     open() {
         const term = el('div', 'terminal');
         const out = el('div', 't-out');
-        out.textContent = `Last login: ${new Date().toDateString()} on ttys000\nbenyoungOS 26.2 — type 'help' to get started.\n`;
+        out.textContent = `Last login: ${new Date().toDateString()} on ttys000\nnotmacOS 26.2 — type 'help' to get started.\n`;
         term.appendChild(out);
-        const rec = WM.create({ app: 'terminal', title: 'ben@benyoungOS — zsh', content: term, width: 620, height: 400 });
+        const rec = WM.create({ app: 'terminal', title: 'guest@notmacOS — zsh', content: term, width: 620, height: 400 });
         this.newPrompt(term, out, rec);
         term.addEventListener('click', () => { const i = $('input', term); if (i && !getSelection().toString()) i.focus(); });
         return rec;
@@ -1009,7 +1009,7 @@ const TerminalApp = {
 
     newPrompt(term, out, rec) {
         const line = el('div', 't-line');
-        const prompt = el('span', 't-prompt', 'ben@benyoungOS ~ % ');
+        const prompt = el('span', 't-prompt', 'guest@notmacOS ~ % ');
         const input = el('input');
         input.autocapitalize = 'off'; input.autocomplete = 'off'; input.spellcheck = false;
         line.append(prompt, input);
@@ -1023,7 +1023,7 @@ const TerminalApp = {
             if (e.key !== 'Enter') return;
             const cmd = input.value;
             line.remove();
-            this.print(out, `ben@benyoungOS ~ % ${cmd}`);
+            this.print(out, `guest@notmacOS ~ % ${cmd}`);
             if (cmd.trim()) this.history.push(cmd);
             this.run(cmd.trim(), term, out, rec).then(alive => {
                 if (alive !== false && document.body.contains(term)) this.newPrompt(term, out, rec);
@@ -1083,10 +1083,10 @@ Some commands are not listed. That's what makes them fun.`);
             case 'cd':
                 P(args[0] && args[0].includes('..') ? 'cd: there is no escaping this directory' : 'cd: you are already exactly where you need to be');
                 break;
-            case 'whoami': P('ben (or a very convincing impostor)'); break;
-            case 'pwd': P('/Users/ben/why-is-this-a-website'); break;
+            case 'whoami': P('guest (or a very convincing impostor)'); break;
+            case 'pwd': P('/Users/guest/why-is-this-a-website'); break;
             case 'date': P(new Date().toString()); break;
-            case 'uname': P('benyoungOS webkernel 26.2.0 x86_64_but_actually_javascript'); break;
+            case 'uname': P('notmacOS webkernel 26.2.0 x86_64_but_actually_javascript'); break;
             case 'echo': P(rest || ''); break;
             case 'clear': out.textContent = ''; break;
             case 'exit': P('logout'); setTimeout(() => WM.close(rec.id), 300); return false;
@@ -1113,17 +1113,17 @@ Some commands are not listed. That's what makes them fun.`);
             }
             case 'neofetch':
                 egg('neofetch');
-                P(`            'c.          ben@benyoungOS
+                P(`            'c.          guest@notmacOS
          ,xNMM.          ---------------
-       .OMMMMo           OS: benyoungOS 26.2 "Tarago"
+       .OMMMMo           OS: notmacOS 26.2 "Tarago"
        OMMM0,            Host: Your Browser Tab
  .;loddo:' loolloddol;.  Kernel: javascript (single-threaded, scared)
 cKMMMMMMMMMMNWMMMMMMMMM0 Uptime: since you opened this tab
 XMMMMMMMMMMMMMMMMMMMMMM. Packages: 0 (npm avoided successfully)
 XMMMMMMMMMMMMMMMMMMMMMM. Shell: zsh (cosplay)
 kMMMMMMMMMMMMMMMMMMMMMd  Resolution: ${innerWidth}x${innerHeight}
-'XMMMMMMMMMMMMMMMMMMMMk  DE: benyoungOS Desktop
- 'XMMMMMMMMMMMMMMMMMMK.  CPU: Ben Y1 Max (1 core of pure optimism)
+'XMMMMMMMMMMMMMMMMMMMMk  DE: notmacOS Desktop
+ 'XMMMMMMMMMMMMMMMMMMK.  CPU: Vibe V1 Max (1 core of pure optimism)
    kMMMMMMMMMMMMMMMMd    GPU: whatever your device donates
     ;KMMMMMMMWXXWMMMMk.  Memory: 640K (ought to be enough for anybody)`);
                 break;
@@ -1150,7 +1150,7 @@ kMMMMMMMMMMMMMMMMMMMMMd  Resolution: ${innerWidth}x${innerHeight}
                 break;
             }
             case 'sudo':
-                P(args.length ? `ben is not in the sudoers file. This incident will be reported.\n(reported to whom? nobody. there is nobody here but us.)` : 'usage: sudo <command you were told not to run>');
+                P(args.length ? `guest is not in the sudoers file. This incident will be reported.\n(reported to whom? nobody. there is nobody here but us.)` : 'usage: sudo <command you were told not to run>');
                 break;
             case 'rm': P('rm: refusing to delete anything. This website took ages to build.'); break;
             case 'vim': case 'vi': P('Entering vim… you are now trapped forever.\nJust kidding — this is one of the few terminals you CAN exit.'); break;
@@ -1206,7 +1206,7 @@ const Meltdown = {
         egg('rmrf');
         P('…you absolute menace. fine.');
         await new Promise(r => setTimeout(r, 700));
-        const files = ['/System/CoreServices', '/Applications/Safari.app', '/Users/ben/hopes', '/Users/ben/dreams', '/System/Dock', '/System/MenuBar', '/System/Wallpaper', '/dev/null (ironic)', '/System/GravityController'];
+        const files = ['/System/CoreServices', '/Applications/Safari.app', '/Users/guest/hopes', '/Users/guest/dreams', '/System/Dock', '/System/MenuBar', '/System/Wallpaper', '/dev/null (ironic)', '/System/GravityController'];
         for (const f of files) {
             P(`rm: removing ${f} …`);
             await new Promise(r => setTimeout(r, 180));
@@ -1343,7 +1343,7 @@ const GamesApp = {
     open() {
         const grid = el('div', 'icon-grid');
         grid.style.padding = '22px';
-        [['snake', 'Snake'], ['mines', 'Minesweeper'], ['ttt', 'Tic-Tac-Toe'], ['g2048', '2048']].forEach(([id, name]) => {
+        [['snake', 'Snake II'], ['mines', 'Minesweeper'], ['ttt', 'Tic-Tac-Toe'], ['g2048', '2048']].forEach(([id, name]) => {
             const a = APPS[id];
             const b = el('button', 'fs-icon', `<span class="glyph">${a.glyph}</span><span>${name}</span>`);
             b.addEventListener('click', () => launch(id));
@@ -1356,65 +1356,95 @@ const GamesApp = {
     }
 };
 
-/* ============ GAME: SNAKE ============ */
+/* ============ GAME: SNAKE (Nokia 3310 edition) ============ */
 const SnakeGame = {
     open() {
+        const COLS = 22, ROWS = 14, CELL = 14, TOP = 24;
+        const BG = '#9dbe0c', FG = '#1c2600';
         const wrap = el('div', 'game-shell');
         const hud = el('div', 'game-hud');
-        const score = el('span', '', 'Score: 0');
         const best = el('span', '', 'Best: ' + store.get('snakeBest', 0));
         const restart = el('button', 'btn', 'New Game');
-        hud.append(score, best, restart);
-        const canvas = el('canvas', 'game-canvas');
-        canvas.width = 320; canvas.height = 320;
-        const status = el('div', 'game-status', 'Arrow keys / WASD / swipe');
+        hud.append(best, restart);
+        const canvas = el('canvas', 'game-canvas nokia-lcd');
+        canvas.width = COLS * CELL; canvas.height = TOP + ROWS * CELL;
+        const status = el('div', 'game-status', 'Arrow keys / WASD / swipe · just like 1998');
         wrap.append(hud, canvas, status);
-        const rec = WM.create({ app: 'snake', title: 'Snake', content: wrap, width: 380, height: 470, noAutoMax: true });
+        const rec = WM.create({ app: 'snake', title: 'Snake II', content: wrap, width: 372, height: 400, noAutoMax: true });
 
         const g = canvas.getContext('2d');
-        const N = 16, CELL = 20;
-        let snake, dir, nextDir, food, sc, dead, timer;
+        let snake, dir, nextDir, food, sc, dead, timer, speed;
 
         const reset = () => {
-            snake = [{ x: 8, y: 8 }, { x: 7, y: 8 }, { x: 6, y: 8 }];
+            snake = [{ x: 8, y: 7 }, { x: 7, y: 7 }, { x: 6, y: 7 }, { x: 5, y: 7 }];
             dir = { x: 1, y: 0 }; nextDir = dir;
-            sc = 0; dead = false;
+            sc = 0; dead = false; speed = 160;
             placeFood();
-            score.textContent = 'Score: 0';
-            status.textContent = 'Arrow keys / WASD / swipe';
+            status.textContent = 'Arrow keys / WASD / swipe · just like 1998';
             clearInterval(timer);
-            timer = setInterval(step, 130);
+            timer = setInterval(step, speed);
+            draw();
         };
         const placeFood = () => {
-            do { food = { x: Math.floor(Math.random() * N), y: Math.floor(Math.random() * N) }; }
+            do { food = { x: Math.floor(Math.random() * COLS), y: Math.floor(Math.random() * ROWS) }; }
             while (snake.some(s => s.x === food.x && s.y === food.y));
         };
         const step = () => {
             dir = nextDir;
-            const head = { x: (snake[0].x + dir.x + N) % N, y: (snake[0].y + dir.y + N) % N };
+            const head = { x: (snake[0].x + dir.x + COLS) % COLS, y: (snake[0].y + dir.y + ROWS) % ROWS };
             if (snake.some(s => s.x === head.x && s.y === head.y)) {
                 dead = true; clearInterval(timer);
-                status.textContent = '💀 Dead. The snake ate itself, as snakes do.';
-                tone(180, 0.4, 'sawtooth', 0.15);
+                status.textContent = '💀 The snake ate itself, as snakes do.';
+                [440, 349, 294, 220].forEach((f, i) => tone(f, 0.18, 'square', 0.08, i * 0.14));
                 if (sc > store.get('snakeBest', 0)) { store.set('snakeBest', sc); best.textContent = 'Best: ' + sc; toast('🐍', 'New high score!', sc + ' points of pure serpent skill.'); }
+                draw();
                 return;
             }
             snake.unshift(head);
             if (head.x === food.x && head.y === food.y) {
-                sc += 10; score.textContent = 'Score: ' + sc;
-                tone(700 + sc * 4, 0.08, 'square', 0.06);
+                sc += 9; // Nokia scored 9 points a feed on top speed. We're generous everywhere.
+                tone(1245, 0.05, 'square', 0.07); tone(1567, 0.05, 'square', 0.07, 0.06);
                 placeFood();
+                speed = Math.max(75, speed - 4);
+                clearInterval(timer);
+                timer = setInterval(step, speed);
             } else snake.pop();
             draw();
         };
+        // chunky LCD pixels: filled block with a bg-coloured pinhole, like the 3310
+        const blockAt = (x, y, solid) => {
+            const px = x * CELL, py = TOP + y * CELL;
+            g.fillStyle = FG;
+            g.fillRect(px + 1, py + 1, CELL - 2, CELL - 2);
+            if (!solid) {
+                g.fillStyle = BG;
+                g.fillRect(px + 5, py + 5, CELL - 10, CELL - 10);
+            }
+        };
         const draw = () => {
-            g.fillStyle = '#14141a'; g.fillRect(0, 0, 320, 320);
-            g.fillStyle = '#e6273e';
-            g.beginPath(); g.arc(food.x * CELL + 10, food.y * CELL + 10, 7, 0, 7); g.fill();
-            snake.forEach((s, i) => {
-                g.fillStyle = i === 0 ? '#7be08a' : '#2fa14b';
-                g.fillRect(s.x * CELL + 1, s.y * CELL + 1, CELL - 2, CELL - 2);
-            });
+            g.fillStyle = BG; g.fillRect(0, 0, canvas.width, canvas.height);
+            // score readout, top-left, zero-padded like the original
+            g.fillStyle = FG;
+            g.font = 'bold 15px "Courier New", monospace';
+            g.textBaseline = 'alphabetic';
+            g.fillText(String(sc).padStart(4, '0'), 5, 17);
+            g.fillRect(0, TOP - 3, canvas.width, 2);
+            // food: a little diamond "bug"
+            const fx = food.x * CELL, fy = TOP + food.y * CELL, h = CELL / 2;
+            g.beginPath();
+            g.moveTo(fx + h, fy + 2); g.lineTo(fx + CELL - 2, fy + h);
+            g.lineTo(fx + h, fy + CELL - 2); g.lineTo(fx + 2, fy + h);
+            g.closePath(); g.fill();
+            snake.forEach((s, i) => blockAt(s.x, s.y, i === 0));
+            if (dead) {
+                g.fillStyle = FG;
+                g.font = 'bold 22px "Courier New", monospace';
+                g.textAlign = 'center';
+                g.fillText('GAME OVER', canvas.width / 2, canvas.height / 2);
+                g.font = 'bold 13px "Courier New", monospace';
+                g.fillText('press New Game', canvas.width / 2, canvas.height / 2 + 22);
+                g.textAlign = 'left';
+            }
         };
         const setDir = (x, y) => {
             if (dead) return;
@@ -1745,11 +1775,11 @@ const SettingsApp = {
             d.innerHTML = `
                 <h2>Wi-Fi</h2><div class="sub">Connected to a network that exists only conceptually.</div>
                 <div class="set-card">
-                    <div class="set-row"><span><b>Wi-Fi</b><small>BenNet 5G · looks fast, is imaginary</small></span>
+                    <div class="set-row"><span><b>Wi-Fi</b><small>LAN Solo 5G · looks fast, is imaginary</small></span>
                         <label class="switch"><input type="checkbox" id="set-wifi" ${state.wifi ? 'checked' : ''}><span class="knob"></span></label></div>
                 </div>
                 <div class="set-card">
-                    <div class="set-row"><span>📶 BenNet 5G <small>Connected · 4 bars of pure fiction</small></span><span>🔒</span></div>
+                    <div class="set-row"><span>📶 LAN Solo 5G <small>Connected · 4 bars of pure fiction</small></span><span>🔒</span></div>
                     <div class="set-row"><span>📶 Pretty Fly For A Wi-Fi <small>Signal: strong · puns: stronger</small></span><span>🔒</span></div>
                     <div class="set-row"><span>📶 FBI Surveillance Van 4 <small>It's the neighbour's printer</small></span><span>🔒</span></div>
                     <div class="set-row"><span>📶 It Burns When IP <small>Please seek help</small></span><span>🔒</span></div>
@@ -1757,7 +1787,7 @@ const SettingsApp = {
             $('#set-wifi', d).addEventListener('change', e => {
                 state.wifi = e.target.checked;
                 $('#cc-wifi').classList.toggle('off', !state.wifi);
-                $('#cc-wifi-label').textContent = state.wifi ? 'BenNet 5G' : 'Off';
+                $('#cc-wifi-label').textContent = state.wifi ? 'LAN Solo 5G' : 'Off';
             });
             return d;
         },
@@ -1847,7 +1877,7 @@ const SettingsApp = {
         update() {
             const d = el('div', 'settings-pane');
             d.innerHTML = `
-                <h2>Software Update</h2><div class="sub">benyoungOS 26.2 "Tarago"</div>
+                <h2>Software Update</h2><div class="sub">notmacOS 26.2 "Tarago"</div>
                 <div class="set-card">
                     <div class="set-row"><span><b>Checking for updates…</b><small id="upd-status">Contacting the mothership</small></span><button class="btn" id="upd-btn">Check Now</button></div>
                 </div>`;
@@ -1864,7 +1894,7 @@ const SettingsApp = {
             const d = el('div', 'settings-pane');
             d.innerHTML = `
                 <h2>Contact</h2>
-                <div class="sub">Well found. This is the one real thing in the entire operating system — it goes straight to Ben.</div>
+                <div class="sub">Well found. This is the one real thing in the entire operating system — it goes straight to a real human.</div>
                 <div class="set-card"><div class="tally-holder">
                     <iframe data-tally-src="https://tally.so/embed/NpYb0Q?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Contact"></iframe>
                 </div></div>`;
@@ -1942,9 +1972,9 @@ const AboutApp = {
         d.innerHTML = `
             <div class="glyph">💻</div>
             <h2>MacBook Pretend</h2>
-            <div class="ver">benyoungOS 26.2 "Tarago"</div>
+            <div class="ver">notmacOS 26.2 "Tarago"</div>
             <div class="about-rows">
-                <div><b>Chip</b><span>Ben Y1 Max (1 core, all vibes)</span></div>
+                <div><b>Chip</b><span>Vibe V1 Max (1 core, all vibes)</span></div>
                 <div><b>Memory</b><span>640K (ought to be enough for anybody)</span></div>
                 <div><b>Startup disk</b><span>Macintosh HD (emotionally)</span></div>
                 <div><b>Serial</b><span>N0TAR3ALMAC-2026</span></div>
@@ -2073,9 +2103,10 @@ const Power2 = {
         if (!state.booted) {
             state.booted = true;
             startupChime();
+            setTimeout(() => launch('snake'), 700);
             setTimeout(() => {
-                toast('👋', 'Welcome to benyoungOS', 'Everything here is fake except the games, the piano, and one form buried in System Settings.', 9000);
-            }, 900);
+                toast('👋', 'Welcome to notmacOS', 'Everything here is fake except the games, the piano, and one form buried in System Settings. Snake is on the house.', 9000);
+            }, 1200);
             setTimeout(() => Dock.bounce('games'), 2500);
         }
     }
