@@ -2,537 +2,127 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ben Young — Tech Guru &amp; Systems Consultant · Melbourne, Australia-wide</title>
-    <meta name="description" content="Melbourne-based tech guru and systems consultant working Australia-wide. I fix the systems slowing your business down — custom apps, automated workflows, and AI integrations for business owners and exec teams who are tired of disconnected tools.">
-    <meta name="keywords" content="tech guru, tech guru Melbourne, tech guru Australia, systems consultant Melbourne, business technology consultant, workflow automation, custom software, AI integration, business process consulting, custom app development, SaaS replacement, ERP consultant Australia">
-    <meta name="author" content="Ben Young">
-    <meta name="geo.region" content="AU-VIC">
-    <meta name="geo.placename" content="Melbourne">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-
-    <meta property="og:title" content="Ben Young — Tech Guru &amp; Systems Consultant · Melbourne, Australia-wide">
-    <meta property="og:description" content="Melbourne-based tech guru working Australia-wide. Custom apps, automated workflows, and AI integrations that fix the systems slowing your business down.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>benyoungOS</title>
+    <meta name="description" content="A little operating system living in your browser. Have a poke around — there's more here than it looks.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="benyoungOS">
+    <meta property="og:description" content="A little operating system living in your browser. Have a poke around.">
     <meta property="og:type" content="website">
-    <meta property="og:locale" content="en_AU">
     <meta property="og:url" content="https://benyoung.dev">
-    <meta property="og:site_name" content="Ben Young — Systems &amp; Tech Consulting">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ben Young — Tech Guru &amp; Systems Consultant · Melbourne, Australia-wide">
-    <meta name="twitter:description" content="Melbourne-based tech guru working Australia-wide. I fix the systems slowing your business down.">
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        "name": "Ben Young — Systems & Tech Consulting",
-        "alternateName": ["Ben Young Tech Guru", "Tech Guru Melbourne"],
-        "description": "Melbourne-based tech guru and independent systems consultant. I work with business owners and exec teams Australia-wide to identify bottlenecks and fix them with custom apps, automated workflows, and AI integrations.",
-        "url": "https://benyoung.dev",
-        "image": "https://benyoung.dev/images/ben-young.webp",
-        "priceRange": "$$",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Melbourne",
-            "addressRegion": "VIC",
-            "addressCountry": "AU"
-        },
-        "areaServed": [
-            { "@type": "Country", "name": "Australia" },
-            { "@type": "City", "name": "Melbourne" },
-            { "@type": "City", "name": "Sydney" },
-            { "@type": "City", "name": "Brisbane" },
-            { "@type": "City", "name": "Perth" },
-            { "@type": "City", "name": "Adelaide" }
-        ],
-        "knowsAbout": [
-            "Tech Guru services",
-            "Systems Consulting",
-            "Workflow Automation",
-            "Custom Software Development",
-            "AI Integration",
-            "SaaS Replacement",
-            "Business Process Engineering"
-        ],
-        "serviceType": [
-            "Business Process Consulting",
-            "Custom Software Development",
-            "Workflow Automation",
-            "AI Integration"
-        ],
-        "founder": {
-            "@type": "Person",
-            "name": "Ben Young",
-            "jobTitle": "Tech Guru & Systems Consultant",
-            "worksFor": "Ben Young — Systems & Tech Consulting"
-        }
-    }
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..800,30..100;1,9..144,300..800,30..100&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-    <link rel="canonical" href="https://benyoung.dev">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/os.css">
 </head>
 <body>
 
-    <!-- Status strip / live system bar -->
-    <div class="status-strip" aria-hidden="true">
-        <div class="status-strip-inner">
-            <span class="status-cell status-cell-pulse">
-                <span class="status-dot"></span>
-                <span class="status-label">Available — Q3 capacity open</span>
-            </span>
-            <span class="status-cell status-cell-mid">Melbourne · VIC · AU · Servicing Australia-wide</span>
-            <span class="status-cell status-cell-end">
-                <span data-clock>—</span> <span class="status-tz">AEST</span>
-            </span>
+    <!-- ===== BOOT SCREEN ===== -->
+    <div id="boot">
+        <svg class="boot-logo" viewBox="0 0 24 24" width="72" height="72" aria-hidden="true">
+            <path fill="currentColor" d="M17.05 12.54c-.03-2.9 2.37-4.29 2.48-4.36-1.35-1.97-3.45-2.24-4.2-2.27-1.79-.18-3.49 1.05-4.4 1.05-.9 0-2.3-1.03-3.79-1-1.95.03-3.75 1.13-4.75 2.88-2.02 3.5-.52 8.69 1.45 11.53.96 1.39 2.11 2.95 3.62 2.9 1.45-.06 2-.94 3.76-.94s2.25.94 3.79.91c1.56-.03 2.55-1.42 3.51-2.81 1.1-1.62 1.56-3.18 1.58-3.26-.03-.02-3.03-1.17-3.05-4.63zM14.16 4.02c.8-.97 1.34-2.32 1.19-3.66-1.15.05-2.55.77-3.38 1.74-.74.85-1.39 2.23-1.22 3.54 1.29.1 2.6-.65 3.41-1.62z"/>
+        </svg>
+        <div class="boot-progress"><div class="boot-progress-fill"></div></div>
+    </div>
+
+    <!-- ===== LOGIN SCREEN ===== -->
+    <div id="login" hidden>
+        <div class="login-user">
+            <div class="login-avatar">😎</div>
+            <div class="login-name">Ben's Mac</div>
+            <form id="login-form" autocomplete="off">
+                <input type="password" id="login-password" placeholder="Enter Password" autocomplete="off">
+            </form>
+            <div class="login-hint">Hint: literally anything works. It's a website.</div>
         </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="nav" id="nav">
-        <div class="nav-inner">
-            <a href="#" class="brand">
-                <span class="brand-mono">B/Y</span>
-                <span class="brand-rule"></span>
-                <span class="brand-name">Ben Young</span>
-                <span class="brand-meta">Systems &amp; Tech Consulting · Est. 2018</span>
-            </a>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="nav-links" id="navLinks">
-                <a href="#manifest"><span class="nav-num">01</span> Practice</a>
-                <a href="#filings"><span class="nav-num">02</span> Filings</a>
-                <a href="#flow"><span class="nav-num">03</span> Method</a>
-                <a href="#colophon"><span class="nav-num">04</span> Colophon</a>
-                <a href="#open-ticket" class="nav-cta">Open a ticket →</a>
+    <!-- ===== DESKTOP ===== -->
+    <div id="desktop" hidden>
+        <div id="wallpaper"></div>
+
+        <!-- Menu bar -->
+        <div id="menubar">
+            <div class="mb-left">
+                <button class="mb-item mb-apple" data-menu="apple" aria-label="Apple menu">
+                    <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M17.05 12.54c-.03-2.9 2.37-4.29 2.48-4.36-1.35-1.97-3.45-2.24-4.2-2.27-1.79-.18-3.49 1.05-4.4 1.05-.9 0-2.3-1.03-3.79-1-1.95.03-3.75 1.13-4.75 2.88-2.02 3.5-.52 8.69 1.45 11.53.96 1.39 2.11 2.95 3.62 2.9 1.45-.06 2-.94 3.76-.94s2.25.94 3.79.91c1.56-.03 2.55-1.42 3.51-2.81 1.1-1.62 1.56-3.18 1.58-3.26-.03-.02-3.03-1.17-3.05-4.63zM14.16 4.02c.8-.97 1.34-2.32 1.19-3.66-1.15.05-2.55.77-3.38 1.74-.74.85-1.39 2.23-1.22 3.54 1.29.1 2.6-.65 3.41-1.62z"/></svg>
+                </button>
+                <button class="mb-item mb-appname" data-menu="app">Finder</button>
+                <span id="mb-menus"></span>
+            </div>
+            <div class="mb-right">
+                <button class="mb-item mb-icon" id="mb-battery" title="Battery">
+                    <span class="battery"><span class="battery-fill"></span></span>
+                </button>
+                <button class="mb-item mb-icon" id="mb-wifi" title="Wi-Fi">
+                    <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 20.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5-1.5.67-1.5 1.5.67 1.5 1.5 1.5zm0-5.5c1.66 0 3.14.68 4.22 1.76l1.42-1.42A7.94 7.94 0 0 0 12 13c-2.21 0-4.21.9-5.64 2.34l1.42 1.42A5.94 5.94 0 0 1 12 15zm0-5c2.97 0 5.66 1.2 7.6 3.15l1.41-1.41A12.7 12.7 0 0 0 12 8c-3.52 0-6.71 1.43-9.01 3.74l1.41 1.41A10.7 10.7 0 0 1 12 10zm0-5c4.35 0 8.29 1.77 11.13 4.62l1.41-1.41A17.66 17.66 0 0 0 12 3C7.11 3 2.68 4.98-.54 8.21l1.41 1.41C3.71 6.77 7.65 5 12 5z" transform="translate(0 -1) scale(.95)"/></svg>
+                </button>
+                <button class="mb-item mb-icon" id="mb-spotlight" title="Spotlight (⌘K)">
+                    <svg viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg>
+                </button>
+                <button class="mb-item mb-icon" id="mb-cc" title="Control Center">
+                    <svg viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M7.5 4A3.5 3.5 0 0 0 4 7.5 3.5 3.5 0 0 0 7.5 11h9A3.5 3.5 0 0 0 20 7.5 3.5 3.5 0 0 0 16.5 4h-9zm9 5A1.5 1.5 0 1 1 18 7.5 1.5 1.5 0 0 1 16.5 9zm-9 4A3.5 3.5 0 0 0 4 16.5 3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5 3.5 3.5 0 0 0-3.5-3.5h-9zm0 5A1.5 1.5 0 1 1 9 16.5 1.5 1.5 0 0 1 7.5 18z"/></svg>
+                </button>
+                <button class="mb-item" id="mb-clock">…</button>
             </div>
         </div>
-    </nav>
 
-    <!-- Hero -->
-    <header class="hero" id="hero">
-        <div class="hero-grid">
+        <!-- Dropdown menus render here -->
+        <div id="menu-dropdown" hidden></div>
 
-            <div class="hero-meta">
-                <div class="meta-line">
-                    <span class="meta-key">Vol. 07</span>
-                    <span class="meta-sep">/</span>
-                    <span class="meta-val">2026</span>
-                </div>
-                <div class="meta-line">
-                    <span class="meta-key">Field</span>
-                    <span class="meta-sep">/</span>
-                    <span class="meta-val">Operations Engineering</span>
-                </div>
-                <div class="meta-line">
-                    <span class="meta-key">Filed by</span>
-                    <span class="meta-sep">/</span>
-                    <span class="meta-val">B. Young</span>
-                </div>
+        <!-- Desktop icons -->
+        <div id="desktop-icons"></div>
+
+        <!-- Windows layer -->
+        <div id="windows"></div>
+
+        <!-- Dock -->
+        <div id="dock-wrap">
+            <div id="dock"></div>
+        </div>
+    </div>
+
+    <!-- ===== SPOTLIGHT ===== -->
+    <div id="spotlight" hidden>
+        <div class="spotlight-box">
+            <div class="spotlight-row">
+                <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg>
+                <input id="spotlight-input" type="text" placeholder="Spotlight Search" autocomplete="off" spellcheck="false">
             </div>
-
-            <h1 class="hero-headline">
-                <span class="hl-row hl-row-1">
-                    <span class="hl-word">I&nbsp;fix</span>
-                    <span class="hl-glyph" aria-hidden="true">
-                        <svg viewBox="0 0 64 64" preserveAspectRatio="xMidYMid meet"><g fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="14" cy="14" r="6"/><circle cx="50" cy="14" r="6"/><circle cx="14" cy="50" r="6"/><circle cx="50" cy="50" r="6"/><path d="M20 14h24M14 20v24M50 20v24M20 50h24" stroke-dasharray="3 3"/></g></svg>
-                    </span>
-                    <span class="hl-word">the</span>
-                </span>
-                <span class="hl-row hl-row-2">
-                    <span class="hl-italic">broken</span>
-                    <span class="hl-marker" aria-hidden="true">
-                        <svg viewBox="0 0 320 36" preserveAspectRatio="none"><path d="M4,22 C40,12 100,30 160,18 C220,8 280,28 316,18" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round"/></svg>
-                    </span>
-                </span>
-                <span class="hl-row hl-row-3">
-                    <span class="hl-word">systems</span>
-                    <span class="hl-period">.</span>
-                </span>
-            </h1>
-
-            <aside class="hero-aside">
-                <p class="hero-lede">
-                    <span class="dropcap">I</span>'m Ben — an independent operator who walks into businesses tangled in disconnected SaaS, brittle spreadsheets, and half-working automations, and re-wires them. <em>Custom apps where they earn their keep. Workflows that no longer drop the ball. AI built into the process — not bolted to the side.</em>
-                </p>
-                <div class="hero-ctas">
-                    <a href="#open-ticket" class="btn btn-primary">
-                        Open a ticket
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10m0 0L8 3m4 4L8 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
-                    <a href="#filings" class="btn btn-ghost">Read the filings</a>
-                </div>
-                <dl class="hero-stats">
-                    <div><dt>$70k+</dt><dd>annual cost cut, single client</dd></div>
-                    <div><dt>4–6 wk</dt><dd>typical first build</dd></div>
-                    <div><dt>0</dt><dd>fee if I can't solve it</dd></div>
-                </dl>
-            </aside>
-
-            <figure class="hero-schematic" aria-hidden="true">
-                <img src="images/hero-schematic.svg" alt="" loading="eager" width="640" height="420">
-                <figcaption>
-                    <span class="cap-num">Fig. 01</span>
-                    Re-routing a ten-tool stack into one custom integration layer.
-                </figcaption>
-            </figure>
-
+            <div id="spotlight-results"></div>
         </div>
+    </div>
 
-        <div class="hero-rule">
-            <span class="rule-line"></span>
-            <span class="rule-tag">↓ scroll · §01 begins</span>
-            <span class="rule-line"></span>
-        </div>
-    </header>
-
-    <!-- Marquee / keyword ticker -->
-    <section class="ticker" aria-hidden="true">
-        <div class="ticker-track">
-            <span>SaaS replaced</span><span class="ticker-dot">●</span>
-            <span>ERP rebuilt</span><span class="ticker-dot">●</span>
-            <span>Workflows rewired</span><span class="ticker-dot">●</span>
-            <span>AI agents shipped</span><span class="ticker-dot">●</span>
-            <span>Spreadsheets retired</span><span class="ticker-dot">●</span>
-            <span>Approvals automated</span><span class="ticker-dot">●</span>
-            <span>Reporting fixed</span><span class="ticker-dot">●</span>
-            <span>Integrations untangled</span><span class="ticker-dot">●</span>
-            <!-- duplicate for seamless loop -->
-            <span>SaaS replaced</span><span class="ticker-dot">●</span>
-            <span>ERP rebuilt</span><span class="ticker-dot">●</span>
-            <span>Workflows rewired</span><span class="ticker-dot">●</span>
-            <span>AI agents shipped</span><span class="ticker-dot">●</span>
-            <span>Spreadsheets retired</span><span class="ticker-dot">●</span>
-            <span>Approvals automated</span><span class="ticker-dot">●</span>
-            <span>Reporting fixed</span><span class="ticker-dot">●</span>
-            <span>Integrations untangled</span><span class="ticker-dot">●</span>
-        </div>
-    </section>
-
-    <!-- Manifest / Three lines of work -->
-    <section class="section manifest" id="manifest">
-        <div class="container">
-            <header class="section-head">
-                <span class="folio">§ 01 · Practice</span>
-                <h2 class="section-title">
-                    Three lines of work.<br>
-                    One <em>operator</em>.
-                </h2>
-                <p class="section-blurb">
-                    Most things slowing your business down resolve into one of these three. Often a stitched-together mix. The work is to find which, then build it properly.
-                </p>
-            </header>
-
-            <ol class="manifest-list">
-
-                <li class="entry">
-                    <div class="entry-no">
-                        <span class="entry-no-mark">01</span>
-                        <span class="entry-no-tag">Custom build</span>
-                    </div>
-                    <div class="entry-body">
-                        <h3>Custom integration apps.</h3>
-                        <p>Tailored software that connects your disconnected tools, replaces SaaS subscriptions that aren't pulling their weight, and acts as the load-bearing wall between everything your team actually uses.</p>
-                        <ul class="entry-tags">
-                            <li>SaaS replacement</li>
-                            <li>Internal tools</li>
-                            <li>API glue</li>
-                        </ul>
-                    </div>
-                    <div class="entry-cipher" aria-hidden="true">
-                        <svg viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="10" y="20" width="32" height="22" rx="2"/><rect x="58" y="20" width="32" height="22" rx="2"/><rect x="10" y="58" width="32" height="22" rx="2"/><rect x="58" y="58" width="32" height="22" rx="2"/><path d="M42 31h16M42 69h16M26 42v16M74 42v16" stroke-dasharray="2 2"/><circle cx="50" cy="50" r="6" fill="currentColor"/></g></svg>
-                    </div>
-                </li>
-
-                <li class="entry">
-                    <div class="entry-no">
-                        <span class="entry-no-mark">02</span>
-                        <span class="entry-no-tag">Automation</span>
-                    </div>
-                    <div class="entry-body">
-                        <h3>Automated workflows.</h3>
-                        <p>Removing the manual handoffs slowing your team down — with AI sprinkled in only where it earns its place. Judgement steps in the flow, not theatre on the sidebar.</p>
-                        <ul class="entry-tags">
-                            <li>Process design</li>
-                            <li>Triggered jobs</li>
-                            <li>AI-in-the-loop</li>
-                        </ul>
-                    </div>
-                    <div class="entry-cipher" aria-hidden="true">
-                        <svg viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="20" cy="50" r="6"/><circle cx="50" cy="50" r="6"/><circle cx="80" cy="50" r="6"/><path d="M26 50h18M56 50h18"/><path d="M50 12v32M50 56v32" stroke-dasharray="2 2"/><circle cx="50" cy="12" r="4" fill="currentColor"/><circle cx="50" cy="88" r="4" fill="currentColor"/></g></svg>
-                    </div>
-                </li>
-
-                <li class="entry">
-                    <div class="entry-no">
-                        <span class="entry-no-mark">03</span>
-                        <span class="entry-no-tag">AI plumbing</span>
-                    </div>
-                    <div class="entry-body">
-                        <h3>AI skills &amp; agents.</h3>
-                        <p>Custom AI tools built around your data, your customers, your edge cases — not a generic prompt wrapper. Real agents and skills your team can lean on day to day.</p>
-                        <ul class="entry-tags">
-                            <li>Bespoke agents</li>
-                            <li>Knowledge tools</li>
-                            <li>Internal copilots</li>
-                        </ul>
-                    </div>
-                    <div class="entry-cipher" aria-hidden="true">
-                        <svg viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="50,12 84,32 84,68 50,88 16,68 16,32"/><circle cx="50" cy="50" r="14"/><path d="M50 36v-12M50 64v12M64 50h12M24 50h12M36 36l-8-8M64 36l8-8M36 64l-8 8M64 64l8 8" stroke-dasharray="2 2"/></g></svg>
-                    </div>
-                </li>
-
-            </ol>
-        </div>
-    </section>
-
-    <!-- Filings / Case studies -->
-    <section class="section filings" id="filings">
-        <div class="container">
-            <header class="section-head section-head-dark">
-                <span class="folio folio-dark">§ 02 · Filings</span>
-                <h2 class="section-title">
-                    Two recent <em>case files</em>.<br>
-                    Names withheld.
-                </h2>
-                <p class="section-blurb section-blurb-dark">
-                    The work talks. Two engagements pulled from the cabinet — one financial-services SaaS replacement, one cleaning-services ERP rebuild.
-                </p>
-            </header>
-
-            <div class="filings-grid">
-
-                <article class="dossier">
-                    <header class="dossier-head">
-                        <span class="dossier-stamp">Case file</span>
-                        <span class="dossier-id">№ 2025–014 · Financial Services</span>
-                    </header>
-
-                    <div class="dossier-stat">
-                        <span class="dossier-stat-value">SaaS<br><em>replaced.</em></span>
-                        <span class="dossier-stat-suffix">Workflow finally working.</span>
-                    </div>
-
-                    <div class="dossier-body">
-                        <h3>A custom app that fixed what their software couldn't.</h3>
-                        <p>A few days inside the business — their data, their workflows, the actual problem — was enough to see the off-the-shelf SaaS was never going to get there. I built a custom app that solved it. The failing subscription got cancelled the same month.</p>
-                        <ul class="dossier-tags">
-                            <li>Custom App</li>
-                            <li>Workflow Audit</li>
-                            <li>SaaS Replacement</li>
-                        </ul>
-                    </div>
-
-                    <footer class="dossier-foot">
-                        <span class="dossier-meta">Filed Q4 · 6-week build · Retainer ongoing</span>
-                    </footer>
-                </article>
-
-                <article class="dossier">
-                    <header class="dossier-head">
-                        <span class="dossier-stamp">Case file</span>
-                        <span class="dossier-id">№ 2025–021 · Cleaning Services</span>
-                    </header>
-
-                    <div class="dossier-stat">
-                        <span class="dossier-stat-value">$70k+<br><em>saved</em></span>
-                        <span class="dossier-stat-suffix">every year, in the owner's pocket.</span>
-                    </div>
-
-                    <div class="dossier-body">
-                        <h3>One platform replacing a stack of disconnected apps.</h3>
-                        <p>Replaced a stack of half-fitting tools with a single ERP built around how the business actually operates. Pain points removed, subscriptions consolidated, and more than $70,000 a year in recurring software cost gone — with the workflows running cleaner than they ever did.</p>
-                        <ul class="dossier-tags">
-                            <li>Custom ERP</li>
-                            <li>App Consolidation</li>
-                            <li>Cost Reduction</li>
-                        </ul>
-                    </div>
-
-                    <footer class="dossier-foot">
-                        <span class="dossier-meta">Filed Q1 · 9-week build · Retainer ongoing</span>
-                    </footer>
-                </article>
-
+    <!-- ===== CONTROL CENTER ===== -->
+    <div id="control-center" hidden>
+        <div class="cc-grid">
+            <div class="cc-tile cc-toggles">
+                <button class="cc-toggle" id="cc-wifi"><span class="cc-toggle-dot">📶</span><span><b>Wi-Fi</b><small id="cc-wifi-label">BenNet 5G</small></span></button>
+                <button class="cc-toggle" id="cc-bt"><span class="cc-toggle-dot">🛜</span><span><b>Bluetooth</b><small>On, obviously</small></span></button>
+            </div>
+            <div class="cc-tile">
+                <button class="cc-toggle cc-dark" id="cc-dark"><span class="cc-toggle-dot">🌗</span><span><b>Dark Mode</b><small id="cc-dark-label">Off</small></span></button>
+            </div>
+            <div class="cc-tile cc-slider-tile">
+                <label>☀️ Display</label>
+                <input type="range" id="cc-brightness" min="35" max="100" value="100">
+            </div>
+            <div class="cc-tile cc-slider-tile">
+                <label>🔊 Sound</label>
+                <input type="range" id="cc-volume" min="0" max="100" value="60">
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Method / Process flow -->
-    <section class="section flow" id="flow">
-        <div class="container">
-            <header class="section-head">
-                <span class="folio">§ 03 · Method</span>
-                <h2 class="section-title">
-                    An honest engagement.<br>
-                    <em>Not a sales pitch.</em>
-                </h2>
-                <p class="section-blurb">
-                    Initial project, then a retainer that scales with what you actually need. If I can't solve it, you don't pay. The process is intentionally short on theatre.
-                </p>
-            </header>
+    <!-- ===== CONTEXT MENU ===== -->
+    <div id="context-menu" hidden></div>
 
-            <ol class="flow-rail">
+    <!-- ===== OVERLAYS ===== -->
+    <div id="brightness-overlay"></div>
+    <div id="sleep-overlay" hidden><div class="sleep-hint">Click anywhere to wake</div></div>
+    <div id="shutdown-overlay" hidden>
+        <button id="power-button" title="Power on">⏻</button>
+    </div>
+    <div id="toasts"></div>
 
-                <li class="flow-stop">
-                    <div class="flow-marker">
-                        <span class="flow-num">01</span>
-                        <span class="flow-tick"></span>
-                    </div>
-                    <div class="flow-card">
-                        <div class="flow-card-head">
-                            <span class="flow-card-tag">Discovery</span>
-                            <span class="flow-card-dur">~ 3–5 days</span>
-                        </div>
-                        <h3>Diagnosis, not demo-ware.</h3>
-                        <p>A few days inside your business — your data, your workflows, your team. No jargon, no upselling. An honest look at what's actually broken and whether I'm the right person to fix it.</p>
-                    </div>
-                </li>
-
-                <li class="flow-stop">
-                    <div class="flow-marker">
-                        <span class="flow-num">02</span>
-                        <span class="flow-tick"></span>
-                    </div>
-                    <div class="flow-card">
-                        <div class="flow-card-head">
-                            <span class="flow-card-tag">Build</span>
-                            <span class="flow-card-dur">~ 4–8 weeks</span>
-                        </div>
-                        <h3>Build only what earns its keep.</h3>
-                        <p>Custom app, automation, AI integration, or the right combination. I build what your business actually needs — not what fits inside a templated package someone else is selling.</p>
-                    </div>
-                </li>
-
-                <li class="flow-stop">
-                    <div class="flow-marker">
-                        <span class="flow-num">03</span>
-                        <span class="flow-tick flow-tick-end"></span>
-                    </div>
-                    <div class="flow-card">
-                        <div class="flow-card-head">
-                            <span class="flow-card-tag">Partner</span>
-                            <span class="flow-card-dur">monthly retainer</span>
-                        </div>
-                        <h3>Tech that ages with the business.</h3>
-                        <p>After the build, most clients move onto a monthly retainer. Dial it up when you need more, scale it back when you don't. Your tech ages with the business, not against it.</p>
-                    </div>
-                </li>
-
-            </ol>
-        </div>
-    </section>
-
-    <!-- Colophon / About -->
-    <section class="section colophon" id="colophon">
-        <div class="container">
-            <div class="colophon-grid">
-                <aside class="colophon-portrait">
-                    <div class="portrait-frame">
-                        <img src="images/ben-young.webp" alt="Ben Young" width="480" height="720">
-                    </div>
-                    <div class="portrait-tag">
-                        <span class="portrait-tag-line">Contributor</span>
-                        <span class="portrait-tag-name">Ben Young</span>
-                        <span class="portrait-tag-role">Tech Guru · Melbourne · Australia-wide</span>
-                    </div>
-                </aside>
-
-                <div class="colophon-body">
-                    <span class="folio">§ 04 · Colophon</span>
-                    <h2 class="section-title">
-                        Not an agency.<br>
-                        One operator who <em>likes hard problems.</em>
-                    </h2>
-
-                    <div class="colophon-text">
-                        <p>I'm based in <strong>Melbourne</strong> and work with clients <strong>across Australia</strong> — Sydney, Brisbane, Perth, Adelaide and everywhere in between. Some clients call me a tech guru; I think of it as being the operator who actually fixes things.</p>
-                        <p>Most consultants will sell you a stack before they understand your business. I'd rather sit down with your team for a few days, learn how you actually work, and only then decide what to build.</p>
-                        <p>The problems I love are the ones that have been on the whiteboard for months. The <em>"we tried that SaaS but it didn't quite fit"</em> problems. The disconnected-systems-and-spreadsheets problems. The ones everyone's accepted as the cost of doing business.</p>
-                        <p>When I see a problem solved often enough, I productise it. <a href="https://fromtheoffice.io" target="_blank" rel="noopener" class="link">fromtheoffice.io</a> is one of those — a rapid-quoting tool for small service businesses. Built once, useful many times.</p>
-                        <p class="pullquote">If I can't solve your problem, there is no fee. I'm not in the business of over-promising.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Open ticket / Contact -->
-    <section class="section ticket" id="open-ticket">
-        <div class="container">
-            <div class="ticket-grid">
-
-                <div class="ticket-text">
-                    <span class="folio folio-dark">§ 05 · Open a ticket</span>
-                    <h2 class="section-title">
-                        Got a problem<br>
-                        <em>worth solving?</em>
-                    </h2>
-                    <p class="section-blurb section-blurb-dark">
-                        Tell me about your business and what's slowing it down. I'll get back to you within 24 hours.
-                    </p>
-
-                    <ul class="ticket-list">
-                        <li><span class="ticket-key">Engagement</span><span class="ticket-val">Initial project + monthly retainer</span></li>
-                        <li><span class="ticket-key">Guarantee</span><span class="ticket-val">No fee if I can't solve it</span></li>
-                        <li><span class="ticket-key">Reply</span><span class="ticket-val">Within 24 hours · Mon–Fri AEST</span></li>
-                    </ul>
-                </div>
-
-                <div class="ticket-shell">
-                    <div class="ticket-shell-bar">
-                        <span class="ticket-shell-dot ticket-shell-dot-1"></span>
-                        <span class="ticket-shell-dot ticket-shell-dot-2"></span>
-                        <span class="ticket-shell-dot ticket-shell-dot-3"></span>
-                        <span class="ticket-shell-title">~/benyoung — open-ticket</span>
-                    </div>
-                    <div class="ticket-shell-body">
-                        <p class="shell-line"><span class="shell-prompt">$</span> ./open-ticket --new<span class="shell-cursor"></span></p>
-                        <p class="shell-out">▸ Drop your details below. I read every one.</p>
-                        <div class="ticket-form">
-                            <iframe data-tally-src="https://tally.so/embed/NpYb0Q?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="200" frameborder="0" marginheight="0" marginwidth="0" title="Contact"></iframe>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer / filing strip -->
-    <footer class="footer">
-        <div class="container footer-inner">
-            <div class="footer-row footer-row-top">
-                <div class="footer-brand">
-                    <span class="footer-mono">B/Y</span>
-                    <span class="footer-name">Ben Young — Systems &amp; Tech Consulting</span>
-                </div>
-                <ul class="footer-links">
-                    <li><a href="#manifest">Practice</a></li>
-                    <li><a href="#filings">Filings</a></li>
-                    <li><a href="#flow">Method</a></li>
-                    <li><a href="#colophon">Colophon</a></li>
-                    <li><a href="#open-ticket">Ticket</a></li>
-                    <li><a href="/llms.txt" rel="alternate">llms.txt</a></li>
-                </ul>
-            </div>
-            <div class="footer-row footer-row-bot">
-                <span class="footer-meta">© 2026 · Issue Vol. 07 · Set in Fraunces, Inter &amp; JetBrains Mono</span>
-                <span class="footer-meta footer-meta-end">Last revised <span data-revised>2026-05</span></span>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Tally Script -->
-    <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
-    <script src="js/main.js"></script>
+    <script src="assets/os.js"></script>
 </body>
 </html>
