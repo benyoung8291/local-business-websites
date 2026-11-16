@@ -25,7 +25,7 @@ if (form) {
     } finally {
       clearTimeout(timeout);
       button.disabled = false;
-      button.innerHTML = 'Send your note <span class="arrow" aria-hidden="true">↗</span>';
+      button.innerHTML = 'Send to Ben <span class="arrow" aria-hidden="true">↗</span>';
     }
   });
 }

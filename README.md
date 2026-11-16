@@ -36,4 +36,8 @@ The portrait now uses `ben-young-cutout.webp` over five independent SVG/CSS deco
 
 ## Responsive polish
 
-The 320px header uses a shorter visible CTA while retaining its accessible name. Phone contact copy sits beside the smaller coffee illustration so the form arrives sooner. Tablet headings, hero artwork and service spacing use narrower proportions; the lavender-to-yellow join has an explicit underlay. Scroll-driven transforms have a short 140ms follow-through, and story traces finish while still in view. Entrances begin just before the viewport. Pause and reduced-motion disable all transition smoothing. Clock completion at viewport centre is covered in `tests/motion.cjs`.
+The header uses the same clear “Talk to Ben” CTA at every width. Phone contact copy sits beside the smaller coffee illustration so the form arrives sooner. Tablet headings, hero artwork and service spacing use narrower proportions; the lavender-to-yellow join has an explicit underlay. Scroll-driven transforms have a short 140ms follow-through, and story traces finish while still in view. Entrances begin just before the viewport. Pause and reduced-motion disable all transition smoothing. Clock completion at viewport centre is covered in `tests/motion.cjs`.
+
+## First impression
+
+The opening leads with the customer's problem: “Stop losing hours to business admin.” It identifies Melbourne small businesses and trades, explains the offer in plain language, and places a direct enquiry CTA and Ben's own $80k annual subscription proof before the artwork. The next section recognises everyday double-handling and provides a three-step plan: show one slow task, agree a practical first fix, then build and test it together. The enquiry form explains what happens after sending. The proof is explicitly Ben's experience, not a guaranteed customer result. All opening content is immediately visible without waiting for animation.
