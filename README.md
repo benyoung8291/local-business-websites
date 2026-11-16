@@ -29,3 +29,7 @@ Ten indexable pages plus a 404, unique titles and descriptions, canonical URLs, 
 ## Character choreography
 
 The hero uses three separate transparent sprites, each with its own scroll-linked translation, rotation and scale. Toolbox and coffee characters have separate scene choreography. `motion.js` measures stable parent containers and updates transforms once per animation frame on passive scroll events, with no scroll interception or continuous rendering loop. Scrolling back exactly reverses poses. Mobile travel distances are reduced. Pause resets character poses; OS reduced-motion disables character movement and the animation toggle. Run `node tests/motion.cjs` for motion reversal and accessibility behavior checks.
+
+## Scroll scenes and portrait decorations
+
+The portrait now uses `ben-young-cutout.webp` over five independent SVG/CSS decorations. The photographic layer stays stationary while shapes drift, the star rotates and the arrow draws according to scroll position. Service illustrations use contained SVG scenes with independently moving cards, drawing connectors and report lines; the old full-section ribbon was removed to avoid sliced shapes behind text and at section boundaries. The savings badge and breakfast-to-lunch clocks also respond to scrolling. All share the existing pause/reduced-motion behavior. The handwritten lowercase b/y logo has distinct strokes and a matching favicon.
