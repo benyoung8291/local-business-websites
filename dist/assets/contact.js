@@ -14,6 +14,7 @@ if (form) {
     try {
       const response = await fetch(form.action, {method:'POST', body:new FormData(form), headers:{Accept:'application/json'}, signal:controller.signal});
       if (!response.ok) throw new Error('Submission failed');
+      try { window.BenAnalytics?.track('generate_lead'); } catch {}
       form.reset();
       status.textContent = 'Thanks — your message has been sent. I’ll get back to you by email.';
       status.focus();
