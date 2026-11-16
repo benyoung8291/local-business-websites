@@ -31,3 +31,15 @@
 .ben-portrait figcaption span{display:block;font-size:12px;margin-top:4px}
 @media(max-width:1000px) and (min-width:701px){.intro-grid{grid-template-columns:1fr 2fr;gap:40px}}
 @media(max-width:700px){.ben-portrait{width:215px;max-width:80%;margin:0 auto 40px}.portrait-frame{padding:8px;border-radius:20px}.portrait-frame img{border-radius:13px}.ben-portrait figcaption{text-align:center;padding-top:18px}.intro-copy>.eyebrow{margin-bottom:20px}}
+/* Explicit underlays keep rounded joins in the colour of the preceding section. */
+main#main:not(.wrap){overflow:clip}
+.intro-shell{position:relative;margin-top:-34px;background:var(--green)}
+.intro-shell .introduction{margin-top:0;isolation:isolate}
+.contact-shell{background:var(--yellow)}
+.contact-shell .contact-section{margin-top:0;overflow:clip;isolation:isolate}
+.ben-portrait{max-width:330px}
+.portrait-frame{padding:0;background:transparent;border-radius:0;transform:none;transition:transform .35s ease}
+.portrait-frame img{aspect-ratio:auto;border-radius:0;object-fit:contain;object-position:center}
+.ben-portrait figcaption{padding-top:12px;text-align:center}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){.ben-portrait:hover .portrait-frame{transform:translateY(-5px) rotate(-2deg)}}
+@media(max-width:700px){.intro-shell{margin-top:-25px}.ben-portrait{width:245px}.portrait-frame{padding:0;border-radius:0}.portrait-frame img{border-radius:0}.ben-portrait figcaption{padding-top:10px}}
