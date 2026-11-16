@@ -173,3 +173,18 @@ h1,h2,h3{text-wrap:balance}
  .contact-grid form{padding:24px 18px}.contact-grid form h3{font-size:27px}
 }
 @media(prefers-reduced-motion:reduce){.reveal{transition:none}.reveal.is-waiting{translate:none}}
+
+/* Jointed artwork: anatomy and story details animate inside stable illustrations. */
+.living-cast{display:block;width:100%;height:auto;overflow:visible}
+.character-stage{aspect-ratio:900/440}
+.hero-art{width:min(920px,82%)}
+[data-act]{transform-box:view-box;transition:transform .09s linear,opacity .1s linear,stroke-dashoffset .09s linear}
+[data-act][pathLength]{stroke-dasharray:1;stroke-dashoffset:0}
+[data-act="message-packet"],[data-act="pencil"]{opacity:0}
+.builder-illustration{display:block;width:100%;height:auto;overflow:visible}
+.app-scene{width:100%;max-width:520px}
+@media(max-width:700px){.hero-art{width:98%;margin-top:40px}.character-stage{aspect-ratio:900/440}.app-scene{width:100%;max-width:390px}.hero-art .doodle{font-size:35px;left:18px;top:-28px}.hero-art .swoop{width:52px;right:16px}}
+@media(prefers-reduced-motion:reduce){[data-act]{transition:none!important}}
+
+.coffee-illustration{display:block;width:100%;height:auto;overflow:visible}
+[data-act="coffee-task"]{transform-origin:265px 130px}[data-act="ben-steam"]{transform-origin:280px 240px}

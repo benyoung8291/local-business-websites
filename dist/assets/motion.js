@@ -34,9 +34,10 @@
   const render = () => {
     frame = 0;
     if (paused || document.hidden) return;
+    window.BenIllustrations?.render();
     const mobile = innerWidth <= 700;
     const distance = mobile ? 0.42 : 1;
-    if (stage) {
+    if (stage && characters.length === 3) {
       const rect = stage.getBoundingClientRect();
       if (rect.bottom > -150 && rect.top < innerHeight + 150) {
         const p = progress(rect);
@@ -135,6 +136,7 @@
         : 'Pause motion <span aria-hidden="true">Ⅱ</span>';
     }
     if (paused) {
+      window.BenIllustrations?.reset();
       cancelAnimationFrame(frame);
       frame = 0;
       moving.forEach(element => { element.style.transform = ''; });
