@@ -9,12 +9,14 @@ function setup(reduced=false){
  const portrait={querySelectorAll:()=>decorations,querySelector:()=>line,getBoundingClientRect:()=>({top,bottom:top+400,height:400})};
  const storyParts=['wash','left','right','tick','star'].map(part=>({dataset:{part},style:{}})),trace={style:{}};
  const story={getBoundingClientRect:()=>({top,bottom:top+440,height:440}),querySelectorAll:s=>s==='[data-part]'?storyParts:[trace]};
+ const clocks=Array.from({length:2},()=>({style:{setProperty(k,v){this[k]=v},removeProperty(k){delete this[k]}}})),dayLine={style:{}};
+ const day={getBoundingClientRect:()=>({top,bottom:top+440,height:440}),querySelector:()=>dayLine,querySelectorAll:s=>s==='.clock-face'?clocks:[]};
  const toggle={setAttribute(k,v){this[k]=v},addEventListener(_,f){this.click=f}};
  const media={matches:reduced,addEventListener(_,fn){mediaChange=fn}};
- const ctx={innerHeight:800,innerWidth:1200,requestAnimationFrame:f=>{pending=f;return 1},cancelAnimationFrame:()=>{pending=null},window:{matchMedia:()=>media,addEventListener:(name,fn)=>events[name]=fn},document:{hidden:false,documentElement:{classList:{toggle:(name,on)=>on?classes.add(name):classes.delete(name)}},querySelector:s=>s==='#motion-toggle'?toggle:s==='[data-portrait-scene]'?portrait:s==='.character-stage'?stage:null,querySelectorAll:s=>s==='[data-character-scene]'?[scene]:s==='[data-story-scene]'?[story]:[],addEventListener(){}}};
+ const ctx={innerHeight:800,innerWidth:1200,requestAnimationFrame:f=>{pending=f;return 1},cancelAnimationFrame:()=>{pending=null},window:{matchMedia:()=>media,addEventListener:(name,fn)=>events[name]=fn},document:{hidden:false,documentElement:{classList:{toggle:(name,on)=>on?classes.add(name):classes.delete(name)}},querySelector:s=>s==='#motion-toggle'?toggle:s==='[data-portrait-scene]'?portrait:s==='.character-stage'?stage:s==='[data-day-scene]'?day:null,querySelectorAll:s=>s==='[data-character-scene]'?[scene]:s==='[data-story-scene]'?[story]:[],addEventListener(){}}};
  vm.runInNewContext(code,ctx);
  const flush=()=>{const fn=pending;pending=null;fn?.()};flush();
- return {sprites,sceneImage,decorations,line,photo,storyParts,trace,toggle,classes,scroll(y){top=y;events.scroll();flush()},preference(matches){media.matches=matches;mediaChange({matches});flush()},flush};
+ return {clocks,dayLine,sprites,sceneImage,decorations,line,photo,storyParts,trace,toggle,classes,scroll(y){top=y;events.scroll();flush()},preference(matches){media.matches=matches;mediaChange({matches});flush()},flush};
 }
 const a=setup(), initial=a.sprites.map(s=>s.style.transform),initialScene=a.sceneImage.style.transform;
 a.scroll(100);assert(a.sprites.every((s,i)=>s.style.transform!==initial[i]));assert.notEqual(a.sceneImage.style.transform,initialScene);
@@ -33,3 +35,14 @@ console.log('PASS: portrait layers, reversible line drawing, static photo, portr
 console.log('PASS: independent scroll motion, exact reversal, secondary character movement, pause/resume and reduced-motion changes.');
 
 const storyTest=setup(),storyStart=storyTest.storyParts.map(s=>s.style.transform),traceStart=storyTest.trace.style.strokeDashoffset;storyTest.scroll(50);assert(storyTest.storyParts.every((s,i)=>s.style.transform!==storyStart[i]));assert.notEqual(storyTest.trace.style.strokeDashoffset,traceStart);storyTest.scroll(450);assert.deepEqual(storyTest.storyParts.map(s=>s.style.transform),storyStart);storyTest.toggle.click();assert(storyTest.storyParts.every(s=>s.style.transform===''));assert.equal(storyTest.trace.style.strokeDashoffset,'');console.log('PASS: service scene motion, reversible trace and pause.');
+
+const dayTest=setup();
+dayTest.scroll(180); // Scene centre aligns with viewport centre: story is complete.
+assert.equal(dayTest.dayLine.style.strokeDashoffset,'0.000');
+assert.equal(dayTest.clocks[0].style['--hour-angle'],'180deg');
+assert.equal(dayTest.clocks[1].style['--hour-angle'],'270deg');
+assert.equal(dayTest.clocks[1].style['--minute-angle'],'630deg');
+dayTest.scroll(450);assert.notEqual(dayTest.dayLine.style.strokeDashoffset,'0.000');
+dayTest.preference(true);assert.equal(dayTest.clocks[1].style['--minute-angle'],undefined);
+assert.equal(dayTest.dayLine.style.strokeDashoffset,'');
+console.log('PASS: clock story completes at viewport centre, reverses and resets for reduced motion.');

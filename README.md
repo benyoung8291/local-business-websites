@@ -33,3 +33,7 @@ The hero uses three separate transparent sprites, each with its own scroll-linke
 ## Scroll scenes and portrait decorations
 
 The portrait now uses `ben-young-cutout.webp` over five independent SVG/CSS decorations. The photographic layer stays stationary while shapes drift, the star rotates and the arrow draws according to scroll position. Service illustrations use contained SVG scenes with independently moving cards, drawing connectors and report lines; the old full-section ribbon was removed to avoid sliced shapes behind text and at section boundaries. The savings badge and breakfast-to-lunch clocks also respond to scrolling. All share the existing pause/reduced-motion behavior. The handwritten lowercase b/y logo has distinct strokes and a matching favicon.
+
+## Responsive polish
+
+The 320px header uses a shorter visible CTA while retaining its accessible name. Phone contact copy sits beside the smaller coffee illustration so the form arrives sooner. Tablet headings, hero artwork and service spacing use narrower proportions; the lavender-to-yellow join has an explicit underlay. Scroll-driven transforms have a short 140ms follow-through, and story traces finish while still in view. Entrances begin just before the viewport. Pause and reduced-motion disable all transition smoothing. Clock completion at viewport centre is covered in `tests/motion.cjs`.

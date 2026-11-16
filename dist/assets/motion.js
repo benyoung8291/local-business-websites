@@ -76,15 +76,15 @@
       const rect = story.element.getBoundingClientRect();
       if (rect.bottom < -100 || rect.top > innerHeight + 100) continue;
       const p = progress(rect);
-      const t = clamp((p - .08) / .72);
+      const t = clamp((p - .08) / .52);
       const parts = story.parts;
       if (parts.wash) pose(parts.wash, 0, lerp(14, -14, t) * distance, lerp(-8, 8, t), lerp(.92, 1.04, t));
       if (parts.left) pose(parts.left, lerp(-42, 14, t) * distance, lerp(-26, 12, t) * distance, lerp(-8, 5, t));
       if (parts.right) pose(parts.right, lerp(44, -12, t) * distance, lerp(35, -16, t) * distance, lerp(11, -5, t));
       if (parts.star) pose(parts.star, 0, lerp(12, -12, t) * distance, lerp(-30, 100, t));
-      if (parts.tick) pose(parts.tick, 0, lerp(10, 0, t), lerp(-16, 0, t), lerp(.65, 1, clamp((t - .22) / .6)));
+      if (parts.tick) pose(parts.tick, 0, lerp(10, 0, t), lerp(-16, 0, t), lerp(.65, 1, clamp((t - .18) / .5)));
       story.traces.forEach((line, index) => {
-        line.style.strokeDashoffset = (1 - clamp((p - .10 - index * .035) / .46)).toFixed(3);
+        line.style.strokeDashoffset = (1 - clamp((p - .08 - index * .025) / .32)).toFixed(3);
       });
     }
     if (proofScene && proofBadge) {
@@ -92,13 +92,13 @@
       if (rect.bottom > -100 && rect.top < innerHeight + 100) {
         const p = progress(rect);
         pose(proofBadge, 0, lerp(30, -18, p) * distance, lerp(-14, 3, p), lerp(.93, 1.04, p));
-        if (proofLine) proofLine.style.strokeDashoffset = (1 - clamp((p - .10) / .5)).toFixed(3);
+        if (proofLine) proofLine.style.strokeDashoffset = (1 - clamp((p - .08) / .38)).toFixed(3);
       }
     }
     if (dayScene) {
       const rect = dayScene.getBoundingClientRect();
       if (rect.bottom > -100 && rect.top < innerHeight + 100) {
-        const p = progress(rect), t = clamp((p - .1) / .6);
+        const p = progress(rect), t = clamp((p - .08) / .42);
         dayMoments.forEach((moment, i) => pose(moment, (i ? 1 : -1) * lerp(24, 0, t) * distance, lerp(18, 0, t) * distance, 0));
         dayClocks.forEach((clock, i) => {
           clock.style.setProperty('--minute-angle', `${-90 + 720 * t}deg`);
@@ -160,7 +160,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, {threshold: 0.12});
+    }, {threshold: 0, rootMargin: '0px 0px 60px 0px'});
     document.querySelectorAll('.reveal').forEach(element => {
       if (element.getBoundingClientRect().top > innerHeight) {
         element.classList.add('is-waiting');
