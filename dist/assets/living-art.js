@@ -10,7 +10,6 @@
   const turn = (el,angle,x=0,y=0,sx=1,sy=sx) => { if(el) el.style.transform=`translate(${x.toFixed(2)}px,${y.toFixed(2)}px) rotate(${angle.toFixed(2)}deg) scale(${sx.toFixed(3)},${sy.toFixed(3)})`; };
   const ink = (el,t) => { if(el) el.style.strokeDashoffset=String(1-clamp(t)); };
   const show = (el,t) => { if(el) el.style.opacity=String(clamp(t)); };
-  const eyes = (el,p,at) => turn(el,0,0,0,1,1-.94*Math.pow(Math.max(0,1-Math.abs(p-at)/.022),2));
   window.BenIllustrations = {
     render() {
       scenes.forEach(({element,type,parts:a}) => {
@@ -20,21 +19,18 @@
           ? clamp(window.scrollY / Math.max(180,r.top+window.scrollY-120))
           : clamp((innerHeight-r.top)/(innerHeight+r.height));
         if(type==='hero') {
-          const write=beat(p,.14,.39), connect=beat(p,.26,.49), celebrate=beat(p,.48,.70);
-          turn(a['worker-arm'],-8+8*write+4*wave(p,.14,.43,3));
-          turn(a['worker-head'],5-9*beat(p,.36,.62));
-          turn(a['worker-foot'],8*wave(p,.22,.72,1.5));
-          ink(a['worker-ink'],write);
-          turn(a['connector-left'],-24*(1-connect));
-          turn(a['connector-right'],30*(1-connect));
-          turn(a['connector-head'],-7+11*connect-3*celebrate);
-          ink(a['live-cable'],beat(p,.47,.62));
-          show(a['connection-sparks'],beat(p,.46,.50)*(1-beat(p,.60,.70)));
-          turn(a['connection-sparks'],0,0,-8*celebrate,1+.2*celebrate);
-          turn(a['owner-wave'],-22*(1-celebrate)+18*wave(p,.48,.86,2));
-          turn(a['owner-head'],6-12*celebrate);
-          ink(a['owner-check'],beat(p,.54,.65));
-          eyes(a['worker-eyes'],p,.46);eyes(a['connector-eyes'],p,.62);eyes(a['owner-eyes'],p,.71);
+          const connect=beat(p,.24,.52);
+          turn(a['worker-arm'],2.2*wave(p,.08,.58,4));
+          turn(a['worker-head'],-3*wave(p,.10,.75));
+          turn(a['worker-foot'],4*wave(p,.20,.85,2));
+          turn(a['connector-head'],3.5*wave(p,.16,.84));
+          turn(a['connector-hand'],2.5*wave(p,.24,.78));
+          turn(a['connector-foot'],-4*wave(p,.18,.80,1.5));
+          ink(a['live-cable'],connect);
+          show(a['live-cable'],.6*Math.sin(connect*Math.PI));
+          turn(a['owner-head'],-2.6*wave(p,.35,.92));
+          turn(a['owner-hand'],3.5*wave(p,.45,.94,2));
+          turn(a['owner-foot'],4*wave(p,.32,.94,1.5));
         } else if(type==='systems') {
           const open=beat(p,.13,.27), send=beat(p,.24,.48), settle=beat(p,.48,.60);
           // The envelope opens in place; a note emerges and follows the drawn route.
@@ -56,28 +52,23 @@
           turn(a['review-stamp'],-12*(1-review),0,-40*(1-review),.75+.25*review);
           show(a['review-stamp'],review);
          } else if(type==='coffee') {
-          const typing=beat(p,.14,.48), done=beat(p,.48,.66);
-          turn(a['ben-arm'],4*wave(p,.14,.50,4));
-          turn(a['ben-head'],5-10*done);
-          turn(a['ben-leg'],9*wave(p,.16,.75,1.5));
-          ink(a['laptop-code'],typing); ink(a['coffee-check'],done);
-          turn(a['coffee-task'],-12*(1-done),0,22*(1-done));
-          turn(a['ben-steam'],0,0,-12*beat(p,.15,.70),1,.85+.25*beat(p,.15,.70));
-          show(a['ben-steam'],.3+.7*Math.sin(p*Math.PI));
-          show(a['coffee-spark'],done); eyes(a['ben-eyes'],p,.62);
+          const done=beat(p,.42,.70);
+          turn(a['ben-laptop'],1.6*wave(p,.12,.62,3));
+          turn(a['ben-arm'],3.2*wave(p,.18,.76,1.5));
+          turn(a['ben-head'],-3.5*wave(p,.15,.77));
+          turn(a['ben-leg'],4*wave(p,.18,.80,2));
+          turn(a['coffee-task'],6*wave(p,.18,.72),0,-18*Math.sin(done*Math.PI));
+          turn(a['coffee-note'],-7*wave(p,.15,.75),0,-12*Math.sin(done*Math.PI));
         } else if(type==='builder') {
-          const build=beat(p,.17,.58);
-          turn(a['builder-arm'],-28*wave(p,.16,.61,1.5));
-          turn(a['builder-head'],-8+14*build);
-          turn(a['builder-leg'],6*wave(p,.25,.75));
+          const place=beat(p,.19,.55);
+          turn(a['builder-arm'],-.8*Math.sin(place*Math.PI),0,3*Math.sin(place*Math.PI));
+          turn(a['builder-other-hand'],.8*Math.sin(place*Math.PI),0,3*Math.sin(place*Math.PI));
+          turn(a['puzzle-piece'],.8*Math.sin(place*Math.PI),0,3*Math.sin(place*Math.PI));
+          turn(a['builder-head'],3.5*wave(p,.16,.76));
           ['app-tile-one','app-tile-two','app-tile-three'].forEach((k,i)=>{
-            const t=beat(p,.20+i*.075,.34+i*.075);
-            turn(a[k],(-16+i*13)*(1-t),(-70+i*25)*(1-t),-125*(1-t),.65+.35*t);
-            show(a[k],beat(p,.18+i*.075,.23+i*.075));
+            const t=beat(p,.13+i*.08,.55+i*.06);
+            turn(a[k],(i%2 ? -8 : 8)*Math.sin(t*Math.PI),0,-28*Math.sin(t*Math.PI));
           });
-          ink(a['app-ready'],beat(p,.51,.63));
-          show(a['builder-spark'],beat(p,.51,.57));turn(a['builder-spark'],build*50,0,0,.65+.35*build);
-          eyes(a['builder-eyes'],p,.62);
         }
       });
     },

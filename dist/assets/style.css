@@ -188,3 +188,13 @@ h1,h2,h3{text-wrap:balance}
 
 .coffee-illustration{display:block;width:100%;height:auto;overflow:visible}
 [data-act="coffee-task"]{transform-origin:265px 130px}[data-act="ben-steam"]{transform-origin:280px 240px}
+
+/* Original textured artwork, cut into jointed layers without redrawing the characters. */
+.original-art image{image-rendering:auto}
+.character-stage{aspect-ratio:1040/480}
+.hero-art{width:min(920px,82%)}
+.original-art [data-act]{transition:transform .1s linear,opacity .1s linear,stroke-dashoffset .1s linear}
+.original-art [data-act="live-cable"]{opacity:0}
+.original-art [data-act="coffee-task"]{transform-origin:660px 301px}
+.original-art [data-act="coffee-note"]{transform-origin:610px 175px}
+@media(max-width:700px){.hero-art{width:96%}.character-stage{aspect-ratio:1040/480}}

@@ -1,6 +1,8 @@
 """Generate a dependency-free static website. Run: python3 build.py."""
 from pathlib import Path
 import json, html
+from build_illustrations import build as build_illustrations
+build_illustrations()
 ROOT = Path(__file__).parent
 DIST = ROOT / 'dist'
 CONFIG = json.loads((ROOT / 'site-config.json').read_text())
@@ -24,7 +26,7 @@ def page(path, title, description, content, schema=None, noindex=False):
     url = ORIGIN + path
     base = {'@context':'https://schema.org', '@type':'WebPage', 'name':title, 'url':url, 'description':description, 'inLanguage':'en-AU', 'isPartOf':{'@type':'WebSite','name':'Ben Young','url':ORIGIN+'/'}}
     structured = json.dumps(schema or base, ensure_ascii=False).replace('<','\\u003c')
-    doc = f'''<!doctype html><html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(title)}</title><meta name="description" content="{esc(description,quote=True)}"><meta name="robots" content="{'noindex,follow' if noindex else 'index,follow'}"><link rel="canonical" href="{url}"><meta name="theme-color" content="#9bce64"><meta property="og:type" content="website"><meta property="og:locale" content="en_AU"><meta property="og:site_name" content="Ben Young"><meta property="og:title" content="{esc(title,quote=True)}"><meta property="og:description" content="{esc(description,quote=True)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{ORIGIN}/assets/social.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/assets/favicon.svg?v=8" type="image/svg+xml"><link rel="stylesheet" href="/assets/style.css?v=10"><script type="application/ld+json">{structured}</script><script src="/assets/contact.js?v=3" defer></script><script src="/assets/living-art.js?v=1" defer></script><script src="/assets/motion.js?v=10" defer></script></head><body>{header()}{content}{footer()}</body></html>'''
+    doc = f'''<!doctype html><html lang="en-AU"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(title)}</title><meta name="description" content="{esc(description,quote=True)}"><meta name="robots" content="{'noindex,follow' if noindex else 'index,follow'}"><link rel="canonical" href="{url}"><meta name="theme-color" content="#9bce64"><meta property="og:type" content="website"><meta property="og:locale" content="en_AU"><meta property="og:site_name" content="Ben Young"><meta property="og:title" content="{esc(title,quote=True)}"><meta property="og:description" content="{esc(description,quote=True)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{ORIGIN}/assets/social.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/assets/favicon.svg?v=8" type="image/svg+xml"><link rel="stylesheet" href="/assets/style.css?v=11"><script type="application/ld+json">{structured}</script><script src="/assets/contact.js?v=3" defer></script><script src="/assets/living-art.js?v=2" defer></script><script src="/assets/motion.js?v=10" defer></script></head><body>{header()}{content}{footer()}</body></html>'''
     file = DIST / ('index.html' if path == '/' else path.strip('/') + '/index.html')
     file.parent.mkdir(parents=True, exist_ok=True)
     file.write_text(doc)
