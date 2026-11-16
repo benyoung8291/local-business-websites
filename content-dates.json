@@ -1,0 +1,82 @@
+{
+  "/": {
+    "hash": "a0906106037ec2ff6a859b997e8c643a7a7c259a630fa24667c3db8f1dba1dea",
+    "published": "2026-11-16T06:06:50+00:00",
+    "modified": "2026-11-16T06:08:07+00:00"
+  },
+  "/services/business-systems-integration/": {
+    "hash": "77903c4f327ec3eec5fcffb0ff3cb2c7de200812cbb86253f4a84b307cdac9e0",
+    "published": "2026-11-16T06:06:50+00:00",
+    "modified": "2026-11-16T06:06:50+00:00"
+  },
+  "/services/ai-workflow-automation/": {
+    "hash": "e60e2c11189093fbc247d52cbb012c1e75874944abae16ebb7fdb6e40384f1e9",
+    "published": "2026-11-16T06:06:50+00:00",
+    "modified": "2026-11-16T06:06:50+00:00"
+  },
+  "/services/custom-business-apps/": {
+    "hash": "48a480b0a951a64997ef7d2bed7922298f9bcf39048749fdadc9d2b11512bf38",
+    "published": "2026-11-16T06:06:50+00:00",
+    "modified": "2026-11-16T06:06:50+00:00"
+  },
+  "/guides/getting-started-with-ai/": {
+    "hash": "e6aad29a479bf6f6151b779fab3937e2c0c04495bc9519581e45a324753cc7c7",
+    "published": "2026-11-16T06:06:50+00:00",
+    "modified": "2026-11-16T06:06:50+00:00"
+  },
+  "/guides/ai-for-trade-businesses/": {
+    "hash": "6ced4af93c0c6e1f56ac2ae142e2474434f5e59a3ab9ee82e525725abc9e8e33",
+    "published": "2026-11-16T06:06:50+00:00",
+    "modified": "2026-11-16T06:06:50+00:00"
+  },
+  "/guides/connect-business-systems/": {
+    "hash": "cbe13515e9365c162c48602d2d458796917a17a18487ae0f5022f835f98297aa",
+    "published": "2026-11-16T06:06:50+00:00",
+    "modified": "2026-11-16T06:06:50+00:00"
+  },
+  "/guides/ai-workflow-automation/": {
+    "hash": "4111596c3f1ee05b910ab38f9fa9888fe670778b21c39e415b6e5605a24feb27",
+    "published": "2026-11-16T06:06:50+00:00",
+    "modified": "2026-11-16T06:06:50+00:00"
+  },
+  "/guides/custom-business-apps/": {
+    "hash": "38c7fd44283d8ffdb75db68246e6536ffffcf85f3321ab129041317f334a60dc",
+    "published": "2026-11-16T06:06:50+00:00",
+    "modified": "2026-11-16T06:06:50+00:00"
+  },
+  "/guides/replace-job-management-software/": {
+    "hash": "4bba2fcedd0fa434552aa976cfdb70abd96a2d7a41b0749e19a4b35b7b59ccb1",
+    "published": "2026-11-16T06:06:50+00:00",
+    "modified": "2026-11-16T06:06:50+00:00"
+  },
+  "/guides/ai-consulting-cost/": {
+    "hash": "4d0cc50ef2b25438a99adbc6f945100f154e5fa5518c2448ca24ea28cb1933c0",
+    "published": "2026-11-16T06:06:50+00:00",
+    "modified": "2026-11-16T06:06:50+00:00"
+  },
+  "/guides/reduce-business-admin/": {
+    "hash": "563d401e6a87532d7ec4869f0d2fee0daf296720811369b5b35110d420fa2a5b",
+    "published": "2026-11-16T06:06:50+00:00",
+    "modified": "2026-11-16T06:06:50+00:00"
+  },
+  "/case-study/": {
+    "hash": "294e5e9b1c4c528daf370cbf9265fc4b63f4ccd9533795dd93ca08cd4ac2778c",
+    "published": "2026-11-16T06:06:50+00:00",
+    "modified": "2026-11-16T06:06:50+00:00"
+  },
+  "/guides/": {
+    "hash": "6eda580ed08dc88cb70a7203dc517eda0aa981751f6e4c39d52b4eb522a6745a",
+    "published": "2026-11-16T06:06:50+00:00",
+    "modified": "2026-11-16T06:06:50+00:00"
+  },
+  "/privacy/": {
+    "hash": "29672660203a97f74a331a2f8ca0170a9a39e5ec9afe2b298f8f4fee2f06f423",
+    "published": "2026-11-16T06:06:50+00:00",
+    "modified": "2026-11-16T06:06:50+00:00"
+  },
+  "/404/": {
+    "hash": "abf8e2f16476549a6289b2f7355c492b01a64c4f990c48d3357571a127cb2625",
+    "published": "2026-11-16T06:06:50+00:00",
+    "modified": "2026-11-16T06:06:50+00:00"
+  }
+}

@@ -24,7 +24,7 @@ Formspree endpoint: https://formspree.io/f/xbgogzjr. Expected recipient: benjami
 
 ## Search
 
-Ten indexable pages plus a 404, unique titles and descriptions, canonical URLs, structured data and XML sitemap. Six substantive guides are accessible through contextual service links and the footer, with no crowded main navigation. No hidden keyword pages, fake reviews or fabricated client results. The $80,000 figure is annual subscription spend removed in Ben’s own business, not a claim of net savings after development/hosting costs.
+Fifteen indexable pages plus a 404, unique titles and descriptions, canonical URLs, structured data and XML sitemap. Eight substantive guides are accessible through contextual service links and the footer, with no crowded main navigation. No hidden keyword pages, fake reviews or fabricated client results. The $80,000 figure is annual subscription spend removed in Ben’s own business, not a claim of net savings after development/hosting costs.
 
 ## Character choreography
 
@@ -41,3 +41,21 @@ The header uses the same clear “Talk to Ben” CTA at every width. Phone conta
 ## First impression
 
 The opening leads with the customer's problem: “Stop losing hours to business admin.” It identifies Melbourne small businesses and trades, explains the offer in plain language, and places a direct enquiry CTA and Ben's own $80k annual subscription proof before the artwork. The next section recognises everyday double-handling and provides a three-step plan: show one slow task, agree a practical first fix, then build and test it together. The enquiry form explains what happens after sending. The proof is explicitly Ben's experience, not a guaranteed customer result. All opening content is immediately visible without waiting for animation.
+
+## Search optimisation and publication
+
+The homepage targets AI consulting for Melbourne small businesses. Three service pages cover systems integration, AI workflow automation and custom business apps. Eight supporting guides answer informational questions, including trade workflows, reducing admin, costs and changing job management software. Existing guide URLs are preserved. The service pages are linked from the homepage and footer; guides link to a relevant service and a small set of related reading. All content is static HTML and crawlable without JavaScript.
+
+`seo.py` emits connected WebSite, WebPage, Person and Organization entities, with Article and BreadcrumbList nodes for guides and Service nodes for service pages. There is no invented street address, rating, client result or price. Organization is used instead of suggesting eligibility for Google's address-based LocalBusiness feature. The visible FAQs are useful content, not a claim to qualify for FAQ rich results.
+
+`content-dates.json` records content hashes and real publication/modification times. An unchanged rebuild leaves dates untouched. Sitemap lastmod matches those records. Keep this tracked file when building on a new machine. Guide templates include a visible author, updated date, contents navigation and author context.
+
+The self-hosted font is preloaded with swap rendering. Guides do not load form or animation JavaScript. Vercel caches the unchanged font for one year, images for one day, and versioned CSS/JS for one hour. HTML and crawl files keep revalidation. Existing original-art assets and scroll accessibility remain intact.
+
+Run `python3 build.py`, `python3 check.py` and `python3 tests/seo.py` before publication. The SEO check verifies exact canonical URLs, crawlable internal paths, absence of orphan pages, sitemap parity, entity references, breadcrumb positions, image dimensions, IndexNow key and stable dates. Run the existing motion checks when shared layout or animation code changes.
+
+After the custom-domain deployment is ready, run `python3 submit_indexnow.py`. It verifies the live key and sitemap before notifying IndexNow (including Bing), and records accepted submissions locally to avoid repeats. `--dry-run` lists changes without network access. The ownership key is intentionally public; it is not an account credential. Acceptance means receipt, not indexing or a ranking guarantee. Google does not use this submission mechanism: submit `/sitemap.xml` in Search Console and request inspection of priority pages there.
+
+Google Search Console and Bing Webmaster Tools verification tags are supported through optional `google_site_verification` and `bing_site_verification` values in `site-config.json`. Add only actual tokens supplied by the chosen account, rebuild, deploy, then verify. Search Console already has a domain property under Ben’s personal Google account. Reuse that property; do not create a duplicate. Account verification is separate from the code checks.
+
+After verification, use Search Console and Bing Webmaster Tools to establish the baseline: indexed canonical pages, impressions, clicks, queries and enquiries. Review these monthly before changing content. Core Web Vitals require real-user data; a lab performance score alone is not evidence of a field pass. For local discovery, complete an eligible Google Business Profile with accurate business/service-area details and genuine customer reviews. Do not create fake offices or near-identical suburb pages. Add public case-study evidence, named business context and real customer results as they become available.
