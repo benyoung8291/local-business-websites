@@ -90,6 +90,8 @@ from seo import DATES
 content_dates_for_sitemap = {p: DATES[p]['modified'] for p in PAGES}
 (DIST/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{ORIGIN}{p}</loc><lastmod>{content_dates_for_sitemap[p]}</lastmod></url>\n' for p in PAGES)+'</urlset>\n')
 (DIST/'robots.txt').write_text(f'User-agent: *\nAllow: /\n\nSitemap: {ORIGIN}/sitemap.xml\n')
+if CONFIG.get('bing_site_verification'):
+    (DIST/'BingSiteAuth.xml').write_text('<?xml version="1.0"?>\n<users><user>' + esc(CONFIG['bing_site_verification']) + '</user></users>\n')
 if CONFIG.get('indexnow_key'):
     (DIST / (CONFIG['indexnow_key'] + '.txt')).write_text(CONFIG['indexnow_key'])
 save_dates()
