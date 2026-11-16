@@ -1,10 +1,8 @@
-# Ben Young — AI consulting
+# Ben Young — AI consulting in Melbourne
 
-Static, mobile-friendly website for BenjaminYoung.com.au. Generated HTML, CSS and a small progressive-enhancement script; no runtime framework; open-source fonts are served locally.
+Static, dependency-free personal consulting website. Primary production: https://www.benjaminyoung.com.au/ (GitHub + Vercel). The existing private Sites project is retained as a synchronized preview.
 
-## Update
-
-Edit `templates/home.html` and `build.py` for content, `dist/assets/style.css` for styling and `site-config.json` for canonical origin, contact email and Formspree endpoint. Run:
+## Build and check
 
 ```sh
 python3 build.py
@@ -12,41 +10,18 @@ python3 check.py
 python3 -m http.server 8765 --directory dist
 ```
 
-Commit the generated `dist/` with source changes. Vercel serves `dist/` directly; no package installation or build is required. `.openai/hosting.json` is only for the private Sites copy and is not needed by Vercel.
+Edit `templates/home.html` for the homepage, `build.py` for shared navigation, contact form, metadata and guide content, and `dist/assets/style.css` for presentation. `site-config.json` supplies the domain and form endpoint. Assets stay in `dist/assets` across builds.
 
-## Pages and search
+## Design
 
-Homepage targets AI consulting for Melbourne small business. Six distinct guides cover getting started, trade businesses, integration, automation, custom apps and replacing job management software. A separate case study uses the owner's supplied claims. Guides are reachable through the footer, service links and related articles. All pages include unique titles/descriptions, canonical URLs, social metadata and JSON-LD. `sitemap.xml` lists ten indexable pages. `404.html` is noindex.
+Inspired directly by https://mindmarket.com/: apple green and cream, white floating navigation, rounded sections, expressive characters, a winding path and pastel accents. Ben Young remains a small navigation wordmark. The character artwork is original, generated for this site; no MindMarket assets or copy are used. Final image prompts are in `artwork/PROMPTS.md`. Optimized transparent WebP images are committed under `dist/assets`; local original PNGs in `artwork` are excluded from Git.
 
-After domain deployment, submit `https://www.benjaminyoung.com.au/sitemap.xml` in the owner's Google Search Console. Indexing and rankings depend on search engines and are not guaranteed. The private Sites copy is not the SEO destination.
+`motion.js` enhances below-the-fold entrances with IntersectionObserver. CSS animates connected systems, report lines, paper, and hero accents. The pause control and `prefers-reduced-motion` disable movement; all content is visible without JavaScript. There is no animation library or scroll hijacking.
 
 ## Enquiries
 
-Formspree endpoint: https://formspree.io/f/xbgogzjr. Intended recipient: benjaminyoung8@gmail.com. The destination inbox is configured in Formspree, not in website HTML. Confirm its recipient and activation in the Formspree dashboard; this code cannot verify mailbox delivery. A direct email link is provided.
+Formspree endpoint: https://formspree.io/f/xbgogzjr. Expected recipient: benjaminyoung8@gmail.com. Successful delivery to this inbox must be verified in the Formspree account; simulated form tests do not prove email delivery. Native browser validation, honeypot, pending state, timeout and recoverable error messages are implemented.
 
-Native HTML validation, a honeypot, duplicate-submission prevention, a 20-second timeout and accessible status messages are included. Success is shown only after an HTTP success from Formspree; failures preserve fields. Without JavaScript the form posts directly to Formspree.
+## Search
 
-## Validation
-
-`check.py` verifies local links/fragments, one H1, unique metadata, canonical URLs, JSON-LD and sitemap parsing. Desktop/mobile layout, accordion expansion and empty-form validation were checked in the browser. Form success/error/timeout handling was tested with mocked responses, without sending a live enquiry.
-
-## Existing production project
-
-Vercel team: team_RoZBcsghJxxr0DbcBLVnOa1X
-Project: local-business-websites (prj_IPA4qEkdx9bABFzwavzsA35pO4zg)
-GitHub: benyoung8291/local-business-websites
-Production branch: claude/marketing-website-services-RbvhW
-Previous production commit: d2c4d685a3679020a0399f07bce0dfb0029edeb2
-Previous deployment: dpl_DkgdmiqEKpjzBqPZQfwQuJ1hFXt8
-The old desktop remains recoverable from Git history and the previous Vercel deployment.
-
-## Design direction
-
-The revised identity uses Ben Young, Inter Tight and IBM Plex Mono, a black/white/cobalt palette, a small header signature, compact first-person introduction, an unboxed service list and a short enquiry form. Fonts are self-hosted; their SIL Open Font License files are in `dist/assets/fonts/`.
-
-Research references reviewed on 16 November 2026:
-- Justin Schüler, featured on One Page Love 12 November 2026: https://onepagelove.com/justin-schuler — compact editorial layout and direct personal introduction.
-- Pete Sena, featured on One Page Love 4 November 2026: https://onepagelove.com/pete-sena — personal identity and evidence-led consulting presentation.
-- Jamie R. Cox: https://jamiercox.com/ — distinctive typography and a personal consulting voice; discovered through Site Builder Report's consulting gallery.
-
-The design is an original implementation; no reference-site assets or text are reused.
+Ten indexable pages plus a 404, unique titles and descriptions, canonical URLs, structured data and XML sitemap. Six substantive guides are accessible through contextual service links and the footer, with no crowded main navigation. No hidden keyword pages, fake reviews or fabricated client results. The $80,000 figure is annual subscription spend removed in Ben’s own business, not a claim of net savings after development/hosting costs.
