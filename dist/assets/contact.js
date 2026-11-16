@@ -25,7 +25,14 @@ if (form) {
     } finally {
       clearTimeout(timeout);
       button.disabled = false;
-      button.innerHTML = 'Let’s have a chat <span class="arrow" aria-hidden="true">↗</span>';
+      button.innerHTML = 'Send your note <span class="arrow" aria-hidden="true">↗</span>';
     }
   });
+}
+
+const clock = document.querySelector('#melbourne-time');
+if (clock) {
+  const updateClock = () => { clock.textContent = new Intl.DateTimeFormat('en-AU', {timeZone:'Australia/Melbourne',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date()); };
+  updateClock();
+  setInterval(updateClock, 60000);
 }

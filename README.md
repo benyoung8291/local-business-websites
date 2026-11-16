@@ -1,10 +1,10 @@
-# Benjamin Young — AI consulting
+# Ben Young — AI consulting
 
-Static, mobile-friendly website for BenjaminYoung.com.au. Generated HTML, CSS and a small progressive-enhancement script; no runtime framework or external fonts.
+Static, mobile-friendly website for BenjaminYoung.com.au. Generated HTML, CSS and a small progressive-enhancement script; no runtime framework; open-source fonts are served locally.
 
 ## Update
 
-Edit `build.py` for content, `dist/assets/style.css` for styling and `site-config.json` for canonical origin, contact email and Formspree endpoint. Run:
+Edit `templates/home.html` and `build.py` for content, `dist/assets/style.css` for styling and `site-config.json` for canonical origin, contact email and Formspree endpoint. Run:
 
 ```sh
 python3 build.py
@@ -39,3 +39,14 @@ Production branch: claude/marketing-website-services-RbvhW
 Previous production commit: d2c4d685a3679020a0399f07bce0dfb0029edeb2
 Previous deployment: dpl_DkgdmiqEKpjzBqPZQfwQuJ1hFXt8
 The old desktop remains recoverable from Git history and the previous Vercel deployment.
+
+## Design direction
+
+The revised identity uses Ben Young, Inter Tight and IBM Plex Mono, a black/white/cobalt palette, a small header signature, compact first-person introduction, an unboxed service list and a short enquiry form. Fonts are self-hosted; their SIL Open Font License files are in `dist/assets/fonts/`.
+
+Research references reviewed on 16 November 2026:
+- Justin Schüler, featured on One Page Love 12 November 2026: https://onepagelove.com/justin-schuler — compact editorial layout and direct personal introduction.
+- Pete Sena, featured on One Page Love 4 November 2026: https://onepagelove.com/pete-sena — personal identity and evidence-led consulting presentation.
+- Jamie R. Cox: https://jamiercox.com/ — distinctive typography and a personal consulting voice; discovered through Site Builder Report's consulting gallery.
+
+The design is an original implementation; no reference-site assets or text are reused.
