@@ -25,3 +25,7 @@ Formspree endpoint: https://formspree.io/f/xbgogzjr. Expected recipient: benjami
 ## Search
 
 Ten indexable pages plus a 404, unique titles and descriptions, canonical URLs, structured data and XML sitemap. Six substantive guides are accessible through contextual service links and the footer, with no crowded main navigation. No hidden keyword pages, fake reviews or fabricated client results. The $80,000 figure is annual subscription spend removed in Ben’s own business, not a claim of net savings after development/hosting costs.
+
+## Character choreography
+
+The hero uses three separate transparent sprites, each with its own scroll-linked translation, rotation and scale. Toolbox and coffee characters have separate scene choreography. `motion.js` measures stable parent containers and updates transforms once per animation frame on passive scroll events, with no scroll interception or continuous rendering loop. Scrolling back exactly reverses poses. Mobile travel distances are reduced. Pause resets character poses; OS reduced-motion disables character movement and the animation toggle. Run `node tests/motion.cjs` for motion reversal and accessibility behavior checks.
