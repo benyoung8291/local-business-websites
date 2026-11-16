@@ -40,5 +40,5 @@ for f,p in pages.items():
   elif u.fragment and target in pages and u.fragment not in pages[target].ids:errors.append(f'{f}: bad fragment {href}')
  ET.parse(ROOT/'sitemap.xml')
 assert not errors,'\n'.join(errors)
-assert (ROOT/'assets/social.png').exists()
+assert (ROOT/'assets/ben-young-social-v2.jpg').exists()
 print(f'PASS: {len(pages)} pages; local links, fragments, unique titles/descriptions, canonical URLs, JSON-LD and sitemap.')

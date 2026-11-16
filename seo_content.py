@@ -6,7 +6,7 @@ SERVICES = [
         'name': 'Business systems integration',
         'title': 'Systems Integration Melbourne | Ben Young',
         'heading': 'Connect your business systems. Enter it once.',
-        'description': 'Systems integration for Melbourne small businesses. Connect enquiries, jobs and invoicing, reduce duplicate data entry and keep the software that works.',
+        'description': 'Stop copying customer details between apps. Ben Young connects enquiries, jobs and invoicing for Melbourne small businesses, using the tools you already have.',
         'intro': 'Still copying customer details between your inbox, job software and accounts? I help Melbourne small businesses connect their tools so approved information gets where it needs to go.',
         'guide': 'connect-business-systems',
         'body': '''<h2>A reliable handover between the tools you already use</h2>
@@ -32,7 +32,7 @@ SERVICES = [
         'name': 'AI workflow automation',
         'title': 'AI Workflow Automation Melbourne | Ben Young',
         'heading': 'Less repetitive admin. More time for the actual job.',
-        'description': 'AI workflow automation for Melbourne small businesses and trades. Turn site notes into draft reports, organise enquiries and reduce repetitive office work.',
+        'description': 'Spend less time on reports, enquiries and repetitive admin. Ben Young builds practical AI workflows for Melbourne small businesses and trades. Start with one task.',
         'intro': 'If the work is finished but the paperwork keeps you at your desk, there may be a better handover. I build practical AI workflows for Melbourne businesses, with your team checking the parts that matter.',
         'guide': 'ai-workflow-automation',
         'body': '''<h2>Make one recurring task easier</h2>
@@ -59,7 +59,7 @@ SERVICES = [
         'name': 'Custom business apps',
         'title': 'Custom Business Apps Melbourne | Ben Young',
         'heading': 'Business software that fits the way your team works.',
-        'description': 'Custom business apps for Melbourne small businesses and trades. Build an internal tool or assess a tailored alternative to your job management software.',
+        'description': 'Outgrown your business software? Ben Young builds custom apps for Melbourne small businesses and trades, from internal tools to tailored job management systems.',
         'intro': 'When every job involves a workaround, another subscription may not fix it. I help Melbourne businesses build custom apps around their own workflows—from a focused internal tool to a tailored job management system.',
         'guide': 'custom-business-apps',
         'body': '''<h2>Start with the work your current software makes awkward</h2>
@@ -84,14 +84,14 @@ SERVICES = [
 ]
 
 GUIDE_META = {
-    'getting-started-with-ai': ('AI for Small Business: Where to Start | Ben Young', 'Not sure where to start with AI? A practical guide for Melbourne small business owners: choose one task, test a pilot and measure the result.'),
-    'ai-for-trade-businesses': ('AI for Trade Businesses in Melbourne | Ben Young', 'Practical AI ideas for trade businesses: site notes, job reports, enquiries and office handovers. Learn where automation helps and where people should check.'),
-    'connect-business-systems': ('Stop Duplicate Data Entry Between Apps | Ben Young', 'Learn how to connect business systems, choose a source of truth and handle failed transfers. A practical guide to reducing duplicate data entry.'),
-    'ai-workflow-automation': ('How AI Workflow Automation Works | Ben Young', 'A practical AI workflow example: turn job notes into a draft report, add human review and measure the whole process before expanding it.'),
-    'custom-business-apps': ('Is a Custom Business App Worth It? | Ben Young', 'Compare a custom business app with your current software. Understand scope, ownership, running costs and migration before committing to a build.'),
-    'replace-job-management-software': ('Replace Job Management Software? A Guide | Ben Young', 'Keep, connect or replace your job management software? Compare costs, exports, migration and support before changing the system your team relies on.'),
-    'ai-consulting-cost': ('AI Consulting Costs for Small Business | Ben Young', 'What affects the cost of AI consulting and automation? Compare scope, integrations, ongoing fees and a useful first pilot before requesting a quote.'),
-    'reduce-business-admin': ('How to Reduce Small Business Admin | Ben Young', 'Find the repetitive admin costing your business time. Map a job, choose a first fix and compare process changes, automation, AI and custom software.'),
+    'getting-started-with-ai': ('AI for Small Business: Where to Start | Ben Young', 'Know AI could help your business but unsure where to start? Learn how to find one time-consuming task, run a small pilot and check whether it actually saves time.'),
+    'ai-for-trade-businesses': ('AI for Trade Businesses in Melbourne | Ben Young', 'Still doing paperwork after the job is done? Explore practical AI uses for trade businesses, from site notes and job reports to smoother handovers to the office.'),
+    'connect-business-systems': ('Stop Duplicate Data Entry Between Apps | Ben Young', 'Entering the same customer details twice? Learn how to connect your business apps, keep records consistent and handle errors without replacing every system.'),
+    'ai-workflow-automation': ('How AI Workflow Automation Works | Ben Young', 'See how an AI workflow turns rough job notes into a draft report. Learn where human review fits and how to measure time saved before automating more work.'),
+    'custom-business-apps': ('Is a Custom Business App Worth It? | Ben Young', 'Would a custom app solve your software workarounds? Compare the benefits, build costs, ownership and ongoing support before deciding what your business needs.'),
+    'replace-job-management-software': ('Replace Job Management Software? A Guide | Ben Young', 'Frustrated with your job management software? Work through what to keep, connect or replace, including data exports, running costs and a safe migration plan.'),
+    'ai-consulting-cost': ('AI Consulting Costs for Small Business | Ben Young', 'What does AI consulting cost a small business? Understand what affects the quote, which ongoing fees to include and how to scope a useful first project.'),
+    'reduce-business-admin': ('How to Reduce Small Business Admin | Ben Young', 'Too much time on admin and not enough on your business? Find the double-handling, choose a practical first fix and compare automation, AI and better processes.'),
 }
 
 EXTRA_GUIDES = [

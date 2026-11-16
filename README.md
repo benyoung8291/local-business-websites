@@ -69,3 +69,8 @@ Use the separate Ben Young account under benjaminyoung8@gmail.com, Melbourne tim
 Run `node tests/analytics.cjs` to check default collection and saved opt-out, sanitised URLs, event filtering, revocation and enquiry success/failure handling. The form tests mock Formspree; they do not send an email or prove inbox delivery. A production visit was verified in GA Realtime on 16 November 2026. Account `416345376`, property `564453463`. Do not create fake leads to test reporting.
 
 Search engine account setup completed on 16 November 2026: Google sitemap accepted with 15 URLs discovered; canonical validation started; homepage and all three service pages requested for indexing. Bing ownership verified with `BingSiteAuth.xml` and sitemap submitted (processing). IndexNow acknowledged the 15 URLs with HTTP 202. Discovery and submission do not mean pages are indexed or ranked.
+
+
+## Social previews and descriptions
+
+Every page has its own search description, shared consistently with Open Graph, Twitter cards and WebPage schema. The 1200×630 JPEG at `/assets/ben-young-social-v2.jpg` uses Ben’s actual photo, the current scribble logo and the customer-focused homepage headline. The new filename avoids reusing the old image URL in social caches. Editable layout: `templates/social-card.html`; render at 1200×630 with the project root served locally, then capture the card as JPEG. Metadata includes image MIME type, dimensions and descriptive alt text. Social platforms may retain existing link previews until they recrawl the page.
