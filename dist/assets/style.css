@@ -276,11 +276,7 @@ h1,h2,h3{text-wrap:balance}
 .table-scroll{overflow-x:auto;margin:28px 0}.table-scroll table{width:100%;border-collapse:collapse;font-size:16px;line-height:1.6}.table-scroll caption{text-align:left;font-weight:600;margin-bottom:12px}.table-scroll th,.table-scroll td{padding:15px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}.table-scroll th{background:#e7ecd6}
 @media(max-width:700px){.article-hero h1{font-size:clamp(34px,10vw,44px);overflow-wrap:normal}.article-contents ul{grid-template-columns:1fr;gap:12px}.article-contents{margin-bottom:28px}.author-box{gap:14px}.author-box img{width:48px;height:48px;flex-basis:48px}.article-body .author-box h2{font-size:19px}.questions summary{font-size:17px;padding:19px 0}.questions details p{font-size:15px}.questions details>div{padding-right:0}.home-questions{padding:45px 0 50px}.home-questions h2{font-size:32px}.service-meeting{font-size:12px}.table-scroll th,.table-scroll td{padding:12px 10px;font-size:14px}.footer-links{gap:10px 20px}}
 
-/* Compact, non-modal analytics choice, with equally accessible controls. */
-.analytics-choice[hidden],[data-analytics-preferences][hidden]{display:none!important}
-.analytics-choice{position:fixed;z-index:100;bottom:18px;left:18px;width:min(390px,calc(100% - 36px));padding:20px;background:#fffdf5;border:1px solid #25291e;border-radius:18px;box-shadow:0 6px 24px #25291e18;color:#25291e;font-size:14px;line-height:1.45}
-.analytics-choice strong{font-size:18px}.analytics-choice p{margin:8px 0 14px}.analytics-choice a{text-decoration:underline}
-.analytics-actions{display:flex;gap:10px}.analytics-actions button{flex:1;border:1px solid #25291e;border-radius:8px;padding:10px 12px;background:transparent;color:inherit;font:inherit;cursor:pointer;min-height:44px}.analytics-actions button:first-child{background:#dbe8be}
+/* Unobtrusive analytics opt-out in the footer. */
+[data-analytics-preferences][hidden]{display:none!important}
 [data-analytics-preferences]{border:0;padding:0;background:none;color:inherit;text-align:left;font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
-.analytics-actions button:focus-visible,[data-analytics-preferences]:focus-visible{outline:3px solid #6380eb;outline-offset:3px}
-@media(max-width:600px){.analytics-choice{bottom:10px;left:10px;width:calc(100% - 20px);padding:14px;font-size:13px}.analytics-choice strong{font-size:16px}}
+[data-analytics-preferences]:focus-visible{outline:3px solid #6380eb;outline-offset:3px}

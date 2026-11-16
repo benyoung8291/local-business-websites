@@ -1,13 +1,12 @@
-/* Optional first-party controls; Google loads only after affirmative consent. */
+/* Production-only Analytics with a persistent, unobtrusive opt-out. */
 (() => {
   'use strict';
   const tag = document.querySelector('script[data-analytics-id]');
   const id = tag?.dataset.analyticsId;
-  const banner = document.querySelector('#analytics-choice');
   const preferences = document.querySelector('[data-analytics-preferences]');
   if (!/^G-[A-Z0-9]+$/.test(id || '') || location.hostname !== 'www.benjaminyoung.com.au') return;
   const key = 'ben-young-analytics-consent-v1';
-  let consent = false, started = false, previousFocus;
+  let consent = false, started = false;
   window.dataLayer = window.dataLayer || [];
   const gtag = function () { window.dataLayer.push(arguments); };
   const safeUrl = value => { try { const url = new URL(value); return url.origin + url.pathname; } catch { return ''; } };
@@ -42,19 +41,16 @@
   function choose(value) {
     try { localStorage.setItem(key, value); } catch {}
     value === 'allowed' ? allow() : decline();
-    const focusWasInside = banner.contains(document.activeElement);
-    banner.hidden = true;
-    if (focusWasInside) (previousFocus || preferences).focus({preventScroll:true});
+    preferences.textContent = consent ? 'Turn off analytics' : 'Turn on analytics';
   }
+
   window.BenAnalytics = Object.freeze({track(name, method) {
     if (!consent) return;
     if (name === 'generate_lead') gtag('event', name, {...page, send_to:id, method:'contact_form'});
     if (name === 'contact_click' && ['email','enquiry'].includes(method)) gtag('event', name, {...page, send_to:id, method});
   }});
-  banner.querySelector('[data-analytics-allow]').addEventListener('click', () => choose('allowed'));
-  banner.querySelector('[data-analytics-decline]').addEventListener('click', () => choose('declined'));
   preferences.hidden = false;
-  preferences.addEventListener('click', () => { previousFocus = document.activeElement; banner.hidden = false; banner.querySelector('[data-analytics-allow]').focus({preventScroll:true}); });
+  preferences.addEventListener('click', () => choose(consent ? 'declined' : 'allowed'));
   document.addEventListener('click', event => {
     const link = event.target.closest('a[href]');
     if (!link) return;
@@ -64,7 +60,7 @@
   });
   let saved;
   try { saved = localStorage.getItem(key); } catch {}
-  if (saved === 'allowed') allow();
-  else if (saved === 'declined') decline();
-  else banner.hidden = false;
+  if (saved === 'declined') decline();
+  else allow();
+  preferences.textContent = consent ? 'Turn off analytics' : 'Turn on analytics';
 })();

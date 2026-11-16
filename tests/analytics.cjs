@@ -16,14 +16,14 @@ function setup(saved, host='www.benjaminyoung.com.au') {
  vm.runInNewContext(source,context);
  return {context,handlers,appended,cookies,banner,events:()=>Array.from(context.dataLayer||[],x=>Array.from(x)).filter(x=>x[0]==='event')};
 }
-let t=setup(); assert.equal(t.appended.length,0);assert.equal(t.banner.hidden,false);
-t.handlers['[data-analytics-decline]']();assert.equal(t.appended.length,0);t.context.BenAnalytics.track('generate_lead');assert.equal(t.events().length,0);
-t.handlers['[data-analytics-allow]']();assert.equal(t.appended.length,1);assert.equal(t.events().length,1);
+let t=setup('declined'); assert.equal(t.appended.length,0);assert.equal(setup().appended.length,1);
+assert.equal(t.appended.length,0);t.context.BenAnalytics.track('generate_lead');assert.equal(t.events().length,0);
+t.handlers.preferences();assert.equal(t.appended.length,1);assert.equal(t.events().length,1);
 assert.equal(t.events()[0][2].page_location,'https://www.benjaminyoung.com.au/services/');assert.equal(t.events()[0][2].page_referrer,'https://www.google.com/search');
-t.handlers['[data-analytics-allow]']();assert.equal(t.events().length,1);
+assert.equal(t.events().length,1);
 t.context.BenAnalytics.track('generate_lead',{email:'secret'});assert.equal(t.events().length,2);assert.ok(!JSON.stringify(t.events()).includes('secret'));
 t.context.BenAnalytics.track('private_event','email');t.context.BenAnalytics.track('contact_click','secret');assert.equal(t.events().length,2);
-t.handlers['[data-analytics-decline]']();t.context.BenAnalytics.track('generate_lead');assert.equal(t.events().length,2);assert.equal(t.context['ga-disable-G-TEST123'],true);assert.equal(t.cookies.length,12);assert.ok(t.cookies.every(x=>!x.includes('essential')));
+t.handlers.preferences();t.context.BenAnalytics.track('generate_lead');assert.equal(t.events().length,2);assert.equal(t.context['ga-disable-G-TEST123'],true);assert.equal(t.cookies.length,12);assert.ok(t.cookies.every(x=>!x.includes('essential')));
 assert.equal(setup('allowed').appended.length,1);assert.equal(setup('declined').appended.length,0);assert.equal(setup('allowed','localhost').appended.length,0);
 // Test the real form handler with mocked Formspree responses: no email is sent.
 async function submit(ok,throwAnalytics=false) {
@@ -33,4 +33,4 @@ async function submit(ok,throwAnalytics=false) {
  const ctx={document:{querySelector:s=>s==='#contact-form'?form:s==='#form-status'?status:null},window:{BenAnalytics:{track:()=>{leads++;if(throwAnalytics)throw Error('blocked')}}},fetch:async()=>({ok}),FormData:class{},AbortController,setTimeout,clearTimeout};
  vm.runInNewContext(fs.readFileSync('dist/assets/contact.js','utf8'),ctx);await submitHandler({preventDefault(){}});return{leads,resets,status};
 }
-(async()=>{assert.equal((await submit(false)).leads,0);assert.equal((await submit(true)).leads,1);assert.equal((await submit(true,true)).resets,1);console.log('PASS: consent, URL sanitisation, opt-out, event whitelist and successful-enquiry tracking.');})();
+(async()=>{assert.equal((await submit(false)).leads,0);assert.equal((await submit(true)).leads,1);assert.equal((await submit(true,true)).resets,1);console.log('PASS: default collection, saved opt-out, URL sanitisation, opt-out, event whitelist and successful-enquiry tracking.');})();
